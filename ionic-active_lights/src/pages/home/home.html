@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Namn på fotbollsplan</ion-label>
+      <ion-input type="text" #fieldName value=""></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button color="primary" block (click)="createField()">Registrera fotbollsplan</button>
+  </div>
+
+  <div padding>
+    <button ion-button color="secondary" block (click)="showField()">Visa fotbollsplan</button>
+  </div>
+
+</ion-content>
