@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
-import { FieldService } from "../../providers/field-service";
-import { SthlmService } from "../../providers/sthlm-service";
-
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {FieldService} from "../../providers/field-service";
 /**
  * Generated class for the FieldPage page.
  *
@@ -19,11 +17,11 @@ export class FieldPage {
   protected fields: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public fieldService: FieldService, public sthlmService: SthlmService) {
+              public fieldService: FieldService) {
   }
 
   ionViewDidLoad() {
-    this.sthlmService.getSthlmApi().subscribe(fields => {
+    this.fieldService.getGoodFields().subscribe(fields => {
       this.fields = fields;
     })
   }

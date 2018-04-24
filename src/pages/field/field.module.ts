@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { FieldService } from '../../providers/field-service';
-import { FieldPage } from "./field";
-import { SthlmService } from "../../providers/sthlm-service";
+import {FieldService} from '../../providers/field-service';
+import {FieldPage} from "./field";
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { SthlmService } from "../../providers/sthlm-service";
   ],
   providers: [
     FieldService,
-    SthlmService
   ]
 })
 export class FieldPageModule {}

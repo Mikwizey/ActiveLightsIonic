@@ -11,7 +11,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
 import { FieldService } from "../providers/field-service";
-import { SthlmService} from "../providers/sthlm-service";
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { SthlmService} from "../providers/sthlm-service";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FieldService,
-    SthlmService
+    FieldService
   ]
 })
 export class AppModule {}
