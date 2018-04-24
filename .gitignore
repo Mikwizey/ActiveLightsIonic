@@ -141,3 +141,7 @@ flycheck_*.el
 /ionic-active_lights/node_modules/
 /server/target/
 !/server/pom.xml
+/node_modules/
+/.idea/
+/.sourcemaps/
+/www/
