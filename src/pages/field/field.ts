@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {FieldService} from "../../providers/field-service";
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FieldService } from "../../providers/field-service";
 /**
  * Generated class for the FieldPage page.
  *
@@ -14,15 +14,21 @@ import {FieldService} from "../../providers/field-service";
   templateUrl: 'field.html',
 })
 export class FieldPage {
-  protected fields: Array<any>;
+
+  protected name;
+  protected visitors;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              public fieldService: FieldService) {
+    public fieldService: FieldService) {
   }
 
   ionViewDidLoad() {
-    this.fieldService.getGoodFields().subscribe(fields => {
-      this.fields = fields;
-    })
+
+    this.name = this.navParams.get('name');
+    this.visitors = this.navParams.get('visitors')
+
+    console.log(this.name, this.visitors);
+
   }
+
 }

@@ -55,11 +55,20 @@ export class ListPage {
         });
     }
 
-    showField(){
+    showField(name, visitors){
 
-        this.navCtrl.push(FieldPage);
+        let fieldData = {
+
+            name: name,
+            visitors: visitors,
+
+        }
+
+        this.navCtrl.push(FieldPage, fieldData);
 
     }
+
+   
 }
 
 

@@ -18,7 +18,7 @@
       <!-- </button> -->
 
     
-      <button ion-item *ngFor="let field of fields" (click)="showField()"> {{field.name}}
+      <button ion-item *ngFor="let field of fields" (click)="showField(field.name, field.visitors)"> {{field.name}}
           
       </button>
       
