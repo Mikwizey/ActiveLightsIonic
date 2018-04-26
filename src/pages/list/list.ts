@@ -9,11 +9,12 @@ import { FieldPage } from '../field/field';
     templateUrl: 'list.html'
 })
 export class ListPage {
+    protected fields: Array<any>; 
 
-    protected fields: Array<any>;
 
+    constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService) {
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService) { }
+    }
 
 
 
@@ -25,13 +26,11 @@ export class ListPage {
             visitors: visitors,
 
         }
-
         this.navCtrl.push(FieldPage, fieldData);
-
     }
+
     
     ionViewDidLoad() {
-
         this.fieldService.getGoodFields().subscribe(fields => {
             this.fields = fields;
         })
