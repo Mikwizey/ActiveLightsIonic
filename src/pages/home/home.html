@@ -4,22 +4,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-
-    <ion-item>
-        <ion-label floating>Sök fotbollsplan</ion-label>
-        <ion-input type="text" #fieldName value=""></ion-input>
-    </ion-item>
-
-  </ion-list>
-
+<ion-content padding>
+  
   <div padding>
-    <button ion-button color="primary" block (click)="createField()">Registrera fotbollsplan</button>
-  </div>
-
-  <div padding>
-    <button ion-button color="secondary" block (click)="showField()">Exempelfotbollsplan</button>
+    <button ion-button color="dark" block (click)="goToList()">Till lista</button>
   </div>
 
 </ion-content>
