@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { FieldPage } from './field';
+import { AllfieldsPage } from './allfields';
 
 @NgModule({
   declarations: [
-    FieldPage,
+    AllfieldsPage,
   ],
   imports: [
-    IonicPageModule.forChild(FieldPage),
+    IonicPageModule.forChild(AllfieldsPage),
   ],
 })
-export class FieldPageModule {}
+export class AllfieldsPageModule {}

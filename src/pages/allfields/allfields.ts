@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the FieldPage page.
+ * Generated class for the AllfieldsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-field',
-  templateUrl: 'field.html',
+  selector: 'page-allfields',
+  templateUrl: 'allfields.html',
 })
-export class FieldPage {
+export class AllfieldsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FieldPage');
+    console.log('ionViewDidLoad AllfieldsPage');
   }
 
 }
