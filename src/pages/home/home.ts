@@ -9,7 +9,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-ioexport class HomePage {
+export class HomePage {
 
 
   constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, private platform: Platform) {

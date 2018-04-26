@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { FieldPage } from './field';
+import {FieldService} from '../../providers/field-service';
+import {FieldPage} from "./field";
 
 @NgModule({
   declarations: [
-    FieldPage,
+    FieldPage
   ],
   imports: [
     IonicPageModule.forChild(FieldPage),
   ],
+  providers: [
+    FieldService,
+  ]
 })
 export class FieldPageModule {}
