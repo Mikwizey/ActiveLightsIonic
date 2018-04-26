@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {FieldService} from "../../providers/field-service";
+import { FieldPage } from '../field/field';
 
 @IonicPage()
 @Component({
@@ -41,6 +42,7 @@ export class ListPage {
     }
 
     ionViewDidLoad() {
+        
         this.fieldService.getGoodFields().subscribe(fields => {
             this.fields = fields;
         })
@@ -51,6 +53,12 @@ export class ListPage {
         this.navCtrl.push(ListPage, {
             item: item
         });
+    }
+
+    showField(){
+
+        this.navCtrl.push(FieldPage);
+
     }
 }
 
