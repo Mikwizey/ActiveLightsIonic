@@ -20,6 +20,8 @@ export class FieldPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public fieldService: FieldService) {
+
+  
   }
 
   ionViewDidLoad() {
@@ -28,6 +30,19 @@ export class FieldPage {
     this.visitors = this.navParams.get('visitors')
 
     console.log(this.name, this.visitors);
+
+    this.setColor();
+
+  }
+
+  setColor(){
+
+    switch(this.visitors){
+
+      case "Låg belastning": document.getElementById('visitors').style.color="green"; break;
+      case "Hög belastning": document.getElementById('visitors').style.color="red"; break;
+      case "Medel belastning": document.getElementById('visitors').style.color="orange"; break;
+    }
 
   }
 
