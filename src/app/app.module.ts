@@ -13,13 +13,15 @@ import { HttpClientModule } from "@angular/common/http";
 import { FieldService } from "../providers/field-service";
 
 import { Geolocation } from '@ionic-native/geolocation';
+import { ActivityPage } from '../pages/activity/activity';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    FieldPage
+    FieldPage,
+    ActivityPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     HomePage,
     ListPage,
-    FieldPage
+    FieldPage,
+    ActivityPage
   ],
   providers: [
     StatusBar,

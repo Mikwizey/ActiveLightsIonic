@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
+import { ActivityPage } from '../activity/activity';
 /**
  * Generated class for the FieldPage page.
  *
@@ -60,17 +61,6 @@ export class FieldPage {
     this.activityList.push(activity);
   }
 
-  showBooking() {
-
-    for(let i = 0; i < this.activityList.length; i++){
-      console.log(this.activityList[i]);
-    }
-    
-    
-
-
-  }
-
   setColor() {
 
     switch (this.visitors) {
@@ -79,6 +69,13 @@ export class FieldPage {
       case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
       case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
     }
+
+  }
+
+  showActivity(){
+
+    this.navCtrl.push(ActivityPage);
+    
 
   }
 

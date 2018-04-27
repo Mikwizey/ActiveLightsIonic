@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Aktiviteter</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label float>Aktivitet</ion-label>
+    <ion-input type="text" #actDesc value=""></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label float>Beskrivning</ion-label>
+    <ion-input type="text" #actName value=""></ion-input>
+  </ion-item>
+
+  <button ion-button full (click)="addActivity()"> Skapa ny aktivitet </button>
+
+
+  <ion-item *ngFor="let activity of activityList">
+    <h1>{{activity.name}}</h1>
+    <h2>{{activity.description}}</h2>
+  </ion-item>
+
+
+</ion-content>
