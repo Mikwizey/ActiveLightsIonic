@@ -7,6 +7,8 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
 @Component({
   templateUrl: 'app.html'
 })
