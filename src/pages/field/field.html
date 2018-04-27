@@ -14,10 +14,27 @@
   <h2 id="visitors" class="">{{visitors}}</h2>
 
 
-  <button ion-button icon-left full color="dark" (click)="showActivity()" round>
-    <ion-icon name="md-calendar"></ion-icon>Visa Aktiviteter</button>
+  <button ion-button icon-left full color="dark" (click)="showActivities()" round>
+    <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
   <button ion-button icon-left full color="dark" round>
     <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
+
+  <div *ngIf="isVisible" id="activities">
+
+    <button ion-button  icon-left full color="secondary" round (click)="addActivity()">
+      <ion-icon name="md-add-circle"></ion-icon>
+      Lägg till aktivitet</button>
+
+    <h1 padding>Aktiviteter</h1>
+
+    <ion-item *ngFor="let activity of activityList">
+
+      <h2>{{activity.name}}</h2>
+      <h3>{{activity.description}}</h3>
+
+    </ion-item>
+
+  </div>
 
 </ion-content>

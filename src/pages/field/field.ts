@@ -1,13 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
-import { ActivityPage } from '../activity/activity';
-/**
- * Generated class for the FieldPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -19,15 +12,29 @@ import { ActivityPage } from '../activity/activity';
 
 export class FieldPage {
 
-  @ViewChild('actName') actName;
-  @ViewChild('description') actDesc;
-
   protected name;
   protected visitors;
-  activityList = [];
+  protected isVisible = false;
+  protected buttonText = "Visa aktiviteter";
+
+  activity1 = {
+
+    name: "Hårdkodad exempelaktivitet 1",
+    description: "Hårdkodad exempelbeskrivning 1",
+
+  }
+
+  activity2 = {
+
+    name: "Hårdkodad exempelaktivitet 2",
+    description: "Hårdkodad exempelbeskrivning 2",
+
+  }
+
+  activityList = [this.activity1, this.activity2];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService) {
+    public fieldService: FieldService, public alertCtrl: AlertController) {
 
 
   }
@@ -36,29 +43,8 @@ export class FieldPage {
 
     this.name = this.navParams.get('name');
     this.visitors = this.navParams.get('visitors')
-
-    console.log(this.name, this.visitors);
-
     this.setColor();
 
-  }
-
-
-  addBooking() {
-
-    let activityName = this.actName.value;
-    let activityDesc = this.actDesc.value;
-
-    let activity = {
-
-      name: activityName,
-      description: activityDesc,
-
-    }
-
-    console.log("test1", activity.name, activity.description)
-
-    this.activityList.push(activity);
   }
 
   setColor() {
@@ -72,11 +58,96 @@ export class FieldPage {
 
   }
 
-  showActivity(){
+  showActivities() {
 
-    this.navCtrl.push(ActivityPage);
-    
+    switch (this.isVisible) {
+
+      case false:
+
+        this.isVisible = true;
+
+        this.buttonText = "Dölj aktiviteter";
+
+        break;
+
+      case true:
+
+        this.isVisible = false;
+
+        this.buttonText = "Visa aktiviteter";
+
+    }
 
   }
 
+  addActivity() {
+
+    this.showActivityPrompt();
+
+  }
+
+  showActivityPrompt() {
+
+
+    let inputForm = this.alertCtrl.create({
+      title: 'Skapa aktivitet',
+      message: "Namnge och beskriv din aktivitet.",
+      inputs: [
+        {
+          name: 'name',
+          placeholder: 'Namn på aktiviteten.'
+        },
+        {
+          name: 'desc',
+          placeholder: 'Beskriv aktiviteten.'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Avbryt',
+          handler: data => {
+            return;
+          }
+        },
+        {
+          text: 'Skapa',
+          handler: data => {
+
+            if (data.desc.length == 0 || data.desc.length == 0) {
+              this.showEmptyAlert();
+            }
+
+            else {
+
+              let activity = {
+
+                name: data.name,
+                description: data.desc,
+
+              }
+
+              this.activityList.push(activity);
+
+            }
+
+
+          }
+        }
+      ]
+    });
+    inputForm.present();
+  }
+
+  showEmptyAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Fyll i båda fälten!',
+      subTitle: 'Namn eller beskrivning saknas.',
+      buttons: ['Yes papi']
+    });
+    alert.present();
+  }
 }
+
+
+
+

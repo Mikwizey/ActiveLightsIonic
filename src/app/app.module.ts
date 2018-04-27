@@ -13,7 +13,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { FieldService } from "../providers/field-service";
 
 import { Geolocation } from '@ionic-native/geolocation';
-import { ActivityPage } from '../pages/activity/activity';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { ActivityPage } from '../pages/activity/activity';
     HomePage,
     ListPage,
     FieldPage,
-    ActivityPage
+
   ],
   imports: [
     BrowserModule,
@@ -34,14 +34,14 @@ import { ActivityPage } from '../pages/activity/activity';
     HomePage,
     ListPage,
     FieldPage,
-    ActivityPage
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     FieldService,
     Geolocation
   ]
 })
-export class AppModule {}
+export class AppModule { }
