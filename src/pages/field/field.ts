@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
 /**
@@ -13,15 +13,22 @@ import { FieldService } from "../../providers/field-service";
   selector: 'page-field',
   templateUrl: 'field.html',
 })
+
+
+
 export class FieldPage {
+
+  @ViewChild('actName') actName;
+  @ViewChild('description') actDesc;
 
   protected name;
   protected visitors;
+  activityList = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public fieldService: FieldService) {
 
-  
+
   }
 
   ionViewDidLoad() {
@@ -35,13 +42,42 @@ export class FieldPage {
 
   }
 
-  setColor(){
 
-    switch(this.visitors){
+  addBooking() {
 
-      case "Låg belastning": document.getElementById('visitors').style.color="green"; break;
-      case "Hög belastning": document.getElementById('visitors').style.color="red"; break;
-      case "Medel belastning": document.getElementById('visitors').style.color="orange"; break;
+    let activityName = this.actName.value;
+    let activityDesc = this.actDesc.value;
+
+    let activity = {
+
+      name: activityName,
+      description: activityDesc,
+
+    }
+
+    console.log("test1", activity.name, activity.description)
+
+    this.activityList.push(activity);
+  }
+
+  showBooking() {
+
+    for(let i = 0; i < this.activityList.length; i++){
+      console.log(this.activityList[i]);
+    }
+    
+    
+
+
+  }
+
+  setColor() {
+
+    switch (this.visitors) {
+
+      case "Låg belastning": document.getElementById('visitors').style.color = "green"; break;
+      case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
+      case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
     }
 
   }
