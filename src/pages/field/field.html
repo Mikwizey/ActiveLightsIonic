@@ -21,4 +21,27 @@
     <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
 
 
+    <ion-item>
+      <ion-label fixed>Namn</ion-label>
+      <ion-input type="text" #description value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Beskrivning</ion-label>
+      <ion-input type="text" #actName value=""></ion-input>
+    </ion-item>
+
+  <button ion-button (click)="addBooking()"> Lägg till namn </button>
+
+  <button ion-button (click)="showBooking()"> Visa </button>
+
+  <ion-list *ngFor="let activity of activityList">
+    <ion-item>{{activity.description}}{{activity.name}}</ion-item>
+  </ion-list>
+
+  
+
+
+
+
 </ion-content>
