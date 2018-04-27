@@ -1,7 +1,5 @@
 
-
 import { Geolocation } from '@ionic-native/geolocation';
-
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
@@ -10,11 +8,14 @@ import { ListPage } from '../list/list';
 declare var google: any;
 
 
+declare var google: any;
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
 
     @ViewChild('map') mapRef: ElementRef;
     
@@ -24,9 +25,6 @@ export class HomePage {
         var options = {
             timeout: 5000
         };
-
- 
-
 
 
         this.geolocation.getCurrentPosition(options).then(resp => {
@@ -45,9 +43,11 @@ export class HomePage {
     });
   };
 
+
   ionViewDidLoad() {
     this.showMap();
   }
+
 
   showMap() {
     // Map options
@@ -58,7 +58,8 @@ export class HomePage {
 
     // New map
     var map = new google.maps.Map
-      (this.mapRef.nativeElement, optionsMap);
+
+    (this.mapRef.nativeElement, optionsMap);
 
     // Listen for click on map
     google.maps.event.addListener(map, 'click', function (event) {
@@ -120,10 +121,9 @@ export class HomePage {
   }
 
 
-  goToList() {
+    goToList(){
 
-    this.navCtrl.push(ListPage);
-
-  }
+        this.navCtrl.push(ListPage);
+    }
 
 }
