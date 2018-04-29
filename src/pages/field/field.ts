@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
+
+
+
 
 @IonicPage()
 @Component({
@@ -8,14 +11,18 @@ import { FieldService } from "../../providers/field-service";
   templateUrl: 'field.html',
 })
 
-
-
 export class FieldPage {
 
   protected name;
   protected visitors;
   protected isVisible = false;
   protected buttonText = "Visa aktiviteter";
+  protected addIsClicked = false;
+  protected actDate = new Date().toISOString();
+  protected actTime = String;
+
+  @ViewChild('actName') actName;
+  @ViewChild('actDesc') actDesc;
 
   activity1 = {
 
@@ -35,7 +42,6 @@ export class FieldPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public fieldService: FieldService, public alertCtrl: AlertController) {
-
 
   }
 
@@ -80,72 +86,52 @@ export class FieldPage {
 
   }
 
+  showInput() {
+
+    this.addIsClicked = true;
+  }
+
   addActivity() {
 
-    this.showActivityPrompt();
+    let monthNumber = this.actDate.toString().substring(5, 7);
+
+    let dayNumber = this.actDate.toString().substring(8, 10);
+
+    let month;
+
+    switch (monthNumber) {
+
+      case "01": month = "Jan"; break;
+      case "02": month = "Feb"; break;
+      case "03": month = "Mar"; break;
+      case "04": month = "Apr"; break;
+      case "05": month = "Maj"; break;
+      case "06": month = "Jun"; break;
+      case "07": month = "Jul"; break;
+      case "08": month = "Aug"; break;
+      case "09": month = "Sep"; break;
+      case "10": month = "Okt"; break;
+      case "11": month = "Nov"; break;
+      case "12": month = "Dec"; break;
+
+    }
+
+    let activity = {
+
+      name: this.actName.value,
+      description: this.actDesc.value,
+      time: this.actTime,
+      month: month,
+      day: dayNumber,
+
+    }
+
+    this.activityList.push(activity);
+
+    this.addIsClicked = false;
 
   }
 
-  showActivityPrompt() {
-
-
-    let inputForm = this.alertCtrl.create({
-      title: 'Skapa aktivitet',
-      message: "Namnge och beskriv din aktivitet.",
-      inputs: [
-        {
-          name: 'name',
-          placeholder: 'Namn på aktiviteten.'
-        },
-        {
-          name: 'desc',
-          placeholder: 'Beskriv aktiviteten.'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Avbryt',
-          handler: data => {
-            return;
-          }
-        },
-        {
-          text: 'Skapa',
-          handler: data => {
-
-            if (data.desc.length == 0 || data.desc.length == 0) {
-              this.showEmptyAlert();
-            }
-
-            else {
-
-              let activity = {
-
-                name: data.name,
-                description: data.desc,
-
-              }
-
-              this.activityList.push(activity);
-
-            }
-
-
-          }
-        }
-      ]
-    });
-    inputForm.present();
-  }
-
-  showEmptyAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Fyll i båda fälten!',
-      subTitle: 'Namn eller beskrivning saknas.',
-      buttons: ['Yes papi']
-    });
-    alert.present();
-  }
 }
 
 

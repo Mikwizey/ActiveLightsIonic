@@ -22,19 +22,52 @@
 
   <div *ngIf="isVisible" id="activities">
 
-    <button ion-button  icon-left full color="secondary" round (click)="addActivity()">
+    <button ion-button icon-left full color="secondary" round (click)="showInput()">
       <ion-icon name="md-add-circle"></ion-icon>
       Lägg till aktivitet</button>
+
+    <div *ngIf="addIsClicked" id="addActivity">
+
+      <ion-item>
+        <ion-label>Namn</ion-label>
+        <ion-input type="text" value="" #actName></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Beskrivning</ion-label>
+        <ion-input type="text" value="" #actDesc></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Datum</ion-label>
+        <ion-datetime #actDesc displayFormat="DD MMM" pickerFormat="DD MMM" [(ngModel)]="actDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tid</ion-label>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="actTime"></ion-datetime>
+      </ion-item>
+
+      <div class="doneBtn">
+        <button ion-button icon-left color="secondary" round (click)="addActivity()">
+          <ion-icon name="md-checkmark"></ion-icon>
+          Lägg till</button>
+      </div>
+
+    </div>
 
     <h1 padding>Aktiviteter</h1>
 
     <ion-item *ngFor="let activity of activityList">
 
-      <h2>{{activity.name}}</h2>
+      <h2>{{activity.name}} {{activity.time}}</h2>
+      <h2>{{activity.day}} {{activity.month}}</h2>
       <h3>{{activity.description}}</h3>
 
     </ion-item>
 
   </div>
+
+
 
 </ion-content>
