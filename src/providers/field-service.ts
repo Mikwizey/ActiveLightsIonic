@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class FieldService {
-  public API = 'http://localhost:8080';
+  public API = 'https://pvt.dsv.su.se/Group02';
   public FIELD_API = this.API + '/field';
 
   constructor(public http: HttpClient) {
