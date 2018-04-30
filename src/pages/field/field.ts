@@ -1,12 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
-/**
- * Generated class for the FieldPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+
+
 
 @IonicPage()
 @Component({
@@ -14,20 +11,38 @@ import { FieldService } from "../../providers/field-service";
   templateUrl: 'field.html',
 })
 
-
-
 export class FieldPage {
-
-  @ViewChild('actName') actName;
-  @ViewChild('description') actDesc;
 
   protected name;
   protected visitors;
-  activityList = [];
+  protected isVisible = false;
+  protected buttonText = "Visa aktiviteter";
+  protected addIsClicked = false;
+  protected actDate = new Date().toISOString();
+  protected actTime = new Date().toISOString();
+ 
+
+  @ViewChild('actName') actName;
+  @ViewChild('actDesc') actDesc;
+
+  activity1 = {
+
+    name: "Hårdkodad exempelaktivitet 1",
+    description: "Hårdkodad exempelbeskrivning 1",
+
+  }
+
+  activity2 = {
+
+    name: "Hårdkodad exempelaktivitet 2",
+    description: "Hårdkodad exempelbeskrivning 2",
+
+  }
+
+  activityList = [this.activity1, this.activity2];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService) {
-
+    public fieldService: FieldService, public alertCtrl: AlertController) {
 
   }
 
@@ -35,39 +50,7 @@ export class FieldPage {
 
     this.name = this.navParams.get('name');
     this.visitors = this.navParams.get('visitors')
-
-    console.log(this.name, this.visitors);
-
     this.setColor();
-
-  }
-
-
-  addBooking() {
-
-    let activityName = this.actName.value;
-    let activityDesc = this.actDesc.value;
-
-    let activity = {
-
-      name: activityName,
-      description: activityDesc,
-
-    }
-
-    console.log("test1", activity.name, activity.description)
-
-    this.activityList.push(activity);
-  }
-
-  showBooking() {
-
-    for(let i = 0; i < this.activityList.length; i++){
-      console.log(this.activityList[i]);
-    }
-    
-    
-
 
   }
 
@@ -82,4 +65,80 @@ export class FieldPage {
 
   }
 
+  showActivities() {
+
+    switch (this.isVisible) {
+
+      case false:
+
+        this.isVisible = true;
+
+        this.buttonText = "Dölj aktiviteter";
+
+        break;
+
+      case true:
+
+        this.isVisible = false;
+
+        this.buttonText = "Visa aktiviteter";
+
+    }
+
+  }
+
+  showInput() {
+
+    this.addIsClicked = true;
+  }
+
+  addActivity() {
+
+    let monthNumber = this.actDate.toString().substring(5, 7);
+
+    let dayNumber = this.actDate.toString().substring(8, 10);
+
+    let month;
+
+    switch (monthNumber) {
+
+      case "01": month = "Jan"; break;
+      case "02": month = "Feb"; break;
+      case "03": month = "Mar"; break;
+      case "04": month = "Apr"; break;
+      case "05": month = "Maj"; break;
+      case "06": month = "Jun"; break;
+      case "07": month = "Jul"; break;
+      case "08": month = "Aug"; break;
+      case "09": month = "Sep"; break;
+      case "10": month = "Okt"; break;
+      case "11": month = "Nov"; break;
+      case "12": month = "Dec"; break;
+
+    }
+
+    let timeLong = this.actTime.toString().substring(11,16);
+
+    let time = timeLong;
+
+    let activity = {
+
+      name: this.actName.value,
+      description: this.actDesc.value,
+      time: time,
+      month: month,
+      day: dayNumber,
+
+    }
+
+    this.activityList.push(activity);
+
+    this.addIsClicked = false;
+
+  }
+
 }
+
+
+
+

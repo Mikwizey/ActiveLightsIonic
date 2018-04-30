@@ -14,12 +14,14 @@ import { FieldService } from "../providers/field-service";
 
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    FieldPage
+    FieldPage,
+
   ],
   imports: [
     BrowserModule,
@@ -31,14 +33,15 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     HomePage,
     ListPage,
-    FieldPage
+    FieldPage,
+
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     FieldService,
     Geolocation
   ]
 })
-export class AppModule {}
+export class AppModule { }

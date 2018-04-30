@@ -14,33 +14,59 @@
   <h2 id="visitors" class="">{{visitors}}</h2>
 
 
-  <button ion-button icon-left full color="dark" round>
-    <ion-icon name="md-calendar" id="visitors1"></ion-icon>Visa bokningar</button>
+  <button ion-button icon-left full color="dark" (click)="showActivities()" >
+    <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
-  <button ion-button icon-left full color="dark" round>
+  <button ion-button icon-left full color="dark" >
     <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
 
+  <div *ngIf="isVisible" id="activities">
 
-    <ion-item>
-      <ion-label fixed>Namn</ion-label>
-      <ion-input type="text" #description value=""></ion-input>
+    <button ion-button icon-left full color="secondary"  (click)="showInput()">
+      <ion-icon name="md-add-circle"></ion-icon>
+      Lägg till aktivitet</button>
+
+    <div *ngIf="addIsClicked" id="addActivity">
+
+      <ion-item>
+        <ion-label>Namn</ion-label>
+        <ion-input type="text" value="" #actName></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Beskrivning</ion-label>
+        <ion-input type="text" value="" #actDesc></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Datum</ion-label>
+        <ion-datetime #actDesc displayFormat="DD MMM" pickerFormat="DD MMM" [(ngModel)]="actDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tid</ion-label>
+        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="actTime"></ion-datetime>
+      </ion-item>
+
+      <div class="doneBtn">
+        <button ion-button icon-left color="secondary" (click)="addActivity()">
+          <ion-icon name="md-checkmark"></ion-icon>
+          Lägg till</button>
+      </div>
+
+    </div>
+
+    <h1 padding>Aktiviteter</h1>
+
+    <ion-item *ngFor="let activity of activityList">
+
+      <h2>{{activity.name}}{{activity.time}}</h2>
+      <h3>{{activity.day}} {{activity.month}}</h3>
+      <p>{{activity.description}}</p>
+
     </ion-item>
 
-    <ion-item>
-      <ion-label fixed>Beskrivning</ion-label>
-      <ion-input type="text" #actName value=""></ion-input>
-    </ion-item>
-
-  <button ion-button (click)="addBooking()"> Lägg till namn </button>
-
-  <button ion-button (click)="showBooking()"> Visa </button>
-
-  <ion-list *ngFor="let activity of activityList">
-    <ion-item>{{activity.description}}{{activity.name}}</ion-item>
-  </ion-list>
-
-  
-
+  </div>
 
 
 
