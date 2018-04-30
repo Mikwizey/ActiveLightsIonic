@@ -20,7 +20,7 @@ export class FieldPage {
   protected addIsClicked = false;
   protected actDate = new Date().toISOString();
   protected actTime = new Date().toISOString();
- 
+  protected rating = 0;
 
   @ViewChild('actName') actName;
   @ViewChild('actDesc') actDesc;
@@ -43,6 +43,10 @@ export class FieldPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public fieldService: FieldService, public alertCtrl: AlertController) {
+
+  }
+
+  setRating() {
 
   }
 
