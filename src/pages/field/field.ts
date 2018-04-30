@@ -19,7 +19,7 @@ export class FieldPage {
   protected buttonText = "Visa aktiviteter";
   protected addIsClicked = false;
   protected actDate = new Date().toISOString();
-  protected actTime = String;
+  protected actTime = new Date().toISOString();
 
   @ViewChild('actName') actName;
   @ViewChild('actDesc') actDesc;
@@ -116,11 +116,15 @@ export class FieldPage {
 
     }
 
+    let timeLong = this.actTime.toString().substring(11,16);
+
+    let time = timeLong;
+
     let activity = {
 
       name: this.actName.value,
       description: this.actDesc.value,
-      time: this.actTime,
+      time: time,
       month: month,
       day: dayNumber,
 
