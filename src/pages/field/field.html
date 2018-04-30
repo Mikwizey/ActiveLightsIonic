@@ -13,7 +13,8 @@
 
   <h2 id="visitors" class="">{{visitors}}</h2>
 
-  <bar-rating></bar-rating>
+  <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
+  <!-- DEBUG -->{{currentrating}}
 
 
   <button ion-button icon-left full color="dark" (click)="showActivities()" >

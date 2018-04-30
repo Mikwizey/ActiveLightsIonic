@@ -20,7 +20,7 @@ export class FieldPage {
   protected addIsClicked = false;
   protected actDate = new Date().toISOString();
   protected actTime = new Date().toISOString();
-  protected rating = 0;
+  protected currentrating = 0;
 
   @ViewChild('actName') actName;
   @ViewChild('actDesc') actDesc;
@@ -47,7 +47,7 @@ export class FieldPage {
   }
 
   setRating() {
-
+    // Framtida beräkning av medel osv
   }
 
   ionViewDidLoad() {
