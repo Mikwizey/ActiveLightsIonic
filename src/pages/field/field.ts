@@ -20,6 +20,7 @@ export class FieldPage {
   protected addIsClicked = false;
   protected actDate = new Date().toISOString();
   protected actTime = new Date().toISOString();
+ 
 
   @ViewChild('actName') actName;
   @ViewChild('actDesc') actDesc;

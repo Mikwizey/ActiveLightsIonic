@@ -14,15 +14,15 @@
   <h2 id="visitors" class="">{{visitors}}</h2>
 
 
-  <button ion-button icon-left full color="dark" (click)="showActivities()" round>
+  <button ion-button icon-left full color="dark" (click)="showActivities()" >
     <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
-  <button ion-button icon-left full color="dark" round>
+  <button ion-button icon-left full color="dark" >
     <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
 
   <div *ngIf="isVisible" id="activities">
 
-    <button ion-button icon-left full color="secondary" round (click)="showInput()">
+    <button ion-button icon-left full color="secondary"  (click)="showInput()">
       <ion-icon name="md-add-circle"></ion-icon>
       Lägg till aktivitet</button>
 
@@ -49,7 +49,7 @@
       </ion-item>
 
       <div class="doneBtn">
-        <button ion-button icon-left color="secondary" round (click)="addActivity()">
+        <button ion-button icon-left color="secondary" (click)="addActivity()">
           <ion-icon name="md-checkmark"></ion-icon>
           Lägg till</button>
       </div>
@@ -60,9 +60,9 @@
 
     <ion-item *ngFor="let activity of activityList">
 
-      <h2>{{activity.name}} {{activity.time}}</h2>
-      <h2>{{activity.day}} {{activity.month}}</h2>
-      <h3>{{activity.description}}</h3>
+      <h2>{{activity.name}}{{activity.time}}</h2>
+      <h3>{{activity.day}} {{activity.month}}</h3>
+      <p>{{activity.description}}</p>
 
     </ion-item>
 
