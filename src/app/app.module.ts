@@ -14,6 +14,7 @@ import { FieldService } from "../providers/field-service";
 
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { BarRatingModule } from "ngx-bar-rating";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { Geolocation } from '@ionic-native/geolocation';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    BarRatingModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +36,6 @@ import { Geolocation } from '@ionic-native/geolocation';
     HomePage,
     ListPage,
     FieldPage,
-
   ],
   providers: [
     StatusBar,
