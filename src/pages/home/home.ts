@@ -7,8 +7,6 @@ import {ListPage} from '../list/list';
 declare var google: any;
 
 
-declare var google: any;
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
