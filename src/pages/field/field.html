@@ -13,9 +13,12 @@
 
   <h2 id="visitors" class="">{{visitors}}</h2>
 
+  <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom()" >
+    Chatta
+      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
+
   <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
   <!-- DEBUG -->{{currentrating}}
-
 
   <button ion-button icon-left full color="dark" (click)="showActivities()" >
     <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
