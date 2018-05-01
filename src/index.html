@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <title>SportLights</title>
@@ -15,8 +16,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV9lMdxnUV5bMd9SGO-4DEzxgruhKR150&callback=initMap"
-  async defer></script>  
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV9lMdxnUV5bMd9SGO-4DEzxgruhKR150&callback=initMap" async
+    defer></script>
 
   <!-- cordova.js required for cordova apps (remove if not needed) -->
   <script src="cordova.js"></script>
@@ -33,6 +34,7 @@
   <link href="build/main.css" rel="stylesheet">
 
 </head>
+
 <body>
 
   <!-- Ionic's root component and where the app will load -->
@@ -48,5 +50,31 @@
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  <meta name="google-signin-client_id" content="210051683566-cm8gkq2vh0igcrpa7p4gk328cuos32rr.apps.googleusercontent.com">
+
+   <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+      });
+    }
+  </script> 
+
+  <script>
+    function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    }
+  </script>
+
+
+
 </body>
+
 </html>

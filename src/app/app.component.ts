@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
+import { FirstPage } from "../pages/first/first";
 
 import { Geolocation } from '@ionic-native/geolocation';
 
@@ -15,7 +16,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = FirstPage;
 
   pages: Array<{title: string, component: any}>;
 

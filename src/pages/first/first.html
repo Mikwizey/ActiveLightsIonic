@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <div text-center>
+
+    <h1>Sport Lights</h1>
+    <h5>Light up the field and play football till you can no longer walk.</h5>
+
+  </div>
+
+  <div>
+
+    <ion-item>
+      <ion-label floating>E-mail</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Lösenord</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <button ion-button block large>
+        <b>Logga in</b>
+      </button>
+    </ion-item>
+
+
+
+    <button ion-item no-lines detail-none text-center>Inget konto? Registrera dig här</button>
+
+    <p text-center>Eller logga in med Google+</p>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <div text-center>
+      <button ion-button outline href="#" onclick="signOut()">Logga ut</button>
+    </div>
+
+    <button ion-item no-lines detail-none text-center (click)="goMapPage()">Klicka här för att gå vidare till kartan</button>
+
+
+  </div>
+
+</ion-content>

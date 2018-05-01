@@ -15,6 +15,7 @@ import { FieldService } from "../providers/field-service";
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { BarRatingModule } from "ngx-bar-rating";
+import { FirstPage } from '../pages/first/first';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BarRatingModule } from "ngx-bar-rating";
     HomePage,
     ListPage,
     FieldPage,
+    FirstPage,
 
   ],
   imports: [
@@ -36,6 +38,7 @@ import { BarRatingModule } from "ngx-bar-rating";
     HomePage,
     ListPage,
     FieldPage,
+    FirstPage,
   ],
   providers: [
     StatusBar,
