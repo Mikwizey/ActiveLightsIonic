@@ -23,6 +23,7 @@ export class ListPage {
   ionViewDidLoad() {
     this.fieldService.getGoodFields().subscribe(fields => {
       this.fields = fields;
+      
     })
   }
 
