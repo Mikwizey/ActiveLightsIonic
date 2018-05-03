@@ -5,36 +5,26 @@ import { FieldPage } from '../field/field';
 
 @IonicPage()
 @Component({
-    selector: 'page-list',
-    templateUrl: 'list.html'
+  selector: 'page-list',
+  templateUrl: 'list.html'
 })
 export class ListPage {
-    protected fields: Array<any>; 
+  protected fields: Array<any>; 
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService) {
 
-    }
+  }
 
+  showField(id: number) {
+    this.navCtrl.push(FieldPage, { id: id }); 
+  } 
 
-
-    showField(name, visitors) {
-
-        let fieldData = {
-
-            name: name,
-            visitors: visitors,
-
-        }
-        this.navCtrl.push(FieldPage, fieldData);
-    }
-
-    
-    ionViewDidLoad() {
-        this.fieldService.getGoodFields().subscribe(fields => {
-            this.fields = fields;
-        })
-    }
+  ionViewDidLoad() {
+    this.fieldService.getGoodFields().subscribe(fields => {
+      this.fields = fields;
+    })
+  }
 
 }
 

@@ -14,4 +14,8 @@ export class FieldService {
     return this.http.get(this.API + '/field');
   }
 
+    getField(id): Observable<any> {
+        return this.http.get(this.API + '/field/' + id);
+    }
+
 }
