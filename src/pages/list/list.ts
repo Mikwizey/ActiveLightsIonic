@@ -20,7 +20,8 @@ export class ListPage {
     this.navCtrl.push(FieldPage, { id: id }); 
   } 
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    console.log("refresh?");
     this.fieldService.getGoodFields().subscribe(fields => {
       this.fields = fields;
       

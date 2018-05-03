@@ -61,88 +61,96 @@ export class FieldPage {
 
     }
 
-    setColor() {
+  lightsOn() {
+    console.log("kommer till ts 1");
+    this.fieldService.setLights(this.id).subscribe(field => {
+      console.log("kommer till ts 2");
+      this.field.lights = true;
+    })
+  }
 
-        switch (this.field.visitors) {
+  setColor() {
 
-            case "Låg belastning": document.getElementById('visitors').style.color = "green"; break;
-            case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
-            case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
-        } 
-    }
+    switch (this.field.visitors) {
+
+      case "Låg belastning": document.getElementById('visitors').style.color = "green"; break;
+      case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
+      case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
+    } 
+  }
 
 
-    showActivities() {
+  showActivities() {
 
-        switch (this.isVisible) {
+    switch (this.isVisible) {
 
-            case false:
+      case false:
 
-                this.isVisible = true;
+        this.isVisible = true;
 
-                this.buttonText = "Dölj aktiviteter";
+        this.buttonText = "Dölj aktiviteter";
 
-                break;
+        break;
 
-            case true:
+      case true:
 
-                this.isVisible = false;
+        this.isVisible = false;
 
-                this.buttonText = "Visa aktiviteter";
-
-        }
-
-    }
-
-    showInput() {
-
-        this.addIsClicked = true;
-    }
-
-    addActivity() {
-
-        let monthNumber = this.actDate.toString().substring(5, 7);
-
-        let dayNumber = this.actDate.toString().substring(8, 10);
-
-        let month;
-
-        switch (monthNumber) {
-
-            case "01": month = "Jan"; break;
-            case "02": month = "Feb"; break;
-            case "03": month = "Mar"; break;
-            case "04": month = "Apr"; break;
-            case "05": month = "Maj"; break;
-            case "06": month = "Jun"; break;
-            case "07": month = "Jul"; break;
-            case "08": month = "Aug"; break;
-            case "09": month = "Sep"; break;
-            case "10": month = "Okt"; break;
-            case "11": month = "Nov"; break;
-            case "12": month = "Dec"; break;
-
-        }
-
-        let timeLong = this.actTime.toString().substring(11,16);
-
-        let time = timeLong;
-
-        let activity = {
-
-            name: this.actName.value,
-            description: this.actDesc.value,
-            time: time,
-            month: month,
-            day: dayNumber,
-
-        }
-
-        this.activityList.push(activity);
-
-        this.addIsClicked = false;
+        this.buttonText = "Visa aktiviteter";
 
     }
+
+  }
+
+  showInput() {
+
+    this.addIsClicked = true;
+  }
+
+  addActivity() {
+
+    let monthNumber = this.actDate.toString().substring(5, 7);
+
+    let dayNumber = this.actDate.toString().substring(8, 10);
+
+    let month;
+
+    switch (monthNumber) {
+
+      case "01": month = "Jan"; break;
+      case "02": month = "Feb"; break;
+      case "03": month = "Mar"; break;
+      case "04": month = "Apr"; break;
+      case "05": month = "Maj"; break;
+      case "06": month = "Jun"; break;
+      case "07": month = "Jul"; break;
+      case "08": month = "Aug"; break;
+      case "09": month = "Sep"; break;
+      case "10": month = "Okt"; break;
+      case "11": month = "Nov"; break;
+      case "12": month = "Dec"; break;
+
+    }
+
+    let timeLong = this.actTime.toString().substring(11,16);
+
+    let time = timeLong;
+
+    let activity = {
+
+      name: this.actName.value,
+      description: this.actDesc.value,
+      time: time,
+      month: month,
+      day: dayNumber,
+
+    }
+
+    this.activityList.push(activity);
+
+    this.addIsClicked = false;
+
+  }
 
 }
 
