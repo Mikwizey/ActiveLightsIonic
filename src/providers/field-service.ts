@@ -4,7 +4,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class FieldService {
-  public API = 'https://pvt.dsv.su.se/Group02';
+  public API = 'https://pvt.dsv.su.se/Group02'; //För att se riktiga servern
+  //public API = 'http://localhost:8080'; //För att se server lokalt
   public FIELD_API = this.API + '/field';
 
   constructor(public http: HttpClient) {
@@ -12,6 +13,15 @@ export class FieldService {
 
   getGoodFields(): Observable<any> {
     return this.http.get(this.API + '/field');
+  }
+
+    getField(id): Observable<any> {
+        return this.http.get(this.API + '/field/' + id);
+    }
+
+  setLights(id): Observable<any> {
+    console.log("kommer till fs");
+    return this.http.put(this.API + '/field/' + id + '/lightson', {});
   }
 
 }

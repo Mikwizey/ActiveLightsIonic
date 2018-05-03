@@ -13,61 +13,72 @@ import { FieldService } from "../../providers/field-service";
 
 export class FieldPage {
 
-  protected name;
-  protected visitors;
-  protected isVisible = false;
-  protected buttonText = "Visa aktiviteter";
-  protected addIsClicked = false;
-  protected actDate = new Date().toISOString();
-  protected actTime = new Date().toISOString();
-  protected currentrating = 0;
+    protected id;
+    protected field;
+    
+    protected isVisible = false;
+    protected buttonText = "Visa aktiviteter";
+    protected addIsClicked = false;
+    protected actDate = new Date().toISOString();
+    protected actTime = new Date().toISOString();
+    protected currentrating = 0;
 
-  @ViewChild('actName') actName;
-  @ViewChild('actDesc') actDesc;
+    @ViewChild('actName') actName;
+    @ViewChild('actDesc') actDesc;
 
-  activity1 = {
+    activity1 = {
 
-    name: "Hårdkodad exempelaktivitet 1",
-    description: "Hårdkodad exempelbeskrivning 1",
+        name: "Hårdkodad exempelaktivitet 1",
+        description: "Hårdkodad exempelbeskrivning 1",
 
-  }
+    }
 
-  activity2 = {
+    activity2 = {
 
-    name: "Hårdkodad exempelaktivitet 2",
-    description: "Hårdkodad exempelbeskrivning 2",
+        name: "Hårdkodad exempelaktivitet 2",
+        description: "Hårdkodad exempelbeskrivning 2",
 
-  }
+    }
 
-  activityList = [this.activity1, this.activity2];
+    activityList = [this.activity1, this.activity2];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService, public alertCtrl: AlertController) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+                public fieldService: FieldService, public alertCtrl: AlertController) {
 
-  }
+    }
 
-  setRating() {
-    // Framtida beräkning av medel osv
-  }
+    setRating() {
+        // Framtida beräkning av medel osv
+    }
 
-  ionViewDidLoad() {
+    ionViewDidLoad() {
+        this.id = this.navParams.get('id');
 
-    this.name = this.navParams.get('name');
-    this.visitors = this.navParams.get('visitors')
-    this.setColor();
+        this.fieldService.getField(this.id).subscribe(field => {
+            this.field = field;
+            this.setColor();
+        })
 
+    }
+
+  lightsOn() {
+    console.log("kommer till ts 1");
+    this.fieldService.setLights(this.id).subscribe(field => {
+      console.log("kommer till ts 2");
+      this.field.lights = true;
+    })
   }
 
   setColor() {
 
-    switch (this.visitors) {
+    switch (this.field.visitors) {
 
       case "Låg belastning": document.getElementById('visitors').style.color = "green"; break;
       case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
       case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
-    }
-
+    } 
   }
+
 
   showActivities() {
 

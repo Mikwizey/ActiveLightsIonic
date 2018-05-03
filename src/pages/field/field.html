@@ -9,70 +9,80 @@
 
 <ion-content padding>
 
-  <h1 class="name">{{name}}</h1>
+    <h1 class="name">{{field?.name}}</h1>
 
-  <h2 id="visitors" class="">{{visitors}}</h2>
+    <h2 id="visitors" class="">{{field?.visitors}}</h2>
 
-  <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom()" >
-    Chatta
-      <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
+    <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom()" >
+        Chatta
+        <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
 
-  <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
-  <!-- DEBUG -->{{currentrating}}
+    <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
+    <!-- DEBUG -->{{currentrating}}
 
-  <button ion-button icon-left full color="dark" (click)="showActivities()" >
-    <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
+    <button ion-button icon-left full color="dark" (click)="showActivities()" >
+        <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
-  <button ion-button icon-left full color="dark" >
-    <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
+    <!-- Lampknappen -->
+        <button ion-button icon-left full color="dark" *ngIf="field?.lights == false"
+                (click)="lightsOn(field.id)">
+            <ion-icon name="md-add-circle"></ion-icon>
+            Tänd belysning</button>
 
-  <div *ngIf="isVisible" id="activities">
+        <button ion-button icon-left full color="dark" *ngIf="field?.lights == true"
+                [disabled]="true">
+            <ion-icon name="md-bulb"></ion-icon>
+            Planen är tänd</button>
 
-    <button ion-button icon-left full color="secondary"  (click)="showInput()">
-      <ion-icon name="md-add-circle"></ion-icon>
-      Lägg till aktivitet</button>
+        
 
-    <div *ngIf="addIsClicked" id="addActivity">
+        <div *ngIf="isVisible" id="activities">
 
-      <ion-item>
-        <ion-label>Namn</ion-label>
-        <ion-input type="text" value="" #actName></ion-input>
-      </ion-item>
+            <button ion-button icon-left full color="secondary"  (click)="showInput()">
+                <ion-icon name="md-add-circle"></ion-icon>
+                Lägg till aktivitet</button>
 
-      <ion-item>
-        <ion-label>Beskrivning</ion-label>
-        <ion-input type="text" value="" #actDesc></ion-input>
-      </ion-item>
+            <div *ngIf="addIsClicked" id="addActivity">
 
-      <ion-item>
-        <ion-label>Datum</ion-label>
-        <ion-datetime #actDesc displayFormat="DD MMM" pickerFormat="DD MMM" [(ngModel)]="actDate"></ion-datetime>
-      </ion-item>
+                <ion-item>
+                    <ion-label>Namn</ion-label>
+                    <ion-input type="text" value="" #actName></ion-input>
+                </ion-item>
 
-      <ion-item>
-        <ion-label>Tid</ion-label>
-        <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="actTime"></ion-datetime>
-      </ion-item>
+                <ion-item>
+                    <ion-label>Beskrivning</ion-label>
+                    <ion-input type="text" value="" #actDesc></ion-input>
+                </ion-item>
 
-      <div class="doneBtn">
-        <button ion-button icon-left color="secondary" (click)="addActivity()">
-          <ion-icon name="md-checkmark"></ion-icon>
-          Lägg till</button>
-      </div>
+                <ion-item>
+                    <ion-label>Datum</ion-label>
+                    <ion-datetime #actDesc displayFormat="DD MMM" pickerFormat="DD MMM" [(ngModel)]="actDate"></ion-datetime>
+                </ion-item>
 
-    </div>
+                <ion-item>
+                    <ion-label>Tid</ion-label>
+                    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="actTime"></ion-datetime>
+                </ion-item>
 
-    <h1 padding>Aktiviteter</h1>
+                <div class="doneBtn">
+                    <button ion-button icon-left color="secondary" (click)="addActivity()">
+                        <ion-icon name="md-checkmark"></ion-icon>
+                        Lägg till</button>
+                </div>
 
-    <ion-item *ngFor="let activity of activityList">
+            </div>
 
-      <h2>{{activity.name}}{{activity.time}}</h2>
-      <h3>{{activity.day}} {{activity.month}}</h3>
-      <p>{{activity.description}}</p>
+            <h1 padding>Aktiviteter</h1>
 
-    </ion-item>
+            <ion-item *ngFor="let activity of activityList">
 
-  </div>
+                <h2>{{activity.name}}{{activity.time}}</h2>
+                <h3>{{activity.day}} {{activity.month}}</h3>
+                <p>{{activity.description}}</p>
+
+            </ion-item>
+
+        </div>
 
 
 
