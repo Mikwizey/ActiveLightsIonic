@@ -23,8 +23,16 @@
     <button ion-button icon-left full color="dark" (click)="showActivities()" >
         <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
-    <button ion-button icon-left full color="dark">
-        <ion-icon name="md-bulb"></ion-icon>Tänd belysning </button>
+    <button ion-button icon-left full color="dark" *ngIf="field?.lights == false">
+        <ion-icon name="md-add-circle"></ion-icon>
+        Tänd belysning</button>
+
+    <button ion-button icon-left full color="dark" *ngIf="field?.lights == true"
+            [disabled]="true">
+        <ion-icon name="md-bulb"></ion-icon>
+        Planen är redan tänd</button>
+
+    
 
     <div *ngIf="isVisible" id="activities">
 

@@ -19,9 +19,9 @@
 
         
         <button ion-item *ngFor="let field of fields" (click)="showField(field.id)">
-            <ion-icon name="bulb" *ngIf="field.lights == false" 
+            <ion-icon name="md-bulb" *ngIf="field.lights == true" 
                       item-start></ion-icon>
-            <ion-icon name="add-circle" *ngIf="field.lights ==true"
+            <ion-icon name="md-add-circle" *ngIf="field.lights == false"
                       item-start></ion-icon>
             {{field.name}}
             
