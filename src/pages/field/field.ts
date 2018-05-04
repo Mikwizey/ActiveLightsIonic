@@ -57,6 +57,7 @@ export class FieldPage {
 
     }
 
+
     setRating() {
         // Framtida beräkning av medel osv
     }
