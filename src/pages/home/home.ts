@@ -16,7 +16,7 @@ export class HomePage {
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, ) {
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation) {
   };
 
 

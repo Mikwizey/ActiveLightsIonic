@@ -17,6 +17,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BarRatingModule } from "ngx-bar-rating";
 import { FirstPage } from '../pages/first/first';
 
+import {NgCalendarModule } from 'ionic2-calendar';
+import { CalendarPage } from '../pages/calendar/calendar';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -24,13 +27,16 @@ import { FirstPage } from '../pages/first/first';
     ListPage,
     FieldPage,
     FirstPage,
+    CalendarPage
 
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    NgCalendarModule,
     HttpClientModule,
     BarRatingModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,6 +45,7 @@ import { FirstPage } from '../pages/first/first';
     ListPage,
     FieldPage,
     FirstPage,
+    CalendarPage
   ],
   providers: [
     StatusBar,

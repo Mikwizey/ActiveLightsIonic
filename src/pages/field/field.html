@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Fotbollsplan</ion-title>
+    <ion-title>{{ viewTitle }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -14,13 +14,14 @@
     <h2 id="visitors" class="">{{field?.visitors}}</h2>
 
     <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom()" >
-        Chatta
+        Forum
         <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>
 
     <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
     <!-- DEBUG -->{{currentrating}}
 
-    <button ion-button icon-left full color="dark" (click)="showActivities()" >
+    <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
+    <button ion-button icon-left full color="dark" (click)="goToCalendar()" >
         <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
     <!-- Lampknappen -->
@@ -34,8 +35,8 @@
             <ion-icon name="md-bulb"></ion-icon>
             Planen är tänd</button>
 
-        
 
+<!--
         <div *ngIf="isVisible" id="activities">
 
             <button ion-button icon-left full color="secondary"  (click)="showInput()">
@@ -82,7 +83,7 @@
 
             </ion-item>
 
-        </div>
+        </div> -->
 
 
 
