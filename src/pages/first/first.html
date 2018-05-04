@@ -40,19 +40,11 @@
       <p>Eller logga in med Google+</p>
   
 
-     <button ion-button color="white" class="g-signin2" data-onsuccess="onSignIn"></button>
+     <button ion-button (click)="loginWithGoogle()">Logga in</button>
   </ion-list>
 </ion-card-content>
   </ion-card>
 
-    
-      <button ion-button block color="light" href="#" onclick="signOut()">Logga ut</button>
-    
-
-    <button ion-item no-lines detail-none text-center (click)="goMapPage()">Klicka här för att gå vidare till kartan</button>
-
-  
-  
     <button class="bottom" ion-button clear full color="light">Inget konto? registrera dig här</button>
  
 </ion-content>
