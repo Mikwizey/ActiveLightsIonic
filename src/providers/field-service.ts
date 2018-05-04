@@ -21,7 +21,11 @@ export class FieldService {
 
   setLights(id): Observable<any> {
     console.log("kommer till fs");
+<<<<<<< HEAD
     return this.http.put(this.API + '/field/' + id + '/lightson',{});
+=======
+    return this.http.put(this.API+'/field/' + id + '/lightson', {});
+>>>>>>> 8d4b28899b6a874ced23d1577ee75a8f4cd611df
   }
 
 }
