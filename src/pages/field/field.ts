@@ -1,8 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
+<<<<<<< HEAD
 import { UserPage } from '../user/user';
 
+=======
+import * as moment from 'moment';
+import {CalendarPage} from '../calendar/calendar';
+>>>>>>> 46e4234e2f8601551bfeb70043667d236b8f1fc7
 
 
 
@@ -14,16 +19,25 @@ import { UserPage } from '../user/user';
 
 export class FieldPage {
 
+  eventSource = [];
+  viewTitle: string;
+  selectedDay = new Date();
+
+  calendar = {
+    mode: 'month',
+    currentDate: this.selectedDay
+  };
+
     protected id;
     protected field;
-    
+
     protected isVisible = false;
     protected buttonText = "Visa aktiviteter";
-    protected addIsClicked = false;
+   /*  protected addIsClicked = false;
     protected actDate = new Date().toISOString();
-    protected actTime = new Date().toISOString();
+    protected actTime = new Date().toISOString(); */
     protected currentrating = 0;
-
+/*
     @ViewChild('actName') actName;
     @ViewChild('actDesc') actDesc;
 
@@ -41,15 +55,21 @@ export class FieldPage {
 
     }
 
-    activityList = [this.activity1, this.activity2];
+    activityList = [this.activity1, this.activity2]; */
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-                public fieldService: FieldService, public alertCtrl: AlertController) {
+                public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController) {
 
     }
 
+
     setRating() {
         // Framtida beräkning av medel osv
+    }
+
+    goToCalendar() {
+      console.log("calendar page")
+      this.navCtrl.push(CalendarPage);
     }
 
     ionViewDidLoad() {
@@ -77,10 +97,10 @@ export class FieldPage {
       case "Låg belastning": document.getElementById('visitors').style.color = "green"; break;
       case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
       case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
-    } 
+    }
   }
 
-
+/*
   showActivities() {
 
     switch (this.isVisible) {
@@ -149,7 +169,7 @@ export class FieldPage {
 
     this.activityList.push(activity);
 
-    this.addIsClicked = false;
+    this.addIsClicked = false; */
 
   }
   goUserPage(){
@@ -158,7 +178,6 @@ export class FieldPage {
 
   }
 
-}
 
 
 

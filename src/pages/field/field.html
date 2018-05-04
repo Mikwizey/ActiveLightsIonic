@@ -1,6 +1,7 @@
 <ion-header>
 
   <ion-navbar>
+<<<<<<< HEAD
       <ion-buttons end>
         <button ion-button icon-only menu-toggle>
                 <ion-icon name="menu"></ion-icon>
@@ -8,6 +9,9 @@
     </ion-buttons>
       
     <ion-title>Fotbollsplan</ion-title>
+=======
+    <ion-title>{{ viewTitle }}</ion-title>
+>>>>>>> 46e4234e2f8601551bfeb70043667d236b8f1fc7
   </ion-navbar>
 
 </ion-header>
@@ -26,7 +30,9 @@
     <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
     <!-- DEBUG -->{{currentrating}}
 
-    <button ion-button icon-left full color="dark" (click)="showActivities()" >
+
+    <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
+    <button ion-button icon-left full color="dark" (click)="goToCalendar()" >
         <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
     <!-- Lampknappen -->
@@ -40,17 +46,16 @@
             <ion-icon name="md-bulb"></ion-icon>
             Planen är tänd</button>
 
-        
 
-        <div *ngIf="isVisible" id="activities">
+        <!-- <div *ngIf="isVisible" id="activities">
 
             <button ion-button icon-left full color="secondary"  (click)="showInput()">
                 <ion-icon name="md-add-circle"></ion-icon>
                 Lägg till aktivitet</button>
 
-            <div *ngIf="addIsClicked" id="addActivity">
+            <!-- <div *ngIf="addIsClicked" id="addActivity"> --> -->
 
-                <ion-item>
+           <!--      <ion-item>
                     <ion-label>Namn</ion-label>
                     <ion-input type="text" value="" #actName></ion-input>
                 </ion-item>
@@ -76,9 +81,9 @@
                         Lägg till</button>
                 </div>
 
-            </div>
+            </div> -->
 
-            <h1 padding>Aktiviteter</h1>
+            <!-- <h1 padding>Aktiviteter</h1>
 
             <ion-item *ngFor="let activity of activityList">
 
@@ -86,10 +91,7 @@
                 <h3>{{activity.day}} {{activity.month}}</h3>
                 <p>{{activity.description}}</p>
 
-            </ion-item>
-
-        </div>
-
+            </ion-item> -->
 
 
 </ion-content>
