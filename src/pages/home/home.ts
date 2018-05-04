@@ -1,6 +1,6 @@
 import {Geolocation} from '@ionic-native/geolocation';
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NavController, Platform} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {FieldService} from "../../providers/field-service";
 import {ListPage} from '../list/list';
 
@@ -43,7 +43,7 @@ export class HomePage {
       (this.mapRef.nativeElement, optionsMap);
 
       //Mark current position
-      let currentPos = new google.maps.Marker({
+      new google.maps.Marker({
         position: {lat: resp.coords.latitude, lng: resp.coords.longitude},
         map: map,
         icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'

@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
+import { UserPage } from '../user/user';
+
 import * as moment from 'moment';
 import {CalendarPage} from '../calendar/calendar';
-
 
 
 @IonicPage()
@@ -165,8 +166,13 @@ export class FieldPage {
     this.activityList.push(activity);
 
     this.addIsClicked = false; */
+  goUserPage(){
+
+    this.navCtrl.push(UserPage);
 
   }
+  }
+
 
 
 

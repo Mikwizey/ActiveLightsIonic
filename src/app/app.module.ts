@@ -20,6 +20,8 @@ import { FirstPage } from '../pages/first/first';
 import {NgCalendarModule } from 'ionic2-calendar';
 import { CalendarPage } from '../pages/calendar/calendar';
 
+import { GooglePlus } from '@ionic-native/google-plus';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -52,6 +54,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FieldService,
+    GooglePlus,
     Geolocation
   ]
 })

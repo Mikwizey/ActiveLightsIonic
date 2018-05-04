@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { UserPage } from '../user/user';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 /**
  * Generated class for the FirstPage page.
@@ -16,16 +18,33 @@ import { HomePage } from '../home/home';
 })
 export class FirstPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus) {
   }
 
   ionViewDidLoad() {
 
   }
 
-  goMapPage(){
+  goMapPage() {
 
     this.navCtrl.push(HomePage);
+
+  }
+  goUserPage() {
+
+    this.navCtrl.push(UserPage);
+
+  }
+
+  loginWithGoogle() {
+
+    this.googlePlus.login({})
+      .then(res => {
+        console.log(res);
+        this.navCtrl.push(HomePage);
+      })
+      .catch(err => console.error(err));
+
 
   }
 
