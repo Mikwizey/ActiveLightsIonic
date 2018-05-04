@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
+import { UserPage } from '../user/user';
 
 
 
@@ -149,6 +150,11 @@ export class FieldPage {
     this.activityList.push(activity);
 
     this.addIsClicked = false;
+
+  }
+  goUserPage(){
+
+    this.navCtrl.push(UserPage);
 
   }
 

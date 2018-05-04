@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { UserPage } from '../user/user';
 
 /**
  * Generated class for the FirstPage page.
@@ -26,6 +27,11 @@ export class FirstPage {
   goMapPage(){
 
     this.navCtrl.push(HomePage);
+
+  }
+  goUserPage(){
+
+    this.navCtrl.push(UserPage);
 
   }
 

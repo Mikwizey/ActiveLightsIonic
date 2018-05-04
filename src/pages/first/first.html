@@ -6,11 +6,20 @@
 
 
 <ion-content class="background">
+   
+<div class="heading">
+  
+    <h2>Sport Lights</h2>
+  </div>
+  <div class="heading">
+    <h5>Let's light it up together and play football till you can no longer walk.</h5>
+  </div>
  <ion-card>
   <ion-card-header >
     <div text-wrap> 
-    <h1>Sport Lights</h1>
-    <h5>Light up the field and play football till you can no longer walk.</h5>
+   
+      
+    
   </div> 
   </ion-card-header>
   <ion-card-content>
@@ -27,7 +36,7 @@
     </ion-item>
 
     
-      <button ion-button block outline color="light">Log in</button>
+      <button ion-button block outline (click)="goUserPage()" color="light">Log in</button>
       <p>Eller logga in med Google+</p>
   
 
@@ -45,5 +54,5 @@
   
   
     <button class="bottom" ion-button clear full color="light">Inget konto? registrera dig här</button>
-
+ 
 </ion-content>
