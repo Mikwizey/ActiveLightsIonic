@@ -4,6 +4,72 @@ webpackJsonp([5],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirstPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(289);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the FirstPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var FirstPage = /** @class */ (function () {
+    function FirstPage(navCtrl, navParams, googlePlus) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.googlePlus = googlePlus;
+    }
+    FirstPage.prototype.ionViewDidLoad = function () {
+    };
+    FirstPage.prototype.goMapPage = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+    };
+    FirstPage.prototype.goUserPage = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__user_user__["a" /* UserPage */]);
+    };
+    FirstPage.prototype.loginWithGoogle = function () {
+        var _this = this;
+        this.googlePlus.login({})
+            .then(function (res) {
+            console.log(res);
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
+        })
+            .catch(function (err) { return console.error(err); });
+    };
+    FirstPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-first',template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/pages/first/first.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title></ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content class="background">\n   \n<div class="heading">\n  \n    <h2>Sport Lights</h2>\n  </div>\n  <div class="heading">\n    <h5>Let\'s light it up together and play football till you can no longer walk.</h5>\n  </div>\n <ion-card>\n  <ion-card-header >\n    <div text-wrap> \n   \n      \n    \n  </div> \n  </ion-card-header>\n  <ion-card-content>\n    <ion-list no-line>\n\n    <ion-item>\n     \n      <ion-input type="text" placeholder="Username"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      \n      <ion-input type="password" placeholder="Password"></ion-input>\n    </ion-item>\n\n    \n      <button ion-button block outline (click)="goUserPage()" color="light">Log in</button>\n      <p>Eller logga in med Google+</p>\n  \n\n     <button ion-button (click)="loginWithGoogle()">Logga in</button>\n  </ion-list>\n</ion-card-content>\n  </ion-card>\n\n    <button class="bottom" ion-button clear full color="light">Inget konto? registrera dig här</button>\n \n</ion-content>\n'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/pages/first/first.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */]])
+    ], FirstPage);
+    return FirstPage;
+}());
+
+//# sourceMappingURL=first.js.map
+
+/***/ }),
+
+/***/ 109:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
@@ -74,7 +140,7 @@ var CalendarPage = /** @class */ (function () {
     };
     CalendarPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-calendar',template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\calendar\calendar.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-title>\n\n      {{ viewTitle }}\n\n    </ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="addActivity()">\n\n        <ion-icon ios="ios-add" md="md-add"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <calendar\n\n      [eventSource]="eventSource"\n\n      [calendarMode]="calendar.mode"\n\n      [currentDate]="calendar.currentDate"\n\n      (onEventSelected)="onEventSelected($event)"\n\n      (onTitleChanged)="onViewTitleChanged($event)"\n\n      (onTimeSelected)="onTimeSelected($event)"\n\n      step="30"\n\n      class="calendar">\n\n    </calendar>\n\n    </ion-content>\n\n\n\n'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\calendar\calendar.html"*/,
+            selector: 'page-calendar',template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/pages/calendar/calendar.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-title>\n      {{ viewTitle }}\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addActivity()">\n        <ion-icon ios="ios-add" md="md-add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <calendar\n      [eventSource]="eventSource"\n      [calendarMode]="calendar.mode"\n      [currentDate]="calendar.currentDate"\n      (onEventSelected)="onEventSelected($event)"\n      (onTitleChanged)="onViewTitleChanged($event)"\n      (onTimeSelected)="onTimeSelected($event)"\n      step="30"\n      class="calendar">\n    </calendar>\n    </ion-content>\n\n'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/pages/calendar/calendar.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], CalendarPage);
@@ -82,72 +148,6 @@ var CalendarPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=calendar.js.map
-
-/***/ }),
-
-/***/ 109:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirstPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__home_home__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__ = __webpack_require__(289);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the FirstPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var FirstPage = /** @class */ (function () {
-    function FirstPage(navCtrl, navParams, googlePlus) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.googlePlus = googlePlus;
-    }
-    FirstPage.prototype.ionViewDidLoad = function () {
-    };
-    FirstPage.prototype.goMapPage = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
-    };
-    FirstPage.prototype.goUserPage = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__user_user__["a" /* UserPage */]);
-    };
-    FirstPage.prototype.loginWithGoogle = function () {
-        var _this = this;
-        this.googlePlus.login({})
-            .then(function (res) {
-            console.log(res);
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__home_home__["a" /* HomePage */]);
-        })
-            .catch(function (err) { return console.error(err); });
-    };
-    FirstPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-first',template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\first\first.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title></ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n\n\n<ion-content class="background">\n\n   \n\n<div class="heading">\n\n  \n\n    <h2>Sport Lights</h2>\n\n  </div>\n\n  <div class="heading">\n\n    <h5>Let\'s light it up together and play football till you can no longer walk.</h5>\n\n  </div>\n\n <ion-card>\n\n  <ion-card-header >\n\n    <div text-wrap> \n\n   \n\n      \n\n    \n\n  </div> \n\n  </ion-card-header>\n\n  <ion-card-content>\n\n    <ion-list no-line>\n\n\n\n    <ion-item>\n\n     \n\n      <ion-input type="text" placeholder="Username"></ion-input>\n\n    </ion-item>\n\n\n\n    <ion-item>\n\n      \n\n      <ion-input type="password" placeholder="Password"></ion-input>\n\n    </ion-item>\n\n\n\n    \n\n      <button ion-button block outline (click)="goUserPage()" color="light">Log in</button>\n\n      <p>Eller logga in med Google+</p>\n\n  \n\n\n\n     <button ion-button (click)="loginWithGoogle()">Logga in</button>\n\n  </ion-list>\n\n</ion-card-content>\n\n  </ion-card>\n\n\n\n    <button class="bottom" ion-button clear full color="light">Inget konto? registrera dig här</button>\n\n \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\first\first.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_google_plus__["a" /* GooglePlus */]])
-    ], FirstPage);
-    return FirstPage;
-}());
-
-//# sourceMappingURL=first.js.map
 
 /***/ }),
 
@@ -173,19 +173,19 @@ webpackEmptyAsyncContext.id = 120;
 
 var map = {
 	"../pages/calendar/calendar.module": [
-		425,
+		427,
 		4
 	],
 	"../pages/event-modal/event-modal.module": [
-		426,
+		425,
 		0
 	],
 	"../pages/field/field.module": [
-		427,
+		428,
 		3
 	],
 	"../pages/first/first.module": [
-		428,
+		426,
 		2
 	],
 	"../pages/list/list.module": [
@@ -232,18 +232,18 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(409);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_field_field__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_field_field__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__angular_common_http__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_field_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_geolocation__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ionic_native_geolocation__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_ngx_bar_rating__ = __webpack_require__(410);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_first_first__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_first_first__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_ionic2_calendar__ = __webpack_require__(414);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_calendar_calendar__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_calendar_calendar__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_google_plus__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -285,10 +285,10 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/calendar/calendar.module#CalendarPageModule', name: 'CalendarPage', segment: 'calendar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/event-modal/event-modal.module#EventModalPageModule', name: 'EventModalPage', segment: 'event-modal', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/field/field.module#FieldPageModule', name: 'FieldPage', segment: 'field', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/first/first.module#FirstPageModule', name: 'FirstPage', segment: 'first', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/calendar/calendar.module#CalendarPageModule', name: 'CalendarPage', segment: 'calendar', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/field/field.module#FieldPageModule', name: 'FieldPage', segment: 'field', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/list/list.module#ListPageModule', name: 'ListPage', segment: 'list', priority: 'low', defaultHistory: [] }
                     ]
                 }),
@@ -600,11 +600,11 @@ webpackContext.id = 378;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_field_field__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_first_first__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_user__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_field_field__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_first_first__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_user_user__ = __webpack_require__(86);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -662,7 +662,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\app\app.html"*/'<ion-menu   side="right"[content]="content">\n\n  <ion-header>\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n  </ion-header>\n\n\n\n  <ion-content>\n\n    <ion-list>\n\n      <ion-item (click)="goUserPage()">\n\n        Account\n\n      </ion-item> \n\n      <ion-item (click)="goToList()">\n\n          Fotballplats\n\n        </ion-item> \n\n\n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n\n        {{p.title}}\n\n      </button>\n\n    </ion-list>\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" menu-close="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/app/app.html"*/'<ion-menu   side="right"[content]="content">\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <ion-item (click)="goUserPage()">\n        Account\n      </ion-item> \n      <ion-item (click)="goToList()">\n          Fotballplats\n        </ion-item> \n\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" menu-close="false"></ion-nav>\n'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
@@ -686,7 +686,7 @@ var MyApp = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FieldService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(288);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -730,12 +730,63 @@ var FieldService = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_field_service__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__field_field__ = __webpack_require__(56);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ListPage = /** @class */ (function () {
+    function ListPage(navCtrl, navParams, fieldService) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.fieldService = fieldService;
+    }
+    ListPage.prototype.showField = function (id) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__field_field__["a" /* FieldPage */], { id: id });
+    };
+    ListPage.prototype.ionViewWillEnter = function () {
+        var _this = this;
+        console.log("refresh?");
+        this.fieldService.getGoodFields().subscribe(function (fields) {
+            _this.fields = fields;
+        });
+    };
+    ListPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-list',template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    \n    <ion-title>Fotbollsplaner i Stockholm</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <!-- <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)"> -->\n        <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->\n        <!-- {{item.title}} -->\n        <!-- <div class="item-note" item-end>\n             {{item.note}} -->\n        <!-- </div> -->\n        <!-- </button> -->\n\n        \n        <button ion-item *ngFor="let field of fields" (click)="showField(field.id)">\n            <ion-icon name="md-bulb" *ngIf="field.lights == true" \n                      item-start></ion-icon>\n            <ion-icon name="md-add-circle" *ngIf="field.lights == false"\n                      item-start></ion-icon>\n            {{field.name}}\n            \n        </button>\n        \n    </ion-list>\n    \n</ion-content>\n'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/pages/list/list.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_field_service__["a" /* FieldService */]])
+    ], ListPage);
+    return ListPage;
+}());
+
+//# sourceMappingURL=list.js.map
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FieldPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_field_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__calendar_calendar__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_user__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__calendar_calendar__ = __webpack_require__(109);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -900,7 +951,7 @@ var FieldPage = /** @class */ (function () {
     };
     FieldPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-field',template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\field\field.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n      <ion-buttons end>\n\n        <button ion-button icon-only menu-toggle>\n\n                <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n    </ion-buttons>\n\n\n\n    <ion-title>Fotbollsplan</ion-title>\n\n    <ion-title>{{ viewTitle }}</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n    <h1 class="name">{{field?.name}}</h1>\n\n\n\n    <h2 id="visitors" class="">{{field?.visitors}}</h2>\n\n\n\n    <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom()" >\n\n        Chatta\n\n        <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>\n\n\n\n    <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>\n\n    <!-- DEBUG -->{{currentrating}}\n\n\n\n\n\n    <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->\n\n    <button ion-button icon-left full color="dark" (click)="goToCalendar()" >\n\n        <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>\n\n\n\n    <!-- Lampknappen -->\n\n        <button ion-button icon-left full color="dark" *ngIf="field?.lights == false"\n\n                (click)="lightsOn(field.id)">\n\n            <ion-icon name="md-add-circle"></ion-icon>\n\n            Tänd belysning</button>\n\n\n\n        <button ion-button icon-left full color="dark" *ngIf="field?.lights == true"\n\n                [disabled]="true">\n\n            <ion-icon name="md-bulb"></ion-icon>\n\n            Planen är tänd</button>\n\n\n\n\n\n        <!-- <div *ngIf="isVisible" id="activities">\n\n\n\n            <button ion-button icon-left full color="secondary"  (click)="showInput()">\n\n                <ion-icon name="md-add-circle"></ion-icon>\n\n                Lägg till aktivitet</button>\n\n\n\n            <!-- <div *ngIf="addIsClicked" id="addActivity"> --> \n\n\n\n           <!--      <ion-item>\n\n                    <ion-label>Namn</ion-label>\n\n                    <ion-input type="text" value="" #actName></ion-input>\n\n                </ion-item>\n\n\n\n                <ion-item>\n\n                    <ion-label>Beskrivning</ion-label>\n\n                    <ion-input type="text" value="" #actDesc></ion-input>\n\n                </ion-item>\n\n\n\n                <ion-item>\n\n                    <ion-label>Datum</ion-label>\n\n                    <ion-datetime #actDesc displayFormat="DD MMM" pickerFormat="DD MMM" [(ngModel)]="actDate"></ion-datetime>\n\n                </ion-item>\n\n\n\n                <ion-item>\n\n                    <ion-label>Tid</ion-label>\n\n                    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="actTime"></ion-datetime>\n\n                </ion-item>\n\n\n\n                <div class="doneBtn">\n\n                    <button ion-button icon-left color="secondary" (click)="addActivity()">\n\n                        <ion-icon name="md-checkmark"></ion-icon>\n\n                        Lägg till</button>\n\n                </div>\n\n\n\n            </div> -->\n\n\n\n            <!-- <h1 padding>Aktiviteter</h1>\n\n\n\n            <ion-item *ngFor="let activity of activityList">\n\n\n\n                <h2>{{activity.name}}{{activity.time}}</h2>\n\n                <h3>{{activity.day}} {{activity.month}}</h3>\n\n                <p>{{activity.description}}</p>\n\n\n\n            </ion-item> -->\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\field\field.html"*/,
+            selector: 'page-field',template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/pages/field/field.html"*/'<ion-header>\n\n  <ion-navbar>\n      <ion-buttons end>\n        <button ion-button icon-only menu-toggle>\n                <ion-icon name="menu"></ion-icon>\n        </button>\n    </ion-buttons>\n\n    <ion-title>Fotbollsplan</ion-title>\n    <ion-title>{{ viewTitle }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n    <h1 class="name">{{field?.name}}</h1>\n\n    <h2 id="visitors" class="">{{field?.visitors}}</h2>\n\n    <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom()" >\n        Chatta\n        <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon></button>\n\n    <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>\n    <!-- DEBUG -->{{currentrating}}\n\n\n    <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->\n    <button ion-button icon-left full color="dark" (click)="goToCalendar()" >\n        <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>\n\n    <!-- Lampknappen -->\n        <button ion-button icon-left full color="dark" *ngIf="field?.lights == false"\n                (click)="lightsOn(field.id)">\n            <ion-icon name="md-add-circle"></ion-icon>\n            Tänd belysning</button>\n\n        <button ion-button icon-left full color="dark" *ngIf="field?.lights == true"\n                [disabled]="true">\n            <ion-icon name="md-bulb"></ion-icon>\n            Planen är tänd</button>\n\n\n        <!-- <div *ngIf="isVisible" id="activities">\n\n            <button ion-button icon-left full color="secondary"  (click)="showInput()">\n                <ion-icon name="md-add-circle"></ion-icon>\n                Lägg till aktivitet</button>\n\n            <!-- <div *ngIf="addIsClicked" id="addActivity"> --> \n\n           <!--      <ion-item>\n                    <ion-label>Namn</ion-label>\n                    <ion-input type="text" value="" #actName></ion-input>\n                </ion-item>\n\n                <ion-item>\n                    <ion-label>Beskrivning</ion-label>\n                    <ion-input type="text" value="" #actDesc></ion-input>\n                </ion-item>\n\n                <ion-item>\n                    <ion-label>Datum</ion-label>\n                    <ion-datetime #actDesc displayFormat="DD MMM" pickerFormat="DD MMM" [(ngModel)]="actDate"></ion-datetime>\n                </ion-item>\n\n                <ion-item>\n                    <ion-label>Tid</ion-label>\n                    <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="actTime"></ion-datetime>\n                </ion-item>\n\n                <div class="doneBtn">\n                    <button ion-button icon-left color="secondary" (click)="addActivity()">\n                        <ion-icon name="md-checkmark"></ion-icon>\n                        Lägg till</button>\n                </div>\n\n            </div> -->\n\n            <!-- <h1 padding>Aktiviteter</h1>\n\n            <ion-item *ngFor="let activity of activityList">\n\n                <h2>{{activity.name}}{{activity.time}}</h2>\n                <h3>{{activity.day}} {{activity.month}}</h3>\n                <p>{{activity.description}}</p>\n\n            </ion-item> -->\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/pages/field/field.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__providers_field_service__["a" /* FieldService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ModalController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
@@ -912,102 +963,16 @@ var FieldPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 56:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_field_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__field_field__ = __webpack_require__(55);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-var ListPage = /** @class */ (function () {
-    function ListPage(navCtrl, navParams, fieldService) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.fieldService = fieldService;
-    }
-    ListPage.prototype.showField = function (id) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__field_field__["a" /* FieldPage */], { id: id });
-    };
-    ListPage.prototype.ionViewWillEnter = function () {
-        var _this = this;
-        console.log("refresh?");
-        this.fieldService.getGoodFields().subscribe(function (fields) {
-            _this.fields = fields;
-        });
-    };
-    ListPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\list\list.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    \n\n    <ion-title>Fotbollsplaner i Stockholm</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <ion-list>\n\n        <!-- <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)"> -->\n\n        <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->\n\n        <!-- {{item.title}} -->\n\n        <!-- <div class="item-note" item-end>\n\n             {{item.note}} -->\n\n        <!-- </div> -->\n\n        <!-- </button> -->\n\n\n\n        \n\n        <button ion-item *ngFor="let field of fields" (click)="showField(field.id)">\n\n            <ion-icon name="md-bulb" *ngIf="field.lights == true" \n\n                      item-start></ion-icon>\n\n            <ion-icon name="md-add-circle" *ngIf="field.lights == false"\n\n                      item-start></ion-icon>\n\n            {{field.name}}\n\n            \n\n        </button>\n\n        \n\n    </ion-list>\n\n    \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\list\list.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_field_service__["a" /* FieldService */]])
-    ], ListPage);
-    return ListPage;
-}());
-
-//# sourceMappingURL=list.js.map
-
-/***/ }),
-
 /***/ 84:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var UserPage = /** @class */ (function () {
-    function UserPage(navCtrl) {
-        this.navCtrl = navCtrl;
-    }
-    UserPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\user\user.html"*/'<ion-header>\n\n    <ion-navbar>\n\n      \n\n      <ion-title> Account</ion-title>\n\n    </ion-navbar>\n\n  </ion-header>\n\n  <ion-content>\n\n\n\n  </ion-content>'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\user\user.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
-    ], UserPage);
-    return UserPage;
-}());
-
-//# sourceMappingURL=user.js.map
-
-/***/ }),
-
-/***/ 85:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_geolocation__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ionic_native_geolocation__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_field_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__list_list__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__list_list__ = __webpack_require__(55);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1111,7 +1076,7 @@ var HomePage = /** @class */ (function () {
     ], HomePage.prototype, "mapRef", void 0);
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n      <ion-title>SportLights</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n  <div padding>\n\n    <button ion-button color="dark" block (click)="goToList()">Till lista</button>\n\n  </div>\n\n\n\n  <div #map id="map"></div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\h3nke\Documents\GitHub\SportLightsIonic\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n      <ion-title>SportLights</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n  <div padding>\n    <button ion-button color="dark" block (click)="goToList()">Till lista</button>\n  </div>\n\n  <div #map id="map"></div>\n\n</ion-content>\n'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/pages/home/home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__providers_field_service__["a" /* FieldService */], __WEBPACK_IMPORTED_MODULE_0__ionic_native_geolocation__["a" /* Geolocation */]])
     ], HomePage);
@@ -1119,6 +1084,41 @@ var HomePage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=home.js.map
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var UserPage = /** @class */ (function () {
+    function UserPage(navCtrl) {
+        this.navCtrl = navCtrl;
+    }
+    UserPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-user',template:/*ion-inline-start:"/Users/annaefimova/SportLightsIonic/src/pages/user/user.html"*/'<ion-header>\n    <ion-navbar>\n      \n      <ion-title> Account</ion-title>\n    </ion-navbar>\n  </ion-header>\n  <ion-content>\n\n  </ion-content>'/*ion-inline-end:"/Users/annaefimova/SportLightsIonic/src/pages/user/user.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
+    ], UserPage);
+    return UserPage;
+}());
+
+//# sourceMappingURL=user.js.map
 
 /***/ })
 
