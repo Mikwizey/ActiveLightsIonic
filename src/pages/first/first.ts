@@ -41,7 +41,16 @@ export class FirstPage {
     this.googlePlus.login({})
       .then(res => {
         console.log(res);
-        this.navCtrl.push(HomePage);
+
+        let googleUserData = {
+
+          displayName: res.displayName,
+          email: res.email,
+          userId: res.userId,
+
+        }
+
+        this.navCtrl.push(HomePage, googleUserData);
       })
       .catch(err => console.error(err));
 

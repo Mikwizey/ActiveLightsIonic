@@ -1,6 +1,6 @@
 import {Geolocation} from '@ionic-native/geolocation';
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {FieldService} from "../../providers/field-service";
 import {ListPage} from '../list/list';
 
@@ -13,15 +13,24 @@ declare var google: any;
 })
 export class HomePage {
 
+  temporaryDisplayName;
+  temporaryEmail;
+  temporaryUserId;
+
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams) {
   };
 
 
   ionViewDidLoad() {
     this.showMap();
+
+    this.temporaryDisplayName = this.navParams.get('displayName');
+    this.temporaryEmail = this.navParams.get('email');
+    this.temporaryUserId = this.navParams.get('userId');
+
   }
 
 
