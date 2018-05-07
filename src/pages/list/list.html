@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    
+
     <ion-title>Fotbollsplaner i Stockholm</ion-title>
   </ion-navbar>
 </ion-header>
@@ -15,16 +15,16 @@
         <!-- </div> -->
         <!-- </button> -->
 
-        
+
         <button ion-item *ngFor="let field of fields" (click)="showField(field.id)">
-            <ion-icon name="md-bulb" *ngIf="field.lights == true" 
+            <ion-icon name="md-bulb" *ngIf="field.lights == true"
                       item-start></ion-icon>
             <ion-icon name="md-add-circle" *ngIf="field.lights == false"
                       item-start></ion-icon>
             {{field.name}}
-            
+
         </button>
-        
+
     </ion-list>
-    
+
 </ion-content>

@@ -2,9 +2,11 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
 import { UserPage } from '../user/user';
+import * as firebase from 'Firebase';
 
 import * as moment from 'moment';
 import {CalendarPage} from '../calendar/calendar';
+import {ChatPage} from "../chat/chat";
 
 
 @IonicPage()
@@ -14,6 +16,9 @@ import {CalendarPage} from '../calendar/calendar';
 })
 
 export class FieldPage {
+
+  rooms = [];
+  ref = firebase.database().ref('chatrooms/');
 
   eventSource = [];
   viewTitle: string;
@@ -55,7 +60,10 @@ export class FieldPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
                 public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController) {
-
+      this.ref.on('value', resp => {
+        this.rooms = [];
+        this.rooms = snapshotToArray(resp);
+      });
     }
 
 
@@ -68,7 +76,14 @@ export class FieldPage {
       this.navCtrl.push(CalendarPage);
     }
 
-    ionViewDidLoad() {
+    joinRoom(key) {
+      this.navCtrl.setRoot(ChatPage, {
+       nickname:this.navParams.get("nickname")
+      });
+    }
+
+
+  ionViewDidLoad() {
         this.id = this.navParams.get('id');
 
         this.fieldService.getField(this.id).subscribe(field => {
@@ -172,6 +187,19 @@ export class FieldPage {
 
   }
   }
+export const snapshotToArray = snapshot => {
+  let returnArr = [];
+
+  snapshot.forEach(childSnapshot => {
+    let item = childSnapshot.val();
+    item.key = childSnapshot.key;
+    returnArr.push(item);
+  });
+
+  return returnArr;
+};
+
+
 
 
 

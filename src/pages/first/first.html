@@ -6,9 +6,9 @@
 
 
 <ion-content class="background">
-   
+
 <div class="heading">
-  
+
     <h2>Sport Lights</h2>
   </div>
   <div class="heading">
@@ -16,35 +16,52 @@
   </div>
  <ion-card>
   <ion-card-header >
-    <div text-wrap> 
-   
-      
-    
-  </div> 
+    <div text-wrap>
+
+
+
+  </div>
   </ion-card-header>
   <ion-card-content>
     <ion-list no-line>
 
     <ion-item>
-     
+
       <ion-input type="text" placeholder="Username"></ion-input>
     </ion-item>
 
     <ion-item>
-      
+
       <ion-input type="password" placeholder="Password"></ion-input>
     </ion-item>
 
-    
+
       <button ion-button block outline (click)="goUserPage()" color="light">Log in</button>
       <p>Eller logga in med Google+</p>
-  
+
 
      <button ion-button (click)="loginWithGoogle()">Logga in</button>
   </ion-list>
 </ion-card-content>
-  </ion-card>
+
+ <!-- Tillfällig inloggning för chatt -->
+
+     <form (ngSubmit)="enterNickname()">
+       <ion-list>
+         <ion-item>
+           <ion-label floating>Enter your Nickname</ion-label>
+           <ion-input type="text" [(ngModel)]="data.nickname" name="nickname" required=""></ion-input>
+         </ion-item>
+         <ion-item>
+           <button ion-button full round color="secondary" type="submit">Enter</button>
+         </ion-item>
+       </ion-list>
+     </form>
+
+
+ </ion-card>
 
     <button class="bottom" ion-button clear full color="light">Inget konto? registrera dig här</button>
- 
+
 </ion-content>
+

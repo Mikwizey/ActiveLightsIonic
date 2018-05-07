@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
+import { FieldPage} from "../field/field";
 import { GooglePlus } from '@ionic-native/google-plus';
 
 /**
@@ -18,11 +19,19 @@ import { GooglePlus } from '@ionic-native/google-plus';
 })
 export class FirstPage {
 
+  data = { nickname:"" };
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus) {
   }
 
-  ionViewDidLoad() {
+  enterNickname() {
+    this.navCtrl.setRoot(FieldPage, {
+      nickname: this.data.nickname
+    });
+  }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad FirstPage');
   }
 
   goMapPage() {
