@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -9,30 +9,32 @@ import { FieldPage } from '../pages/field/field';
 import { FirstPage } from "../pages/first/first";
 
 import { Geolocation } from '@ionic-native/geolocation';
-import{ UserPage } from'../pages/user/user';
+import { UserPage } from '../pages/user/user';
+import { GooglePlus } from '@ionic-native/google-plus';
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
 
-  rootPage:any = FirstPage;
+
+  rootPage: any = FirstPage;
   @ViewChild(Nav) nav: Nav;
 
-  pages: Array<{title: string, component: any}>;
+  /*pages: Array<{ title: string, component: any }>;*/
 
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public googlePlus: GooglePlus) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      {title: 'Hem', component: HomePage},
-      {title: 'Lista med planer', component: ListPage},
-      {title: 'Fotbollsplan', component: FieldPage}
+    /*this.pages = [
+      { title: 'Hem', component: HomePage },
+      { title: 'Lista med planer', component: ListPage },
+      { title: 'Fotbollsplan', component: FieldPage }
 
-    ];
+    ];*/
   }
   initializeApp() {
     this.platform.ready().then(() => {
@@ -43,17 +45,25 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  /*openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
-  }
+  }*/
   goUserPage(page) {
-  
-    this.nav.setRoot(UserPage);
+
+    this.nav.push(UserPage);
   }
   goToList(page) {
-  
-    this.nav.setRoot(ListPage);
+
+    this.nav.push(ListPage);
   }
+
+  googleLogout() {
+
+    this.googlePlus.logout();
+    this.nav.setRoot(FirstPage);
+
+  }
+
 }

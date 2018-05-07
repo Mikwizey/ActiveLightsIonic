@@ -4,6 +4,7 @@ import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
 
+
 /**
  * Generated class for the FirstPage page.
  *
@@ -21,9 +22,7 @@ export class FirstPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus) {
   }
 
-  ionViewDidLoad() {
-
-  }
+  ionViewDidLoad() { }
 
   goMapPage() {
 
@@ -47,14 +46,19 @@ export class FirstPage {
           displayName: res.displayName,
           email: res.email,
           userId: res.userId,
+          givenName: res.givenName,
+          familyName: res.familyName,
 
         }
 
-        this.navCtrl.push(HomePage, googleUserData);
+        this.navCtrl.setRoot(HomePage, googleUserData);
       })
       .catch(err => console.error(err));
 
 
   }
 
+  temporaryLogin() {
+    this.navCtrl.push(HomePage);
+  }
 }

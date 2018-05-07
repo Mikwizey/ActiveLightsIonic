@@ -89,4 +89,5 @@
         <variable name="WEB_APPLICATION_CLIENT_ID" value="271976641496-q9gflmmjdmjenrhveep0chp5578la9nn.apps.googleusercontent.com" />
         <variable name="REVERSED_CLIENT_ID" value="com.googleuserconten.apps.271976641496-424828c2bdvun1l051ggcj9h3o0hfkek" />
     </plugin>
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
 </widget>
