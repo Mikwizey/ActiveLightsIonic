@@ -55,26 +55,40 @@ export class FieldPage {
     });
   }
 
- 
+
 
   getNearbyStops() {  //SL Närliggande hållplatser, visar i konsol
-
-    this.getLocation();
 
     this.tlP.getNearbyStops(this.fieldLatitude, this.fieldLongitude)
       .then(data => {
 
-        this.station = data.LocationList.StopLocation;
+        this.station = data;
 
-        //console.log(this.station); Visar all hämtad data
+        console.log(this.station.LocationList.StopLocation);
 
-        for (let i = 0; i < this.station.length; i++) {
+        for(let i = 0; i < this.station.LocationList.StopLocation.length; i++){
 
-          console.log(this.station[i].name);
-          console.log(this.station[i].dist + 'm bort.');
+          console.log(this.station.LocationList.StopLocation[i].name);
+          console.log(this.station.LocationList.StopLocation[i].dist + 'm bort.');
+
         }
-      });
+
+        
+
+        
+      })
   }
+
+  showInConsole() {
+
+    let stops = this.station.LocationList.StopLocation;
+
+    for (let i = 0; i < stops; i++) {
+      console.log(stops[i].name, stops[i].dist);
+
+    }
+  }
+
 
 
   setRating() {
