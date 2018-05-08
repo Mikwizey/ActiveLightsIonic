@@ -7,6 +7,8 @@ import { CalendarPage } from '../calendar/calendar';
 import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
 
 import { Geolocation } from "@ionic-native/geolocation";
+import { StationpagePage } from '../stationpage/stationpage';
+
 
 
 
@@ -30,13 +32,16 @@ export class FieldPage {
   protected id;
   protected field;
 
-  protected isVisible = false;
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
+
+
+  //för SL API
 
   public fieldLatitude;
   public fieldLongitude;
   public station: any;
+  public stationList = [];
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -66,30 +71,22 @@ export class FieldPage {
 
         console.log(this.station.LocationList.StopLocation);
 
-        for(let i = 0; i < this.station.LocationList.StopLocation.length; i++){
+        for (let i = 0; i < this.station.LocationList.StopLocation.length; i++) {
 
-          console.log(this.station.LocationList.StopLocation[i].name);
-          console.log(this.station.LocationList.StopLocation[i].dist + 'm bort.');
+          let stationInfo = {
+
+            name: this.station.LocationList.StopLocation[i].name,
+            dist: this.station.LocationList.StopLocation[i].dist
+
+          }
+
+          this.stationList.push(stationInfo);
 
         }
 
-        
-
-        
       })
+    this.navCtrl.push(StationpagePage, {data: this.stationList, name: this.field});
   }
-
-  showInConsole() {
-
-    let stops = this.station.LocationList.StopLocation;
-
-    for (let i = 0; i < stops; i++) {
-      console.log(stops[i].name, stops[i].dist);
-
-    }
-  }
-
-
 
   setRating() {
     // Framtida beräkning av medel osv
