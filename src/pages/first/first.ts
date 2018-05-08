@@ -4,14 +4,6 @@ import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
 
-
-/**
- * Generated class for the FirstPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-first',
@@ -54,8 +46,6 @@ export class FirstPage {
         this.navCtrl.setRoot(HomePage, googleUserData);
       })
       .catch(err => console.error(err));
-
-
   }
 
   temporaryLogin() {
