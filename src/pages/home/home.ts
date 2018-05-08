@@ -1,8 +1,9 @@
-import {Geolocation} from '@ionic-native/geolocation';
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {NavController} from 'ionic-angular';
-import {FieldService} from "../../providers/field-service";
-import {ListPage} from '../list/list';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+import { FieldService } from "../../providers/field-service";
+import { ListPage } from '../list/list';
+import { UserPage } from '../user/user';
 
 declare var google: any;
 
@@ -13,15 +14,24 @@ declare var google: any;
 })
 export class HomePage {
 
+  temporaryDisplayName;
+  temporaryEmail;
+  temporaryUserId;
+
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams) {
   };
 
 
   ionViewDidLoad() {
     this.showMap();
+
+    this.temporaryDisplayName = this.navParams.get('displayName');
+    this.temporaryEmail = this.navParams.get('email');
+    this.temporaryUserId = this.navParams.get('userId');
+
   }
 
 
@@ -34,17 +44,17 @@ export class HomePage {
       // Map options
       let optionsMap = {
         zoom: 15,
-        center: {lat: resp.coords.latitude, lng: resp.coords.longitude}
+        center: { lat: resp.coords.latitude, lng: resp.coords.longitude }
       };
 
       // New map
       let map = new google.maps.Map
 
-      (this.mapRef.nativeElement, optionsMap);
+        (this.mapRef.nativeElement, optionsMap);
 
       //Mark current position
       new google.maps.Marker({
-        position: {lat: resp.coords.latitude, lng: resp.coords.longitude},
+        position: { lat: resp.coords.latitude, lng: resp.coords.longitude },
         map: map,
         icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
       });
@@ -52,25 +62,25 @@ export class HomePage {
       // Listen for click on map
       google.maps.event.addListener(map, 'click', function (event) {
         // Add marker
-        addMarker({coords: event.latLng});
+        addMarker({ coords: event.latLng });
       });
 
       // Array of markers
       let markers = [
         {
-          coords: {lat: 59.334591, lng: 18.063240},
+          coords: { lat: 59.334591, lng: 18.063240 },
           iconImage: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
           content: '<h1>Johannes Bollplan</h1>'
         },
         {
-          coords: {lat: 59.3584, lng: 18.100},
+          coords: { lat: 59.3584, lng: 18.100 },
           iconImage: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
           content: '<h1>Bergholms Bollplan</h1>'
 
         },
         {
 
-          coords: {lat: 59.3684, lng: 18.052240},
+          coords: { lat: 59.3684, lng: 18.052240 },
           iconImage: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
         }
       ];

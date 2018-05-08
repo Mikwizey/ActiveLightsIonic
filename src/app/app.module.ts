@@ -21,6 +21,8 @@ import {NgCalendarModule } from 'ionic2-calendar';
 import { CalendarPage } from '../pages/calendar/calendar';
 
 import { GooglePlus } from '@ionic-native/google-plus';
+import { UserPage } from '../pages/user/user';
+import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     ListPage,
     FieldPage,
     FirstPage,
-    CalendarPage
+    CalendarPage,
+    UserPage,
 
   ],
   imports: [
@@ -47,7 +50,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     ListPage,
     FieldPage,
     FirstPage,
-    CalendarPage
+    CalendarPage,
+    UserPage,
   ],
   providers: [
     StatusBar,
@@ -55,7 +59,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     FieldService,
     GooglePlus,
-    Geolocation
+    Geolocation,
+    TrafiklabProvider
   ]
 })
 export class AppModule { }

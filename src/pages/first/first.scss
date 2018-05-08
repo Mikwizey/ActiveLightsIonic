@@ -73,20 +73,48 @@ page-first {
         bottom: 0;
       }
 
-      .heading h2 {
+      /*.heading h1 {
         color: #ffff;
-        font-size: 24px!important;
-        padding-top: 0px;
-        font-weight: 200;
+        font-family: 'Helvetica Neue';
+        font-size: 24px;
+        padding-top: -50px;
+        font-weight: bold;
         font-family: Roboto-Light;
+        letter-spacing: -1px;
+         line-height: 1;
+         text-align: center;
        
-    }
+
+    }*/
+    .heading h1 { color: #ffff; 
+      font-family: Lora; 
+      font-size: 20px; 
+      font-weight: bold; 
+      letter-spacing: -1px; 
+      line-height: 1; 
+      text-align: left ;
+      margin-top: -180px; }
+     /* .heading h2{
+        color: #ffff;
+        font-family: Lora;
+        font-size: 20px; 
+
+      font-weight: light; 
+      letter-spacing: 0px; 
+      line-height: 1; 
+      text-align: right;
+      margin-top: -130px;
+      }*/
     .heading h5 {
       color: #fff;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: Lora;
       padding-top: 0px;
       font-weight: 200;
-      font-size: 2vh;
+      letter-spacing: 2px;
+      line-height: 30px;
+      margin-top: -55px;
+     
+      font-size: 40px;
   }
 
   .platform-android .action-sheet-backdrop.active {
