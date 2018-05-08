@@ -41,22 +41,24 @@
 
 
      <button ion-button (click)="loginWithGoogle()">Logga in</button>
-  </ion-list>
+
+      <!-- Tillfällig inloggning för chatt -->
+
+      <form (ngSubmit)="enterNickname()">
+        <ion-list>
+          <ion-item>
+            <ion-label floating>Enter your Nickname</ion-label>
+            <ion-input type="text" [(ngModel)]="data.nickname" name="nickname" required=""></ion-input>
+          </ion-item>
+          <ion-item>
+            <button ion-button full round color="secondary" type="submit">Enter</button>
+          </ion-item>
+        </ion-list>
+      </form>
+
+
+    </ion-list>
 </ion-card-content>
-
- <!-- Tillfällig inloggning för chatt -->
-
-     <form (ngSubmit)="enterNickname()">
-       <ion-list>
-         <ion-item>
-           <ion-label floating>Enter your Nickname</ion-label>
-           <ion-input type="text" [(ngModel)]="data.nickname" name="nickname" required=""></ion-input>
-         </ion-item>
-         <ion-item>
-           <button ion-button full round color="secondary" type="submit">Enter</button>
-         </ion-item>
-       </ion-list>
-     </form>
 
 
  </ion-card>

@@ -76,8 +76,8 @@ export class FieldPage {
       this.navCtrl.push(CalendarPage);
     }
 
-    joinRoom(key) {
-      this.navCtrl.setRoot(ChatPage, {
+    joinRoom() {
+      this.navCtrl.push(ChatPage, {
        nickname:this.navParams.get("nickname")
       });
     }

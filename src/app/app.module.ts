@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
+import { ChatPage } from "../pages/chat/chat";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,6 +23,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -29,7 +31,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     ListPage,
     FieldPage,
     FirstPage,
-    CalendarPage
+    CalendarPage,
+    ChatPage,
 
   ],
   imports: [
@@ -47,7 +50,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
     ListPage,
     FieldPage,
     FirstPage,
-    CalendarPage
+    CalendarPage,
+    ChatPage,
   ],
   providers: [
     StatusBar,

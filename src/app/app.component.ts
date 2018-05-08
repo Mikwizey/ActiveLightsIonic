@@ -7,15 +7,26 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
 import { FirstPage } from "../pages/first/first";
+import * as firebase from 'firebase';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import{ UserPage } from'../pages/user/user';
+import {V} from "@angular/core/src/render3";
+
+const config = {
+  apiKey: "AIzaSyC_mEB81ALRZ9oqVDY_a70iLe0cbZZJftA",
+  authDomain: "ionic-chat-697b4.firebaseapp.com",
+  databaseURL: "https://ionic-chat-697b4.firebaseio.com",
+  projectId: "ionic-chat-697b4",
+  storageBucket: "ionic-chat-697b4.appspot.com",
+  messagingSenderId: "19762664952"
+};
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  
+
 
   rootPage:any = FirstPage;
   @ViewChild(Nav) nav: Nav;
@@ -41,6 +52,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(config);
   }
 
   openPage(page) {
@@ -49,11 +61,11 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
   goUserPage(page) {
-  
+
     this.nav.setRoot(UserPage);
   }
   goToList(page) {
-  
+
     this.nav.setRoot(ListPage);
   }
 }

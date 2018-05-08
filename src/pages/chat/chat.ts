@@ -17,8 +17,9 @@ export class ChatPage {
   offStatus:boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.roomkey = this.navParams.get("roomkey") as string;
-    this.nickname = this.navParams.get("nickname") as string;
+
+    this.roomkey = '-LBVLqeeNF1pcU3b6qFo';
+    this.nickname = 'Anonym';
     this.data.type = 'message';
     this.data.nickname = this.nickname;
 

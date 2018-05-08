@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
-import { FieldPage} from "../field/field";
 import { GooglePlus } from '@ionic-native/google-plus';
 
 /**
@@ -25,7 +24,7 @@ export class FirstPage {
   }
 
   enterNickname() {
-    this.navCtrl.setRoot(FieldPage, {
+    this.navCtrl.setRoot(HomePage, {
       nickname: this.data.nickname
     });
   }
