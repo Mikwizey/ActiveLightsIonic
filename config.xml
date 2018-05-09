@@ -88,5 +88,5 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.271976641496-q9gflmmjdmjenrhveep0chp5578la9nn" />
         <variable name="WEB_APPLICATION_CLIENT_ID" value="271976641496-q9gflmmjdmjenrhveep0chp5578la9nn.apps.googleusercontent.com" />
     </plugin>
-    <engine name="browser" spec="~5.0.3" />
+    <engine name="browser" spec="5.0.3" />
 </widget>
