@@ -3,7 +3,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
 import { ListPage } from '../list/list';
-import { UserPage } from '../user/user';
+
+import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
 
 declare var google: any;
 
@@ -14,16 +15,24 @@ declare var google: any;
 })
 export class HomePage {
 
+  public show = false;
+
   temporaryDisplayName;
   temporaryEmail;
   temporaryUserId;
 
+  public fieldLatitude;
+  public fieldLongitude;
+  public station: any;
+  public stationList = [];
+  public stationListMap = [];
+
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams) {
-  };
-
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider) {
+    this.getLocation();
+  }
 
   ionViewDidLoad() {
     this.showMap();
@@ -33,7 +42,6 @@ export class HomePage {
     this.temporaryUserId = this.navParams.get('userId');
 
   }
-
 
   showMap() {
 
@@ -46,6 +54,8 @@ export class HomePage {
         zoom: 15,
         center: { lat: resp.coords.latitude, lng: resp.coords.longitude }
       };
+
+
 
       // New map
       let map = new google.maps.Map
@@ -85,6 +95,12 @@ export class HomePage {
         }
       ];
 
+      //SL-API: Visar närliggande HPL på kartan
+      for (let i = 0; i < this.stationListMap.length; i++) {
+        addMarker(this.stationListMap[i]);
+
+      }
+
       // Loop through markers
       for (let i = 0; i < markers.length; i++) {
         // Add marker
@@ -121,10 +137,86 @@ export class HomePage {
     });
   }// ShowMap
 
-
   goToList() {
 
     this.navCtrl.push(ListPage);
+  }
+
+  /*
+  *
+  * HENRIKS SL API HÄRIFRÅN
+  * 
+  */
+
+  //SL-API: Hämtar platsen
+
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.fieldLatitude = resp.coords.latitude,
+        this.fieldLongitude = resp.coords.longitude,
+        console.log(this.fieldLatitude, this.fieldLongitude);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
+  //SL-API: Hämtar närliggande stationer
+
+  getNearbyStops() {
+
+    this.show = true;
+
+    this.tlP.getNearbyStops(this.fieldLatitude, this.fieldLongitude)
+      .then(data => {
+
+        this.station = data;
+
+        console.log(this.station.LocationList.StopLocation);
+
+        for (let i = 0; i < this.station.LocationList.StopLocation.length; i++) {
+
+          let stationInfo = {
+
+            name: this.station.LocationList.StopLocation[i].name,
+            dist: this.station.LocationList.StopLocation[i].dist,
+            lat: this.station.LocationList.StopLocation[i].lat,
+            long: this.station.LocationList.StopLocation[i].lon,
+          }
+
+          //För Google Maps markers.
+
+          let googlelat = parseFloat(this.station.LocationList.StopLocation[i].lat);
+          let googlelon = parseFloat(this.station.LocationList.StopLocation[i].lon);
+          let iconImage = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+          let googleContent = this.station.LocationList.StopLocation[i].name + ' ' + this.station.LocationList.StopLocation[i].dist + 'm';
+
+          let stationMapInfo = {
+            coords: { lat: googlelat, lng: googlelon },
+            iconImage: iconImage,
+            content: googleContent,
+          }
+
+          this.stationList.push(stationInfo);
+          this.stationListMap.push(stationMapInfo);
+          this.showMap();
+
+        }
+
+      })
+  }
+
+  // SL-API: Tar bort närliggande hållplatser och döljer från kartan
+
+  removeNearbyStops() {
+
+    this.show = false;
+
+    for (let i = this.stationListMap.length; i > 0; i--) {
+      this.stationListMap.pop();
+    }
+
+    this.showMap();
+
   }
 
 }
