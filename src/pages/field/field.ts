@@ -4,13 +4,6 @@ import { FieldService } from "../../providers/field-service";
 import { UserPage } from '../user/user';
 import { CalendarPage } from '../calendar/calendar';
 
-import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
-
-import { Geolocation } from "@ionic-native/geolocation";
-import { StationpagePage } from '../stationpage/stationpage';
-
-
-
 
 @IonicPage()
 @Component({
@@ -45,48 +38,10 @@ export class FieldPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public tlP: TrafiklabProvider, private geolocation: Geolocation) {
-    this.getLocation();
+    public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController) {
 
   }
 
-  getLocation() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.fieldLatitude = resp.coords.latitude,
-        this.fieldLongitude = resp.coords.longitude,
-        console.log(this.fieldLatitude, this.fieldLongitude);
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
-  }
-
-
-
-  getNearbyStops() {  //SL Närliggande hållplatser, visar i konsol
-
-    this.tlP.getNearbyStops(this.fieldLatitude, this.fieldLongitude)
-      .then(data => {
-
-        this.station = data;
-
-        console.log(this.station.LocationList.StopLocation);
-
-        for (let i = 0; i < this.station.LocationList.StopLocation.length; i++) {
-
-          let stationInfo = {
-
-            name: this.station.LocationList.StopLocation[i].name,
-            dist: this.station.LocationList.StopLocation[i].dist
-
-          }
-
-          this.stationList.push(stationInfo);
-
-        }
-
-      })
-    this.navCtrl.push(StationpagePage, {data: this.stationList, name: this.field});
-  }
 
   setRating() {
     // Framtida beräkning av medel osv
