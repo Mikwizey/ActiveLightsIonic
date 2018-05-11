@@ -66,7 +66,10 @@ export class HomePage {
       new google.maps.Marker({
         position: { lat: resp.coords.latitude, lng: resp.coords.longitude },
         map: map,
-        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        //icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        //icon: 'http://maps.google.com/mapfiles/kml/pal2/icon49.png' //fotbollskaraktär
+        //icon: 'http:// google.com/mapfiles/arrow.png'
+        icon: 'http://maps.google.com/mapfiles/ms/micons/man.png'
       });
 
       // Listen for click on map
