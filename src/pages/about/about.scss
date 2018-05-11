@@ -1,0 +1,55 @@
+
+page-about {
+    .background {
+        background-image: url('../assets/imgs/bg.png');
+
+      }
+
+ .bg{
+   
+     height: 100%;
+     width:100%;
+     background: linear-gradient(180deg,#ffff 1.78%, #ffff 12.52%, #F5F5F5 89.52%);
+
+
+
+ }
+ .heading h5 {
+    color: #000000;
+    font-family: Lora;
+    padding-top: 0px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    line-height: 30px;
+    margin-top: 9px;
+  
+    font-size: 28px;
+
+}
+.heading h3 {
+    color: #000000;
+    font-family: Lora;
+    padding-top: 0px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    line-height: 30px;
+    margin-top: 9px;
+    justify-content: right;
+    font-size: 20px;
+
+}
+ion-icon{
+    color: #fff
+
+}
+ion-grid ion-row ion-col{
+    color: #fff;
+
+}
+ion-card{
+    color: #F5F5F5;
+    border-radius:10px !important;
+    opacity: 0.8;
+
+}
+}

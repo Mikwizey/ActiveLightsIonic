@@ -27,6 +27,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
+import { AboutPage } from '../pages/about/about';
 
 registerLocaleData(localeSv);
 
@@ -39,6 +40,7 @@ registerLocaleData(localeSv);
     FirstPage,
     CalendarPage,
     UserPage,
+    AboutPage,
 
 
   ],
@@ -59,6 +61,7 @@ registerLocaleData(localeSv);
     FirstPage,
     CalendarPage,
     UserPage,
+    AboutPage,
   ],
   providers: [
     StatusBar,

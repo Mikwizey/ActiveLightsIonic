@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { UserPage } from '../user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { AboutPage } from '../about/about';
+import { AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -11,7 +13,7 @@ import { GooglePlus } from '@ionic-native/google-plus';
 })
 export class FirstPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() { }
@@ -24,6 +26,11 @@ export class FirstPage {
   goUserPage() {
 
     this.navCtrl.push(UserPage);
+
+  }
+  goAboutPage() {
+
+    this.navCtrl.push(AboutPage);
 
   }
 
@@ -46,6 +53,14 @@ export class FirstPage {
         this.navCtrl.setRoot(HomePage, googleUserData);
       })
       .catch(err => console.error(err));
+  }
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'New Friend!',
+      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   temporaryLogin() {
