@@ -9,35 +9,40 @@
   </div>
   
   <div  class="heading h5" >
-    <h5>Let's light it up together.</h5>
+    <h5>Let's light it up together</h5>
   </div>
  <ion-card>
   <ion-card-header >
-    <div text-wrap> 
+     
         <ion-card-header>
-            Logga in 
+           LOGGA IN PÅ SPORTLIGHTS
+            
           </ion-card-header>
-      
+          <div class="heading h3">
+          <h3> med ditt social-medier konto</h3>
     
   </div> 
   </ion-card-header>
   <ion-card-content>
     <ion-list no-line>
-
-      <p>Eller logga in med Google+</p>
-  
-
-     <button ion-button color="danger" ion-left block (click)="loginWithGoogle()">
+  <button ion-button color="danger" ion-left block (click)="loginWithGoogle()">
      <ion-icon name="logo-google"></ion-icon>
      <div> Logga in med Google</div>
     </button>
+    <p>Eller </p>
+    <button ion-button color="primary" ion-left block (click)="loginWithFacebook()">
+        <ion-icon name="logo-facebook"></ion-icon>
+        <div> Logga in med Facebook</div>
+       </button>
 
-    <button ion-button block outline (click)="temporaryLogin()" color="light">Vidare utan inloggning</button>
+
+    
 
   </ion-list>
 </ion-card-content>
   </ion-card>
+  <button ion-button block outline  color="white" (click)="temporaryLogin()" color="light">Vidare utan inloggning</button>
 
-    <button class="bottom" ion-button clear full color="light">Inget konto? registrera dig här</button>
+    <button class="bottom" ion-button clear full color="light" (click)="goAboutPage()">Om oss</button>
  
 </ion-content>

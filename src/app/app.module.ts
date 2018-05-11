@@ -23,6 +23,7 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
+import { AboutPage } from '../pages/about/about';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
     FirstPage,
     CalendarPage,
     UserPage,
+    AboutPage,
 
 
   ],
@@ -53,6 +55,7 @@ import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
     FirstPage,
     CalendarPage,
     UserPage,
+    AboutPage,
   ],
   providers: [
     StatusBar,
