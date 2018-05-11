@@ -1,4 +1,8 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core'; //Locale_id lagt till för sv
+
+import { registerLocaleData } from '@angular/common';  //lagt till för sv
+import localeSv from '@angular/common/locales/sv'; //lagt till för sv
+
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -23,6 +27,8 @@ import { CalendarPage } from '../pages/calendar/calendar';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
+
+registerLocaleData(localeSv);
 
 @NgModule({
   declarations: [
@@ -57,11 +63,12 @@ import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: LOCALE_ID, useValue: 'sv'},    //lagt till för sv
     FieldService,
     GooglePlus,
     Geolocation,
-    TrafiklabProvider
+    TrafiklabProvider,
   ]
 })
 export class AppModule { }
