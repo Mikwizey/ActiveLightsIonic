@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { ListPage } from '../list/list';
 import * as moment from 'moment';
+import { ActivityService } from "../../providers/activity-service";
 
 
 @IonicPage()

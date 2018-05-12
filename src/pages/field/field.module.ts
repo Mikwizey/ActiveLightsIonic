@@ -8,7 +8,6 @@ import { ActivityService } from "../../providers/activity-service";
 
   
 
-import { BrowserModule} from'@angular/platform-browser';
 
 @NgModule({
   declarations: [

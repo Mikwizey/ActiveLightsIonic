@@ -25,6 +25,7 @@ export class FieldPage {
 
   protected id;
   protected field;
+  
 
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
@@ -48,8 +49,8 @@ export class FieldPage {
 
   ionViewWillEnter() {
     console.log("refresh?");
-    this.activityService.getAllActivities().subscribe(activity => {
-      this.activity = this.activity;
+    this.activityService.getAllActivities().subscribe(eventSource => {
+      this.eventSource = this.eventSource;
       
     })
   }
