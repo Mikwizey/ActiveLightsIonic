@@ -93,7 +93,7 @@ page-first {
       letter-spacing: -1px; 
       line-height: 1; 
       text-align: left ;
-      margin-top: -160px; }
+      margin-top: -140px; }
       .heading h3{
         color: #ffff;
         font-family: 'Helvetica Neue';
@@ -113,11 +113,21 @@ page-first {
       font-weight: 200;
       letter-spacing: 2px;
       line-height: 30px;
-      margin-top: -55px;
+      margin-top: -25px;
      
       font-size: 40px;
   }
-
+  .heading h6 {
+    color: #fff;
+    font-family: Lora;
+    padding-top: 0px;
+    font-weight: 200;
+    letter-spacing: 2px;
+    line-height: 30px;
+    margin-top: 0px;
+    text-align: right ;
+    font-size: 20px;
+}
   .platform-android .action-sheet-backdrop.active {
     background-color: rgba(0, 0, 0, 0.2); }
     .platform-android .action-sheet {

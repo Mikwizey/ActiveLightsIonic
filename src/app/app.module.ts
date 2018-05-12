@@ -15,7 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
 import { FieldService } from "../providers/field-service";
-
+import { ActivityService } from "../providers/activity-service";
 import { Geolocation } from '@ionic-native/geolocation';
 
 import { BarRatingModule } from "ngx-bar-rating";
@@ -28,6 +28,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
+import {HttpModule} from '@angular/http';
+
 
 registerLocaleData(localeSv);
 
@@ -69,6 +71,7 @@ registerLocaleData(localeSv);
     { provide: ErrorHandler, useClass: IonicErrorHandler},
     { provide: LOCALE_ID, useValue: 'sv'},    //lagt till för sv
     FieldService,
+    ActivityService,
     GooglePlus,
     Geolocation,
     TrafiklabProvider,

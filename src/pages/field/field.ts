@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, AlertController }
 import { FieldService } from "../../providers/field-service";
 import { UserPage } from '../user/user';
 import { CalendarPage } from '../calendar/calendar';
-
+import { ActivityService } from "../../providers/activity-service";
 
 @IonicPage()
 @Component({
@@ -12,6 +12,7 @@ import { CalendarPage } from '../calendar/calendar';
 })
 
 export class FieldPage {
+  protected activity: Array<any>; 
 
   eventSource = [];
   viewTitle: string;
@@ -38,10 +39,20 @@ export class FieldPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+    public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController,public activityService: ActivityService) {
 
   }
+  showActivity(id: number) {
+    this.navCtrl.push(FieldPage, { id: id }); 
+  } 
 
+  ionViewWillEnter() {
+    console.log("refresh?");
+    this.activityService.getAllActivities().subscribe(activity => {
+      this.activity = this.activity;
+      
+    })
+  }
 
   setRating() {
     // Framtida beräkning av medel osv
