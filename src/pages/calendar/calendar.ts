@@ -61,7 +61,7 @@ onEventSelected(event) {
 
   let alert = this.alertCtrl.create({
     title: '' + event.title,
-    subTitle: 'From: ' + start + '<br>To: ' + end,
+    subTitle: 'Till: ' + start + '<br>Från: ' + end,
     buttons: ['OK']
   })
   alert.present();
