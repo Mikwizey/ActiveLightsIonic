@@ -56,13 +56,14 @@ onViewTitleChanged(title) {
 }
 
 onEventSelected(event) {
-  let start = moment(event.startTime).format('LLLL');
-  let end = moment(event.endTime).format('LLLL');
+  let start = moment(event.startTime).format('l');
+  let end = moment(event.endTime).format('l');
 
   let alert = this.alertCtrl.create({
     title: '' + event.title,
     subTitle: 'Till: ' + start + '<br>Från: ' + end,
     buttons: ['OK']
+
   })
   alert.present();
 }
