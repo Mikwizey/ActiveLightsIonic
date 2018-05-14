@@ -12,7 +12,7 @@ import { ActivityService } from "../../providers/activity-service";
 })
 
 export class FieldPage {
-  protected activity: Array<any>; 
+  protected activity: Array<any>;
 
   eventSource = [];
   viewTitle: string;
@@ -25,7 +25,7 @@ export class FieldPage {
 
   protected id;
   protected field;
-  
+
 
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
@@ -44,14 +44,14 @@ export class FieldPage {
 
   }
   showActivity(id: number) {
-    this.navCtrl.push(FieldPage, { id: id }); 
-  } 
+    this.navCtrl.push(FieldPage, { id: id });
+  }
 
   ionViewWillEnter() {
     console.log("refresh?");
     this.activityService.getAllActivities().subscribe(eventSource => {
       this.eventSource = this.eventSource;
-      
+
     })
   }
 
@@ -61,7 +61,7 @@ export class FieldPage {
 
   goToCalendar() {
     console.log("calendar page")
-    this.navCtrl.push(CalendarPage);
+    this.navCtrl.push(CalendarPage, {'id': this.id});
   }
 
   ionViewDidLoad() {

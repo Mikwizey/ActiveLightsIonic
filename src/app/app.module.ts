@@ -1,7 +1,7 @@
-import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core'; //Locale_id lagt till för sv
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core'; //Locale_id lagt till för o få svenska
 
-import { registerLocaleData } from '@angular/common';  //lagt till för sv
-import localeSv from '@angular/common/locales/sv'; //lagt till för sv
+import { registerLocaleData } from '@angular/common';  //lagt till för o få svenska
+import localeSv from '@angular/common/locales/sv'; //lagt till för o få svenska
 
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -33,7 +33,7 @@ import {HttpModule} from '@angular/http';
 import { Facebook } from '@ionic-native/facebook';
 
 
-registerLocaleData(localeSv);
+registerLocaleData(localeSv);  //lagt till för o få svenska
 
 @NgModule({
   declarations: [
