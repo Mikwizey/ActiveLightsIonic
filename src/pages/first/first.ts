@@ -6,6 +6,8 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { AboutPage } from '../about/about';
 import { AlertController } from 'ionic-angular';
 
+import { Facebook } from '@ionic-native/facebook';
+
 @IonicPage()
 @Component({
   selector: 'page-first',
@@ -13,26 +15,54 @@ import { AlertController } from 'ionic-angular';
 })
 export class FirstPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, public alertCtrl: AlertController) {
+  isLoggedIn: boolean = false;
+  users: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, public alertCtrl: AlertController, private fb: Facebook) {
   }
 
   ionViewDidLoad() { }
 
-  goMapPage() {
-
-    this.navCtrl.push(HomePage);
-
-  }
-  goUserPage() {
-
-    this.navCtrl.push(UserPage);
-
-  }
   goAboutPage() {
 
     this.navCtrl.push(AboutPage);
 
   }
+
+
+  loginWithFacebook() {
+
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+      .then(res => {
+        if (res.status === "connected") {
+          this.isLoggedIn = true;
+          
+          this.fb.api("/" + res.authResponse.userID + "/?fields=id,email,name,picture,gender", ["public_profile"])
+            .then(res => {
+              console.log(res);
+              this.users = res;
+
+              let userData = {
+
+                name: res.name,
+                email: res.email,
+                userId: res.id,
+                loginMethod: "Facebook"
+              }
+
+              this.navCtrl.setRoot(UserPage, userData);
+            })
+            .catch(e => {
+              console.log(e);
+            });
+
+        } else {
+          this.isLoggedIn = false;
+        }
+      })
+      .catch(e => console.log('Error logging into Facebook', e));
+  }
+
 
   loginWithGoogle() {
 
@@ -40,30 +70,20 @@ export class FirstPage {
       .then(res => {
         console.log(res);
 
-        let googleUserData = {
+        let userData = {
 
-          displayName: res.displayName,
+          name: res.displayName,
           email: res.email,
           userId: res.userId,
-          givenName: res.givenName,
-          familyName: res.familyName,
-
+          loginMethod: "Google"
         }
 
-        this.navCtrl.setRoot(HomePage, googleUserData);
+        this.navCtrl.setRoot(UserPage, userData);
       })
       .catch(err => console.error(err));
   }
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'New Friend!',
-      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 
   temporaryLogin() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(UserPage, { name: "Användare Användarsson", email: "Användare@domän.se" });
   }
 }

@@ -17,10 +17,6 @@ export class HomePage {
 
   public show = false;
 
-  temporaryDisplayName;
-  temporaryEmail;
-  temporaryUserId;
-
   public fieldLatitude;
   public fieldLongitude;
   public station: any;
@@ -36,11 +32,6 @@ export class HomePage {
 
   ionViewDidLoad() {
     this.showMap();
-
-    this.temporaryDisplayName = this.navParams.get('displayName');
-    this.temporaryEmail = this.navParams.get('email');
-    this.temporaryUserId = this.navParams.get('userId');
-
   }
 
   showMap() {
