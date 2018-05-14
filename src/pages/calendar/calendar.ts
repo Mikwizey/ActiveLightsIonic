@@ -21,7 +21,7 @@ export class CalendarPage {
     currentDate: this.selectedDay  //new Date();
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService) {
   }
 
  // console.log(navParams.get('val'));
@@ -36,8 +36,13 @@ export class CalendarPage {
       activityData.startTime = new Date(data.startTime);
       activityData.endTime = new Date(data.endTime);
 
+      let id = this.navParams.get('id');
+      console.log(id);
+
       let activities = this.eventSource;
       activities.push(activityData);
+      console.log(activityData);
+      this.activityService.addActivity(id, activityData);
       this.eventSource = [];
       setTimeout(() => {
         this.eventSource = activities;
