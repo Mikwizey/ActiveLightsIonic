@@ -7,20 +7,21 @@ import { DateTime } from 'ionic-angular';
 @Injectable()
 export class ActivityService {
     public API = 'https://pvt.dsv.su.se/Group02';
+    //public API = 'http://localhost:8090'; //För att se server lokalt
     public ACTIVITY_API = this.API;
     constructor(public http: HttpClient) {
 
     }
-    getAllActivities(): Observable<any> {
-        return this.http.get(this.API + "/field/" + "/activity/",);
+    getAllActivities(field_id: number): Observable<any> {
+        return this.http.get(this.API + "/field/" + field_id + "/activity");
       }
-    addActivity(id): Observable<any> {
-      return this.http.post(this.API + "/field/" + id + "/activity/add",{title: String, description : String, 
+    addActivity(field_id: number): Observable<any> {
+      return this.http.post(this.API + "/field/" + field_id + "/activity/add",{title: String, description : String, 
         startTime: DateTime, endTime : DateTime}); 
       }
       
-      getActivityByID(): Observable<any> {
-          return this.http.get(this.API + "/field/" + "/activity/", {});
+      getActivityByID(field_id: number, activity_id: number): Observable<any> {
+          return this.http.get(this.API + "/field/" + field_id + "/activity/"  + activity_id);
       }
 
 }

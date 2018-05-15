@@ -40,7 +40,8 @@ export class FieldPage {
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController,public activityService: ActivityService) {
+    public fieldService: FieldService, public modalCtrl: ModalController, 
+    public alertCtrl: AlertController,public activityService: ActivityService) {
 
   }
   showActivity(id: number) {
@@ -49,7 +50,7 @@ export class FieldPage {
 
   ionViewWillEnter() {
     console.log("refresh?");
-    this.activityService.getAllActivities().subscribe(eventSource => {
+    this.activityService.getAllActivities(this.id).subscribe(eventSource => {
       this.eventSource = this.eventSource;
       
     })
