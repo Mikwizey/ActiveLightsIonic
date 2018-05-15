@@ -33,6 +33,11 @@
       dayNames="måndag, tisdag, onsdag, torsdag, fredag, lördag, söndag"
       dayShortNames="mån, tis, ons, tors, fre, lör, sön"></ion-datetime>
     </ion-item>
+
+    <ion-item>
+      <ion-label>Hela dagen?</ion-label>
+      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+    </ion-item>
   </ion-list>
 
   <button ion-button full icon-left (click)="save()">
