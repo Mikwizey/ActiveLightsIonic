@@ -181,7 +181,8 @@ export class HomePage {
 
           let googlelat = parseFloat(this.station.LocationList.StopLocation[i].lat);
           let googlelon = parseFloat(this.station.LocationList.StopLocation[i].lon);
-          let iconImage = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+          //let iconImage = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+          let iconImage = 'http://maps.google.com/mapfiles/ms/micons/bus.png'
           let googleContent = this.station.LocationList.StopLocation[i].name + ' ' + this.station.LocationList.StopLocation[i].dist + 'm';
 
           let stationMapInfo = {
