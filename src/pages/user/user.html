@@ -5,11 +5,17 @@
 </ion-header>
 <ion-content padding>
 
-  <ion-list>
-    <ion-item>{{displayName}}</ion-item>
-    <ion-item>Förnamn: {{givenName}}</ion-item>
-    <ion-item>Efternamn: {{familyName}}</ion-item>
-    <ion-item>Email: {{email}}</ion-item>
-  </ion-list>
+  <h1 text-center>Välkommen till SportLights </h1>
+  <h2 text-center>{{name}}</h2>
+
+  <h1 text-center>
+    Vad vill du göra?
+  </h1>
+
+  <button ion-button block large (click)="goToHome()">Till planväljaren</button>
+
+  <br>
+
+  <button ion-button block (click)="logout()">LOGGA UT</button>
 
 </ion-content>
