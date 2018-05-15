@@ -18,18 +18,26 @@
 
     <ion-item>
       <ion-label>Start</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"
+      monthNames="januari, februari, mars, april, maj, juni, juli, augusti, september, oktober, november, december"
+      monthShortNames="jan, feb, mar, apr, maj, jun, jul, aug, sept, okt, nov, dec"
+      dayNames="måndag, tisdag, onsdag, torsdag, fredag, lördag, söndag"
+      dayShortNames="mån, tis, ons, tors, fre, lör, sön"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>Slut</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"
+      monthNames="januari, februari, mars, april, maj, juni, juli, augusti, september, oktober, november, december"
+      monthShortNames="jan, feb, mar, apr, maj, jun, jul, aug, sept, okt, nov, dec"
+      dayNames="måndag, tisdag, onsdag, torsdag, fredag, lördag, söndag"
+      dayShortNames="mån, tis, ons, tors, fre, lör, sön"></ion-datetime>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Hela dagen?</ion-label>
       <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 
   <button ion-button full icon-left (click)="save()">

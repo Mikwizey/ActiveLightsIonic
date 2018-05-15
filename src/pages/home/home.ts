@@ -16,6 +16,7 @@ declare var google: any;
 export class HomePage {
 
   public show = false;
+  protected nickname:string;
 
   temporaryDisplayName;
   temporaryEmail;
@@ -142,13 +143,13 @@ export class HomePage {
 
   goToList() {
 
-    this.navCtrl.push(ListPage);
+    this.navCtrl.push(ListPage, {      nickname:this.navParams.get("nickname")});
   }
 
   /*
   *
   * HENRIKS SL API HÄRIFRÅN
-  * 
+  *
   */
 
   //SL-API: Hämtar platsen

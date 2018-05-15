@@ -1,7 +1,7 @@
-import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core'; //Locale_id lagt till för sv
+import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core'; //Locale_id lagt till för o få svenska
 
-import { registerLocaleData } from '@angular/common';  //lagt till för sv
-import localeSv from '@angular/common/locales/sv'; //lagt till för sv
+import { registerLocaleData } from '@angular/common';  //lagt till för o få svenska
+import localeSv from '@angular/common/locales/sv'; //lagt till för o få svenska
 
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -29,9 +29,10 @@ import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
 import {HttpModule} from '@angular/http';
+import {ChatPage} from "../pages/chat/chat";
 
 
-registerLocaleData(localeSv);
+registerLocaleData(localeSv);  //lagt till för o få svenska
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ registerLocaleData(localeSv);
     CalendarPage,
     UserPage,
     AboutPage,
-
+    ChatPage,
 
   ],
   imports: [
@@ -64,6 +65,7 @@ registerLocaleData(localeSv);
     CalendarPage,
     UserPage,
     AboutPage,
+    ChatPage,
   ],
   providers: [
     StatusBar,

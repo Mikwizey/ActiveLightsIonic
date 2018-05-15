@@ -13,6 +13,8 @@ import { AlertController } from 'ionic-angular';
 })
 export class FirstPage {
 
+  data = { nickname:"" };
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, public alertCtrl: AlertController) {
   }
 
@@ -61,6 +63,12 @@ export class FirstPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  enterNickname() {
+    this.navCtrl.push(HomePage, {
+      nickname: this.data.nickname
+    });
   }
 
   temporaryLogin() {
