@@ -14,9 +14,8 @@ export class ActivityService {
     getAllActivities(field_id: number): Observable<any> {
         return this.http.get(this.API + "/field/" + field_id + "/activity");
     }
-    addActivity(field_id: number): Observable<any> {
-      return this.http.post(this.API + "/field/" + field_id + "/activity/add",{title: String, description : String, 
-        startTime: DateTime, endTime : DateTime}); 
+    addActivity(field_id: number, data): Observable<any> {
+      return this.http.post(this.API + "/field/" + field_id + "/activity/add", data); 
     }
       
     getActivityByID(field_id: number, activity_id: number): Observable<any> {
