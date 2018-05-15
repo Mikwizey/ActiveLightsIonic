@@ -4,6 +4,8 @@ import { FieldService } from "../../providers/field-service";
 import { UserPage } from '../user/user';
 import { CalendarPage } from '../calendar/calendar';
 import { ActivityService } from "../../providers/activity-service";
+import * as firebase from 'Firebase';
+import {ChatPage} from "../chat/chat";
 
 @IonicPage()
 @Component({
@@ -23,6 +25,10 @@ export class FieldPage {
     currentDate: this.selectedDay
   };
 
+  key:string;
+  ref = firebase.database().ref('chatrooms/');
+
+  protected nickname:string;
   protected id;
   protected field;
 
@@ -41,8 +47,15 @@ export class FieldPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController,public activityService: ActivityService) {
+    this.ref.on('value', resp => {const snapshotKey = snapshot => {
+      var key = Object.keys(snapshot.val())[this.id];
+      return key;
+    }
+      this.key = snapshotKey(resp);
+    });
 
   }
+
   showActivity(id: number) {
     this.navCtrl.push(FieldPage, { id: id });
   }
@@ -62,6 +75,13 @@ export class FieldPage {
   goToCalendar() {
     console.log("calendar page")
     this.navCtrl.push(CalendarPage, {'id': this.id});
+  }
+
+  toTheChatRoom(key) {
+    this.navCtrl.setRoot(ChatPage, {
+      key:key,
+      nickname:this.navParams.get("nickname")
+    });
   }
 
   ionViewDidLoad() {

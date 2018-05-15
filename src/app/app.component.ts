@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import * as firebase from 'firebase';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
@@ -12,6 +13,14 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { UserPage } from '../pages/user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
 
+const config = {
+  apiKey: "AIzaSyC_mEB81ALRZ9oqVDY_a70iLe0cbZZJftA",
+  authDomain: "ionic-chat-697b4.firebaseapp.com",
+  databaseURL: "https://ionic-chat-697b4.firebaseio.com",
+  projectId: "ionic-chat-697b4",
+  storageBucket: "ionic-chat-697b4.appspot.com",
+  messagingSenderId: "19762664952"
+};
 
 @Component({
   templateUrl: 'app.html'
@@ -43,6 +52,7 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    firebase.initializeApp(config);
   }
 
   /*openPage(page) {

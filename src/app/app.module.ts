@@ -29,6 +29,7 @@ import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
 import {HttpModule} from '@angular/http';
+import {ChatPage} from "../pages/chat/chat";
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -43,7 +44,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     CalendarPage,
     UserPage,
     AboutPage,
-
+    ChatPage,
 
   ],
   imports: [
@@ -64,6 +65,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     CalendarPage,
     UserPage,
     AboutPage,
+    ChatPage,
   ],
   providers: [
     StatusBar,
