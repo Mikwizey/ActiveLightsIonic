@@ -30,8 +30,6 @@ import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
 import {HttpModule} from '@angular/http';
 
-import { Facebook } from '@ionic-native/facebook';
-
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
 
@@ -77,7 +75,6 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     GooglePlus,
     Geolocation,
     TrafiklabProvider,
-    Facebook
   ]
 })
 export class AppModule { }
