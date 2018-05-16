@@ -6,6 +6,8 @@ import { ListPage } from '../list/list';
 
 import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
 import { SocialmediaProvider } from "../../providers/socialmedia/socialmedia";
+import { UserDataProvider } from "../../providers/user-data/user-data";
+import { User } from 'firebase';
 
 declare var google: any;
 
@@ -29,24 +31,30 @@ export class HomePage {
 
   public userId;
   public name;
-  public loginMethod;
 
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider) {
-    
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider, public udp: UserDataProvider) {
+
     this.getLocation();
 
-    this.userId = this.navParams.get('userId');
-    this.name = this.navParams.get('name');
-    this.loginMethod = this.navParams.get('loginMethod');
-    this.smp.setLoginMethod(this.loginMethod);
+    let userId = this.navParams.get('userId');
+    let name = this.navParams.get('name');
+    let loginMethod = this.navParams.get('loginMethod');
+
+    this.smp.setLoginMethod(loginMethod);
+
+    this.udp.setUserId(userId);
+    this.udp.setUserName(name);
+
+    this.name = udp.getUserName();
+    this.userId = udp.getUserId();
 
   }
 
   ionViewDidLoad() {
-    
+
     this.showMap();
 
   }

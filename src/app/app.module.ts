@@ -33,6 +33,7 @@ import { ChatPage } from "../pages/chat/chat";
 import { SocialmediaProvider } from '../providers/socialmedia/socialmedia';
 
 import { Facebook } from '@ionic-native/facebook';
+import { UserDataProvider } from '../providers/user-data/user-data';
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -81,7 +82,8 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     Geolocation,
     TrafiklabProvider,
     SocialmediaProvider,
-    Facebook
+    Facebook,
+    UserDataProvider
   ]
 })
 export class AppModule { }
