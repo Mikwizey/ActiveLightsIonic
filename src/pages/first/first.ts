@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AboutPage } from '../about/about';
-import { AlertController } from 'ionic-angular';
 import { Facebook } from '@ionic-native/facebook';
 
 @IonicPage()
@@ -13,7 +12,7 @@ import { Facebook } from '@ionic-native/facebook';
 })
 export class FirstPage {
 
-  data = { nickname: "" };
+  // data = { nickname: "" };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, private fb: Facebook) {
   }
@@ -26,12 +25,15 @@ export class FirstPage {
 
   }
 
+  /*
+   * CJ's kod för chatten.
+   */
 
-  enterNickname() {
+  /* enterNickname() {
     this.navCtrl.push(HomePage, {
       nickname: this.data.nickname
     });
-  }
+  }*/
 
   /**
    * 

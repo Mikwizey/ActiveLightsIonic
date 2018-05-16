@@ -1,33 +1,33 @@
-
-
-
 <ion-content class="background">
 
-<div class="heading h1">
+  <div class="heading h1">
 
     <h1>SportLights.</h1>
   </div>
   <div class="heading h6">
-      <button class="bottom" ion-button clear full color="light" (click)="goAboutPage()"><h6>Om oss</h6></button>
-    </div>
+    <button class="bottom" ion-button clear full color="light" (click)="goAboutPage()">
+      <h6>Om oss</h6>
+    </button>
+  </div>
 
-  <div  class="heading h5" >
+  <div class="heading h5">
     <h5>Let's light it up together</h5>
   </div>
- <ion-card>
-  <ion-card-header >
+  <ion-card>
+    <ion-card-header>
 
-        <ion-card-header>
-           LOGGA IN PÅ SPORTLIGHTS
+      <ion-card-header>
+        LOGGA IN PÅ SPORTLIGHTS
 
-          </ion-card-header>
-          <div class="heading h3">
-          <h3> med ditt social-medier konto</h3>
+      </ion-card-header>
+      <div class="heading h3">
+        <h3> med ditt social-medier konto</h3>
 
-  </div>
-  </ion-card-header>
-  <ion-card-content>
-    <form (ngSubmit)="enterNickname()">
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+
+      <!--<form (ngSubmit)="enterNickname()">
       <ion-list>
         <ion-item>
           <ion-label floating>Enter your Nickname</ion-label>
@@ -37,25 +37,24 @@
           <button ion-button full round color="secondary" type="submit">Enter</button>
         </ion-item>
       </ion-list>
-    </form>
+    </form>-->
 
-    <ion-list no-line>
-  <button ion-button color="danger" ion-left block (click)="loginGoogle()">
-     <ion-icon name="logo-google"></ion-icon>
-     <div> Logga in med Google</div>
-    </button>
-    <p>Eller </p>
-    <button ion-button color="primary" ion-left block (click)="loginFacebook()">
-        <ion-icon name="logo-facebook"></ion-icon>
-        <div> Logga in med Facebook</div>
-       </button>
-
-
-
-
-  </ion-list>
-</ion-card-content>
+      <ion-list no-line>
+        <button ion-button color="danger" ion-left block (click)="loginGoogle()">
+          <ion-icon name="logo-google"></ion-icon>
+          <div> Logga in med Google</div>
+        </button>
+        <p>Eller </p>
+        <button ion-button color="primary" ion-left block (click)="loginFacebook()">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <div> Logga in med Facebook</div>
+        </button>
+      </ion-list>
+    </ion-card-content>
   </ion-card>
-  <button ion-button block outline  color="white" (click)="loginDeveloper()" color="light">Vidare utan inloggning</button>
+
+  <div padding>
+    <button ion-button block outline color="white" (click)="loginDeveloper()" color="light">Vidare som developer</button>
+  </div>
 
 </ion-content>

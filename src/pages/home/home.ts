@@ -19,7 +19,7 @@ declare var google: any;
 export class HomePage {
 
   public show = false;
-  protected nickname: string;
+  //protected nickname: string;
 
   public fieldLatitude;
   public fieldLongitude;
@@ -158,7 +158,9 @@ export class HomePage {
 
   goToList() {
 
-    this.navCtrl.push(ListPage, { nickname: this.navParams.get("nickname") });
+    //this.navParams.get("nickname")
+
+    this.navCtrl.push(ListPage, { nickname: this.name });
   }
 
   /*
