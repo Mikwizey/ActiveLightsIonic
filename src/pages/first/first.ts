@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
-import { UserPage } from '../user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AboutPage } from '../about/about';
 import { AlertController } from 'ionic-angular';
+import { Facebook } from '@ionic-native/facebook';
 
 @IonicPage()
 @Component({
@@ -13,57 +13,19 @@ import { AlertController } from 'ionic-angular';
 })
 export class FirstPage {
 
-  data = { nickname:"" };
+  data = { nickname: "" };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, private fb: Facebook) {
   }
 
   ionViewDidLoad() { }
 
-  goMapPage() {
-
-    this.navCtrl.push(HomePage);
-
-  }
-  goUserPage() {
-
-    this.navCtrl.push(UserPage);
-
-  }
   goAboutPage() {
 
     this.navCtrl.push(AboutPage);
 
   }
 
-  loginWithGoogle() {
-
-    this.googlePlus.login({})
-      .then(res => {
-        console.log(res);
-
-        let googleUserData = {
-
-          displayName: res.displayName,
-          email: res.email,
-          userId: res.userId,
-          givenName: res.givenName,
-          familyName: res.familyName,
-
-        }
-
-        this.navCtrl.setRoot(HomePage, googleUserData);
-      })
-      .catch(err => console.error(err));
-  }
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'New Friend!',
-      subTitle: 'Your friend, Obi wan Kenobi, just accepted your friend request!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 
   enterNickname() {
     this.navCtrl.push(HomePage, {
@@ -71,7 +33,83 @@ export class FirstPage {
     });
   }
 
-  temporaryLogin() {
-    this.navCtrl.push(HomePage);
+  /**
+   * 
+   * SOCIAL MEDIA
+   * 
+   */
+
+  /*
+   * Facebook login
+   */
+
+  loginFacebook() {
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+      .then(res => {
+
+        this.fb.api("/" + res.authResponse.userID + "/?fields=id,email,name,picture,gender", ["public_profile"])
+          .then(res => {
+            console.log(res);
+
+            let userData = {
+
+              name: res.name,
+              userId: res.id,
+              loginMethod: "Facebook"
+
+            }
+
+            this.navCtrl.setRoot(HomePage, userData);
+
+          })
+          .catch(e => {
+            console.log(e);
+          });
+
+
+      })
+      .catch(e => console.log('Error logging into Facebook', e));
   }
+
+  /*
+   * Google 
+   */
+
+  loginGoogle() {
+
+    this.googlePlus.login({})
+      .then(res => {
+        console.log(res);
+
+        let userData = {
+
+          name: res.displayName,
+          userId: res.userId,
+          loginMethod: "Google"
+
+        }
+
+        this.navCtrl.setRoot(HomePage, userData);
+      })
+      .catch(err => console.error(err));
+  }
+
+  /**
+   * Utvecklare
+   */
+
+  loginDeveloper() {
+
+    let userData = {
+     
+      name: "Utvecklare", 
+      userId: "1234", 
+      loginMethod: "Developer"
+
+    }
+
+    this.navCtrl.setRoot(HomePage, userData);
+
+  }
+
 }

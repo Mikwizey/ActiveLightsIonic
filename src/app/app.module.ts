@@ -21,15 +21,18 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { BarRatingModule } from "ngx-bar-rating";
 import { FirstPage } from '../pages/first/first';
 
-import {NgCalendarModule } from 'ionic2-calendar';
+import { NgCalendarModule } from 'ionic2-calendar';
 import { CalendarPage } from '../pages/calendar/calendar';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
-import {HttpModule} from '@angular/http';
-import {ChatPage} from "../pages/chat/chat";
+import { HttpModule } from '@angular/http';
+import { ChatPage } from "../pages/chat/chat";
+import { SocialmediaProvider } from '../providers/socialmedia/socialmedia';
+
+import { Facebook } from '@ionic-native/facebook';
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -70,13 +73,15 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler},
-    { provide: LOCALE_ID, useValue: 'sv'},    //lagt till för sv
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    { provide: LOCALE_ID, useValue: 'sv' },    //lagt till för sv
     FieldService,
     ActivityService,
     GooglePlus,
     Geolocation,
     TrafiklabProvider,
+    SocialmediaProvider,
+    Facebook
   ]
 })
 export class AppModule { }

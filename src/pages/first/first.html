@@ -40,12 +40,12 @@
     </form>
 
     <ion-list no-line>
-  <button ion-button color="danger" ion-left block (click)="loginWithGoogle()">
+  <button ion-button color="danger" ion-left block (click)="loginGoogle()">
      <ion-icon name="logo-google"></ion-icon>
      <div> Logga in med Google</div>
     </button>
     <p>Eller </p>
-    <button ion-button color="primary" ion-left block (click)="loginWithFacebook()">
+    <button ion-button color="primary" ion-left block (click)="loginFacebook()">
         <ion-icon name="logo-facebook"></ion-icon>
         <div> Logga in med Facebook</div>
        </button>
@@ -56,6 +56,6 @@
   </ion-list>
 </ion-card-content>
   </ion-card>
-  <button ion-button block outline  color="white" (click)="temporaryLogin()" color="light">Vidare utan inloggning</button>
+  <button ion-button block outline  color="white" (click)="loginDeveloper()" color="light">Vidare utan inloggning</button>
 
 </ion-content>

@@ -5,6 +5,7 @@ import { FieldService } from "../../providers/field-service";
 import { ListPage } from '../list/list';
 
 import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
+import { SocialmediaProvider } from "../../providers/socialmedia/socialmedia";
 
 declare var google: any;
 
@@ -16,11 +17,7 @@ declare var google: any;
 export class HomePage {
 
   public show = false;
-  protected nickname:string;
-
-  temporaryDisplayName;
-  temporaryEmail;
-  temporaryUserId;
+  protected nickname: string;
 
   public fieldLatitude;
   public fieldLongitude;
@@ -28,19 +25,29 @@ export class HomePage {
   public stationList = [];
   public stationListMap = [];
 
+  //Social media-variabler
+
+  public userId;
+  public name;
+  public loginMethod;
+
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider) {
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider) {
+    
     this.getLocation();
+
+    this.userId = this.navParams.get('userId');
+    this.name = this.navParams.get('name');
+    this.loginMethod = this.navParams.get('loginMethod');
+    this.smp.setLoginMethod(this.loginMethod);
+
   }
 
   ionViewDidLoad() {
+    
     this.showMap();
-
-    this.temporaryDisplayName = this.navParams.get('displayName');
-    this.temporaryEmail = this.navParams.get('email');
-    this.temporaryUserId = this.navParams.get('userId');
 
   }
 
@@ -143,7 +150,7 @@ export class HomePage {
 
   goToList() {
 
-    this.navCtrl.push(ListPage, {      nickname:this.navParams.get("nickname")});
+    this.navCtrl.push(ListPage, { nickname: this.navParams.get("nickname") });
   }
 
   /*
@@ -191,7 +198,7 @@ export class HomePage {
 
           let googlelat = parseFloat(this.station.LocationList.StopLocation[i].lat);
           let googlelon = parseFloat(this.station.LocationList.StopLocation[i].lon);
-          let iconImage = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+          let iconImage = 'http://maps.google.com/mapfiles/ms/micons/bus.png';
           let googleContent = this.station.LocationList.StopLocation[i].name + ' ' + this.station.LocationList.StopLocation[i].dist + 'm';
 
           let stationMapInfo = {

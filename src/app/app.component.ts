@@ -13,6 +13,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { UserPage } from '../pages/user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
 
+import { SocialmediaProvider } from "../providers/socialmedia/socialmedia";
+
 const config = {
   apiKey: "AIzaSyC_mEB81ALRZ9oqVDY_a70iLe0cbZZJftA",
   authDomain: "ionic-chat-697b4.firebaseapp.com",
@@ -34,7 +36,7 @@ export class MyApp {
   /*pages: Array<{ title: string, component: any }>;*/
 
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public googlePlus: GooglePlus) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public googlePlus: GooglePlus, public smp: SocialmediaProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -60,18 +62,10 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }*/
-  goUserPage(page) {
 
-    this.nav.push(UserPage);
-  }
-  goToList(page) {
+  logout() {
 
-    this.nav.push(ListPage);
-  }
-
-  googleLogout() {
-
-    this.googlePlus.logout();
+    this.smp.logout();
     this.nav.setRoot(FirstPage);
 
   }
