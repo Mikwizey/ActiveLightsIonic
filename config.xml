@@ -76,8 +76,6 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <engine name="browser" spec="5.0.3" />
-    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
@@ -95,4 +93,6 @@
         <variable name="APP_ID" value="213991759406198" />
         <variable name="APP_NAME" value="SportLights" />
     </plugin>
+    <engine name="browser" spec="5.0.3" />
+    <engine name="android" spec="6.3.0" />
 </widget>
