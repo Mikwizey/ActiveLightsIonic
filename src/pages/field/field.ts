@@ -63,10 +63,6 @@ export class FieldPage {
 
   ionViewWillEnter() {
     console.log("refresh?");
-    this.activityService.getAllActivities(this.id).subscribe(eventSource => {
-      this.eventSource = this.eventSource;
-
-    })
   }
 
   setRating() {

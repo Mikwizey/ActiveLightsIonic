@@ -42,7 +42,7 @@ export class CalendarPage {
       let activities = this.eventSource;
       activities.push(activityData);
       console.log(activityData);
-      this.activityService.addActivity(id, activityData);
+      this.activityService.addActivity(id, activityData).subscribe();
       this.eventSource = [];
       setTimeout(() => {
         this.eventSource = activities;
@@ -75,6 +75,15 @@ onTimeSelected(ev) {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarPage');
+    let id = this.navParams.get('id');
+    this.activityService.getAllActivities(id).subscribe(eventSource => {
+      eventSource.forEach(element => {
+        element.startTime = new Date(element.startTime);
+        element.endTime = new Date(element.endTime);
+      });
+      this.eventSource = eventSource;
+      console.log(this.eventSource);
+    })
   }
 
 }
