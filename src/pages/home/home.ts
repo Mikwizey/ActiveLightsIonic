@@ -8,6 +8,7 @@ import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
 import { SocialmediaProvider } from "../../providers/socialmedia/socialmedia";
 import { UserDataProvider } from "../../providers/user-data/user-data";
 import { User } from 'firebase';
+import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
 
 declare var google: any;
 
@@ -32,10 +33,15 @@ export class HomePage {
   public userId;
   public name;
 
+  //Sök-funktion
+
+  public results;
+  public resultsListMap = [];
+  public resultsAreShowing = false;
 
   @ViewChild('map') mapRef: ElementRef;
 
-  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider, public udp: UserDataProvider) {
+  constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider) {
 
     this.getLocation();
 
@@ -67,7 +73,7 @@ export class HomePage {
 
       // Map options
       let optionsMap = {
-        zoom: 15,
+        zoom: 12,
         center: { lat: resp.coords.latitude, lng: resp.coords.longitude }
       };
 
@@ -89,13 +95,13 @@ export class HomePage {
       });
 
       // Listen for click on map
-      google.maps.event.addListener(map, 'click', function (event) {
+      /*google.maps.event.addListener(map, 'click', function (event) {
         // Add marker
         addMarker({ coords: event.latLng });
-      });
+      });*/
 
       // Array of markers
-      let markers = [
+      /*let markers = [
         {
           coords: { lat: 59.334591, lng: 18.063240 },
           iconImage: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
@@ -112,7 +118,7 @@ export class HomePage {
           coords: { lat: 59.3684, lng: 18.052240 },
           iconImage: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
         }
-      ];
+      ];*/
 
       //SL-API: Visar närliggande HPL på kartan
       for (let i = 0; i < this.stationListMap.length; i++) {
@@ -120,11 +126,18 @@ export class HomePage {
 
       }
 
+      //SÖK-FUNKTIONEN
+      for (let i = 0; i < this.resultsListMap.length; i++) {
+        addMarker(this.resultsListMap[i]);
+      }
+
+      
+
       // Loop through markers
-      for (let i = 0; i < markers.length; i++) {
+      /*for (let i = 0; i < markers.length; i++) {
         // Add marker
         addMarker(markers[i]);
-      }
+      }*/
 
       // Add Marker Function
       function addMarker(props) {
@@ -240,4 +253,78 @@ export class HomePage {
 
   }
 
+  onInput(ev: any) {
+
+    let query = ev.target.value;
+
+    let results = this.flp.getFields(query);
+
+    console.log(results);
+
+    this.results = results;
+
+    if(results.length == 0){
+      
+      let inget = {
+        namn: "Inga sökträffar på " + "\"" +query + "\"",
+      }
+
+      results.push(inget);
+
+    }
+
+  }
+
+  //VISAR SÖKTA PLATSER PÅ KARTAN
+
+  showFieldsMap(fieldname) {
+
+    for (let i = 0; i < this.results.length; i++) {
+
+      if (fieldname == this.results[i].namn) {
+
+
+        let googlelat = parseFloat(this.results[i].lat);
+        let googlelon = parseFloat(this.results[i].lon);
+        let iconImage = 'http://maps.google.com/mapfiles/ms/micons/green-dot.png';
+        let googleContent = this.results[i].namn;
+
+        let fieldMapInfo = {
+          coords: { lat: googlelat, lng: googlelon },
+          iconImage: iconImage,
+          content: googleContent,
+        }
+
+        this.resultsListMap.push(fieldMapInfo);
+
+      }
+
+    }
+
+    this.resultsAreShowing = true;
+
+    this.showMap();
+
+  }
+
+  //DÖLJER SÖKTA PLATSER FRÅN KARTAN
+
+  hideFieldsMap() {
+
+    this.resultsAreShowing = false;
+
+    for (let i = this.resultsListMap.length; i > 0; i--) {
+      this.resultsListMap.pop();
+    }
+
+    this.showMap();
+  }
+
 }
+
+
+
+
+
+
+

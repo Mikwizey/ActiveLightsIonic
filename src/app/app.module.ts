@@ -34,6 +34,8 @@ import { SocialmediaProvider } from '../providers/socialmedia/socialmedia';
 
 import { Facebook } from '@ionic-native/facebook';
 import { UserDataProvider } from '../providers/user-data/user-data';
+import { FieldlocationsProvider } from '../providers/fieldlocations/fieldlocations';
+
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -70,6 +72,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     UserPage,
     AboutPage,
     ChatPage,
+    
   ],
   providers: [
     StatusBar,
@@ -83,7 +86,8 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     TrafiklabProvider,
     SocialmediaProvider,
     Facebook,
-    UserDataProvider
+    UserDataProvider,
+    FieldlocationsProvider,
   ]
 })
 export class AppModule { }
