@@ -28,14 +28,12 @@ import { GooglePlus } from '@ionic-native/google-plus';
 import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
-import { HttpModule } from '@angular/http';
 import { ChatPage } from "../pages/chat/chat";
 import { SocialmediaProvider } from '../providers/socialmedia/socialmedia';
 
 import { Facebook } from '@ionic-native/facebook';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { FieldlocationsProvider } from '../providers/fieldlocations/fieldlocations';
-
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -72,7 +70,8 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     UserPage,
     AboutPage,
     ChatPage,
-    
+
+
   ],
   providers: [
     StatusBar,

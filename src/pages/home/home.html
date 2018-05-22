@@ -9,33 +9,28 @@
 
 <ion-content padding>
 
-  <div>
-    <button ion-button color="dark" block (click)="goToList()">Visa alla fotbollsplaner</button>
+
+  <div text-center>
+    <button ion-button icon-left block (click)="goToList()">
+      <ion-icon name="send"></ion-icon>
+      Till fotbollsplaner</button>
   </div>
 
-  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-  </ion-searchbar> 
+  <ion-searchbar [(ngModel)]="myInput" placeholder="Sök fotbollsplaner" (ionInput)="onInput($event)" (ionClear)="clear()">
+  </ion-searchbar>
 
-  <ion-list >
-    <button ion-button small outline *ngFor="let results of results" (click)="showFieldsMap(results.namn)">
+  <ion-list *ngIf="resultsAreShowing">
+    <button ion-button small block icon-left color="light" *ngFor="let results of results" (click)="showSearchedField(results.namn)">
+      <ion-icon name="locate"></ion-icon>
       {{results.namn}}
     </button>
+    <button class="stopBtn" ion-button small icon-left block color="light" *ngIf="resultsAreShowing && fieldIsChosen" (click)="getNearbyStops()">
+      <ion-icon name="bus"></ion-icon> nära av {{fieldName}}</button>
   </ion-list>
+  
+    <div #map id="map"></div>
 
-  <button ion-button *ngIf="resultsAreShowing" small block (click)="hideFieldsMap()">Dölj</button>
-
-
-  <div #map id="map"></div>
-
-  <div *ngIf="show == false">
-    <button ion-button icon-left full color="dark" (click)="getNearbyStops()">
-      <ion-icon name="md-bus"></ion-icon> Visa Närliggnade hållplatser </button>
-  </div>
-
-  <div *ngIf="show == true">
-    <button ion-button icon-left full color="dark" (click)="removeNearbyStops()">
-      <ion-icon name="md-bus"></ion-icon> Dölj Närliggnade hållplatser </button>
-  </div>
-
+  <button text-center ion-button icon-left color="secondary" block (click)="centerMap()">
+    <ion-icon name="person"></ion-icon>Centera kartan</button>
 
 </ion-content>

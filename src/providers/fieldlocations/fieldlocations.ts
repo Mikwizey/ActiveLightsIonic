@@ -69,6 +69,7 @@ export class FieldlocationsProvider {
     },
     {
       Namn: "Enskede IP",
+      Gatuadress: "Enskedevägen 115",
       Postadress: "ENSKEDE",
       Latitude: "59,281560",
       Longitude: "18,073970",
@@ -345,7 +346,7 @@ export class FieldlocationsProvider {
   }
 
   getFields(query) {
-    
+
     let wantedFields = [];
 
     for (let i = 0; i < this.fields.length; i++) {
@@ -365,7 +366,7 @@ export class FieldlocationsProvider {
 
       let queryFixed = query.trim().toLowerCase();
 
-      
+
 
       if (queryFixed == fieldNameFixed || areaFixed == queryFixed || queryFixed == fieldNameBeginningFixed) {
 
@@ -374,12 +375,14 @@ export class FieldlocationsProvider {
 
         let field = {
 
-        namn: this.fields[i].Namn,
-        lon: longitude,
-        lat : latitude,
-        
+          namn: this.fields[i].Namn,
+          pa: this.fields[i].Postadress,
+          ga: this.fields[i].Gatuadress,
+          lon: longitude,
+          lat: latitude,
+
         }
-       
+
         wantedFields.push(field);
 
         console.log(field);
@@ -387,13 +390,38 @@ export class FieldlocationsProvider {
       }
 
     }
-    
-      return wantedFields;
+
+    return wantedFields;
 
   }
 
+  getAllFields() {
+
+    let fields = [];
+
+    for (let i = 0; i < this.fields.length; i++) {
+
+      let name = this.fields[i].Namn;
+      let lat = this.fields[i].Latitude.replace(",", ".");
+      let lon = this.fields[i].Longitude.replace(",", ".");
+      let ga = this.fields[i].Gatuadress;
+      let pa = this.fields[i].Postadress;
+
+      let field = {
+
+        namn: name,
+        lat: lat,
+        lon: lon,
+        gatuadress: ga,
+        postadress: pa
+
+      }
+      fields.push(field);
+    }
+
+    return fields;
+  }
 
 }
-
 
 

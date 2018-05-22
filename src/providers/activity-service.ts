@@ -5,8 +5,8 @@ import {DateTime} from 'ionic-angular';
 
 @Injectable()
 export class ActivityService {
-    public API = 'https://pvt.dsv.su.se/Group02';
-    //public API = 'http://localhost:8090'; //För att se server lokalt
+    //public API = 'https://pvt.dsv.su.se/Group02';
+    public API = 'http://localhost:8080'; //För att se server lokalt
     public ACTIVITY_API = this.API;
     constructor(public http: HttpClient) {
 
