@@ -276,6 +276,7 @@ export class HomePage {
 
                 let googlelat = parseFloat(this.results[i].lat);
                 let googlelon = parseFloat(this.results[i].lon);
+                this.fieldName = this.results[i].namn;
 
                 toastInfo = this.results[i].info;
 
