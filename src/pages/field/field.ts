@@ -91,6 +91,7 @@ export class FieldPage {
       this.setColor();
       this.userIsAway = false;
     })
+
   }
 
   lightsOn() {

@@ -773,15 +773,6 @@ export class FieldlocationsProvider {
 
   }
 
-  getLocation() {
-    this.geolocation.getCurrentPosition().then((resp) => {
-        this.myLatitude = resp.coords.latitude,
-            this.myLongitude = resp.coords.longitude
-            console.log(resp.coords.latitude, resp.coords.longitude)
-    }).catch((error) => {
-        console.log('Error getting location', error);
-    });
-}
 
   getFields(query) {
 

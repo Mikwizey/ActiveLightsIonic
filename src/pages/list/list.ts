@@ -36,8 +36,6 @@ export class ListPage {
 
     this.myLatitude = this.navParams.get('lat');
     this.myLongitude = this.navParams.get('lon');
-    console.log("LIST", this.myLatitude, this.myLongitude);
-
   }
 
 
