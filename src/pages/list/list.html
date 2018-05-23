@@ -6,25 +6,17 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <!-- <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)"> -->
-        <!-- <ion-icon [name]="item.icon" item-start></ion-icon> -->
-        <!-- {{item.title}} -->
-        <!-- <div class="item-note" item-end>
-             {{item.note}} -->
-        <!-- </div> -->
-        <!-- </button> -->
-
+  <ion-list> 
         
-        <button ion-item *ngFor="let field of fields" (click)="showField(field.id)">
-            <ion-icon name="md-bulb" *ngIf="field.lights == true" 
-                      item-start></ion-icon>
-            <ion-icon name="md-add-circle" *ngIf="field.lights == false"
-                      item-start></ion-icon>
-            {{field.name}}
-            
-        </button>
-        
+    <button ion-item *ngFor="let field of fields" (click)="showField(field.id)">
+      <ion-icon name="md-bulb" *ngIf="field.lights == true" 
+                item-start></ion-icon>
+      <ion-icon name="md-add-circle" *ngIf="field.lights == false"
+                item-start></ion-icon>
+      {{field.name}}
+      
+    </button>
+    
     </ion-list>
     
 </ion-content>
