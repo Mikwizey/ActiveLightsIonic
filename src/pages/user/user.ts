@@ -1,34 +1,25 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { GooglePlus } from '@ionic-native/google-plus';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+/**
+ * Generated class for the UserPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
+@IonicPage()
 @Component({
   selector: 'page-user',
-  templateUrl: 'user.html'
+  templateUrl: 'user.html',
 })
 export class UserPage {
 
-  displayName;
-  email;
-  userId;
-  givenName;
-  familyName;
-
-  constructor(public navCtrl: NavController, private googlePlus: GooglePlus) {
-    this.googlePlus.trySilentLogin({})
-      .then(res => {
-        console.log(res);
-        this.displayName = res.displayName;
-        this.givenName = res.givenName;
-        this.familyName = res.familyName;
-        this.email = res.email;
-        this.userId = res.userId;
-      }
-      )
-      .catch(err => console.error(err));
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad UserPage');
+  }
 
 }

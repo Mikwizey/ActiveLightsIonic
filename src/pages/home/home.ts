@@ -81,6 +81,7 @@ export class HomePage {
         //this.showMap();
         this.showAllFieldsOnMap();
         this.optionsMapSearch = false;
+        this.getLocation();
 
     }
 
@@ -202,7 +203,7 @@ export class HomePage {
 
         //this.navParams.get("nickname")
 
-        this.navCtrl.push(ListPage, { nickname: this.name });
+        this.navCtrl.push(ListPage, { nickname: this.name, lat: this.myLatitude, lon: this.myLongitude });
     }
 
     /*

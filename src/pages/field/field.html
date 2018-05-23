@@ -15,7 +15,7 @@
 
 
 <ion-content padding>
-
+    
     <h1 class="name">{{field?.name}}</h1>
 
     <h2 id="visitors" class="">{{field?.visitors}}</h2>
@@ -34,11 +34,24 @@
         <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
 
     <!-- Lampknappen -->
-    <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
-        <ion-icon name="md-add-circle"></ion-icon>
-        Tänd belysning</button>
 
-    <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
-        <ion-icon name="md-bulb"></ion-icon>
-        Planen är tänd</button>
+    <div *ngIf="userIsAway">
+        <button text-center ion-item icon-left detail-none no-lines color="danger">
+            Du är {{myDistance}}km bort.
+            <br> <ion-icon name="md-bulb"></ion-icon> Maxavstånd för att tända planen <br> är 300m.</button>
+    </div>
+
+    <div *ngIf="!userIsAway">
+
+        <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
+            <ion-icon name="md-bulb"></ion-icon>
+            Tänd belysning</button>
+    
+        <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
+            <ion-icon name="md-bulb"></ion-icon>
+            Planen är tänd</button>
+      
+    </div>
+
+
 </ion-content>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /*
   Generated class for the FieldlocationsProvider provider.
@@ -765,10 +766,22 @@ export class FieldlocationsProvider {
     }
   ]
 
+  myLatitude;
+  myLongitude;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public geolocation: Geolocation) {
 
   }
+
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+        this.myLatitude = resp.coords.latitude,
+            this.myLongitude = resp.coords.longitude
+            console.log(resp.coords.latitude, resp.coords.longitude)
+    }).catch((error) => {
+        console.log('Error getting location', error);
+    });
+}
 
   getFields(query) {
 

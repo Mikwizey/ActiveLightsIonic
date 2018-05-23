@@ -25,7 +25,6 @@ import { NgCalendarModule } from 'ionic2-calendar';
 import { CalendarPage } from '../pages/calendar/calendar';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { UserPage } from '../pages/user/user';
 import { TrafiklabProvider } from '../providers/trafiklab/trafiklab';
 import { AboutPage } from '../pages/about/about';
 import { ChatPage } from "../pages/chat/chat";
@@ -46,7 +45,6 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     FieldPage,
     FirstPage,
     CalendarPage,
-    UserPage,
     AboutPage,
     ChatPage,
 
@@ -67,7 +65,6 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     FieldPage,
     FirstPage,
     CalendarPage,
-    UserPage,
     AboutPage,
     ChatPage,
 

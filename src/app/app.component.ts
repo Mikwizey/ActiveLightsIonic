@@ -10,7 +10,6 @@ import { FieldPage } from '../pages/field/field';
 import { FirstPage } from "../pages/first/first";
 
 import { Geolocation } from '@ionic-native/geolocation';
-import { UserPage } from '../pages/user/user';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { SocialmediaProvider } from "../providers/socialmedia/socialmedia";

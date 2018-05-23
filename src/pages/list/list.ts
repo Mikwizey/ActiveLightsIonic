@@ -13,12 +13,15 @@ export class ListPage {
 
   protected nickname:string;
 
+  public myLatitude;
+  public myLongitude;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService) {
 
   }
 
   showField(id: number) {
-    this.navCtrl.push(FieldPage, { id: id, nickname:this.navParams.get("nickname") });
+    this.navCtrl.push(FieldPage, { id: id, nickname:this.navParams.get("nickname"), lat: this.myLatitude, lon: this.myLongitude });
   }
 
   ionViewWillEnter() {
@@ -28,6 +31,16 @@ export class ListPage {
 
     })
   }
+
+  ionViewDidLoad(){
+
+    this.myLatitude = this.navParams.get('lat');
+    this.myLongitude = this.navParams.get('lon');
+    console.log("LIST", this.myLatitude, this.myLongitude);
+
+  }
+
+
 
 }
 
