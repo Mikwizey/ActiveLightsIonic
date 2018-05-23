@@ -81,12 +81,13 @@ export class CalendarPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CalendarPage');
     let id = this.navParams.get('id');
+    
     this.activityService.getAllActivities(id).subscribe(eventSource => {
       eventSource.forEach(element => {
         element.startTime = new Date(element.startTime);
         element.endTime = new Date(element.endTime);
       });
-      this.eventSource = eventSource;
+      this.eventSource = this.eventSource.concat(eventSource);
       console.log(this.eventSource);
     })
 
@@ -96,26 +97,10 @@ export class CalendarPage {
         element.endTime = new Date(element.endTime);
         element.title = "BOKAD: " + element.owner + " (" + element.activity + ") ";
       });
-      this.eventSource = eventSource;
+      this.eventSource = this.eventSource.concat(eventSource);
       console.log(this.eventSource);
     })
 
-    // lägga till funktion för att hämta alla bokade aktiveteter getAllBookedActivities
-    // this.activityService.getAllBookedActivities(id).subscribe(eventSource => {
-    //   eventSource.forEach(element => {
-    //     element.startTime = new Date(element.date + element.startTime);
-    //     element.endTime = new Date(element.date + element.endTime);
-    //     element.title = element.activity;
-    //   });
-    //   this.eventSource = eventSource;
-
-    //   setTimeout(() => {
-    //     this.eventSource = this.eventSource;
-    //   });
-    
-    //   console.log(this.eventSource);
-    //   this.myCalendar.loadEvents();
-    // })
   }
 
 }
