@@ -276,7 +276,6 @@ export class HomePage {
 
                 let googlelat = parseFloat(this.results[i].lat);
                 let googlelon = parseFloat(this.results[i].lon);
-                let googleContent = this.results[i].namn; + "<br>" + this.results[i].gatuadress;
 
                 toastInfo = this.results[i].info;
 
@@ -291,7 +290,6 @@ export class HomePage {
 
                 this.fieldLatitude = googlelat;
                 this.fieldLongitude = googlelon;
-                this.fieldName = googleContent;
 
             }
 
@@ -363,7 +361,7 @@ export class HomePage {
             let googlelat = parseFloat(allFields[i].lat);
             let googlelon = parseFloat(allFields[i].lon);
             let iconImage = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png';
-            let googleContent = allFields[i].namn + "<br>" + allFields[i].gatuadress + " <br> " + allFields[i].info;
+            let googleContent = allFields[i].namn + "<br>" + allFields[i].gatuadress;
 
             let fieldMarker = {
 
@@ -404,6 +402,8 @@ export class HomePage {
         this.showMap();
 
     }
+
+    //Visar toast med planens info.
 
     presentInfoToast(text) {
         let toast = this.toastCtrl.create({
