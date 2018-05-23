@@ -1,8 +1,13 @@
 page-home {
     #map {
-        height:80%;
+        height:70%;
     }
     ion-content {
-        background-image: url('assets/img/background_1.jpg');
+        background-image: url('../assets/imgs/bg.png');
+    }
+
+    .stopBtn{
+        background-color: rgb(1, 156, 213);
+        color: white;
     }
 }

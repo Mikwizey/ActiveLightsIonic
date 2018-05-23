@@ -11,7 +11,7 @@ export class TrafiklabProvider {
   getNearbyStops(latitude, longitude) {
 
     return new Promise(resolve => {
-      this.http.get('http://api.sl.se/api2/nearbystops.json?key=e71c5e6bea544fad9cc58dc344d0a2ad&originCoordLat=' + latitude + '&originCoordLong=' + longitude).subscribe(data => {
+      this.http.get('http://api.sl.se/api2/nearbystops.json?key=e71c5e6bea544fad9cc58dc344d0a2ad&originCoordLat=' + latitude + '&originCoordLong=' + longitude + "&maxresults=7&radius=1500").subscribe(data => {
 
         resolve(data);
       }, err => {
