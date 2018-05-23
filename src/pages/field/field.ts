@@ -89,6 +89,7 @@ export class FieldPage {
     this.fieldService.getField(this.id).subscribe(field => {
       this.field = field;
       this.setColor();
+      this.userIsAway = false;
     })
   }
 
