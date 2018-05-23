@@ -10,6 +10,9 @@ import { UserDataProvider } from "../../providers/user-data/user-data";
 import { User } from 'firebase';
 import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
 
+import { ToastController } from 'ionic-angular';
+
+
 declare var google: any;
 
 
@@ -46,10 +49,11 @@ export class HomePage {
     public fieldLongitude;
     public fieldName;
     public fieldIsChosen = false;
+    public showInfoPrompt = false;
 
     @ViewChild('map') mapRef: ElementRef;
 
-    constructor(public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider) {
+    constructor(public toastCtrl: ToastController, public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider) {
 
 
         this.getLocation();
@@ -263,6 +267,8 @@ export class HomePage {
 
     showSearchedField(fieldname) {
 
+        let toastInfo;
+
         for (let i = 0; i < this.results.length; i++) {
 
             if (fieldname == this.results[i].namn) {
@@ -270,7 +276,9 @@ export class HomePage {
 
                 let googlelat = parseFloat(this.results[i].lat);
                 let googlelon = parseFloat(this.results[i].lon);
-                let googleContent = this.results[i].namn;
+                let googleContent = this.results[i].namn; + "<br>" + this.results[i].gatuadress;
+
+                toastInfo = this.results[i].info;
 
                 this.optionsMapSearch = {
 
@@ -298,6 +306,8 @@ export class HomePage {
         }
 
         this.showMap();
+
+        this.presentInfoToast(toastInfo);
 
     }
 
@@ -353,7 +363,7 @@ export class HomePage {
             let googlelat = parseFloat(allFields[i].lat);
             let googlelon = parseFloat(allFields[i].lon);
             let iconImage = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png';
-            let googleContent = allFields[i].namn + "<br>" + allFields[i].gatuadress
+            let googleContent = allFields[i].namn + "<br>" + allFields[i].gatuadress + " <br> " + allFields[i].info;
 
             let fieldMarker = {
 
@@ -373,7 +383,7 @@ export class HomePage {
 
     //Sökrutans kryss.
 
-    clear(){
+    clear() {
 
         this.resultsAreShowing = false;
         this.results = [];
@@ -393,6 +403,16 @@ export class HomePage {
 
         this.showMap();
 
+    }
+
+    presentInfoToast(text) {
+        let toast = this.toastCtrl.create({
+            message: text,
+            //duration: 6000,
+            showCloseButton: true,
+            closeButtonText: 'Stäng'
+        });
+        toast.present();
     }
 
 }

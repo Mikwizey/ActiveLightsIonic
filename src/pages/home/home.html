@@ -20,8 +20,8 @@
   </ion-searchbar>
 
   <ion-list *ngIf="resultsAreShowing">
-    <button ion-button small block icon-left color="light" *ngFor="let results of results" (click)="showSearchedField(results.namn)">
-      <ion-icon name="locate"></ion-icon>
+    <button class="button" ion-button small block icon-left color="light" *ngFor="let results of results" (click)="showSearchedField(results.namn)">
+      <ion-icon name="pin"></ion-icon>
       {{results.namn}}
     </button>
     <button class="stopBtn" ion-button small icon-left block color="light" *ngIf="resultsAreShowing && fieldIsChosen" (click)="getNearbyStops()">
