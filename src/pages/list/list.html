@@ -1,21 +1,34 @@
 <ion-header>
-    <ion-navbar>
+  <ion-navbar>
 
-      <ion-title>Fotbollsplaner i Stockholm</ion-title>
-    </ion-navbar>
+    <ion-title>Fotbollsplaner i Stockholm</ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)="goHomePage()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    
-            <ion-list>
-      
-      <button small ion-item *ngFor="let field of fields" (click)="showField(field.id)">
-        <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
-        <ion-icon name="md-add-circle" *ngIf="field.lights == false" item-start></ion-icon>
-        {{field.name}}
 
-      </button>
+  <ion-list>
 
-    </ion-list>
-  
+    <button small ion-item *ngFor="let field of fields" (click)="showField(field.id)">
+      <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
+      <ion-icon name="md-add-circle" *ngIf="field.lights == false" item-start></ion-icon>
+      {{field.name}}
+
+    </button>
+
+  </ion-list>
+
 </ion-content>

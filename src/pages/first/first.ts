@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AboutPage } from '../about/about';
@@ -12,28 +12,20 @@ import { Facebook } from '@ionic-native/facebook';
 })
 export class FirstPage {
 
-  // data = { nickname: "" };
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, private fb: Facebook) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, private fb: Facebook, public modalCtrl: ModalController) {
   }
 
-  ionViewDidLoad() { }
+  ionViewDidLoad() { 
+
+    console.log("FirstPage_DidLoad")
+
+  }
 
   goAboutPage() {
 
     this.navCtrl.push(AboutPage);
 
   }
-
-  /*
-   * CJ's kod för chatten.
-   */
-
-  /* enterNickname() {
-    this.navCtrl.push(HomePage, {
-      nickname: this.data.nickname
-    });
-  }*/
 
   /**
    * 
@@ -55,13 +47,14 @@ export class FirstPage {
 
             let userData = {
 
-              name: res.name,
+              userName: res.name,
               userId: res.id,
               loginMethod: "Facebook"
 
             }
 
-            this.navCtrl.setRoot(HomePage, userData);
+            let nextPage = this.modalCtrl.create(HomePage, userData);
+            nextPage.present();
 
           })
           .catch(e => {
@@ -85,13 +78,14 @@ export class FirstPage {
 
         let userData = {
 
-          name: res.displayName,
+          userName: res.displayName,
           userId: res.userId,
           loginMethod: "Google"
 
         }
 
-        this.navCtrl.setRoot(HomePage, userData);
+        let nextPage = this.modalCtrl.create(HomePage, userData);
+        nextPage.present();
       })
       .catch(err => console.error(err));
   }
@@ -104,13 +98,14 @@ export class FirstPage {
 
     let userData = {
      
-      name: "Utvecklare", 
+      userName: "Utvecklare", 
       userId: "1234", 
       loginMethod: "Developer"
 
     }
 
-    this.navCtrl.setRoot(HomePage, userData);
+    let nextPage = this.modalCtrl.create(HomePage, userData);
+    nextPage.present();
 
   }
 

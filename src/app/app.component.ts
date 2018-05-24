@@ -3,16 +3,12 @@ import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as firebase from 'firebase';
-
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
 import { FirstPage } from "../pages/first/first";
-
 import { Geolocation } from '@ionic-native/geolocation';
 import { GooglePlus } from '@ionic-native/google-plus';
-
-import { SocialmediaProvider } from "../providers/socialmedia/socialmedia";
 
 const config = {
   apiKey: "AIzaSyC_mEB81ALRZ9oqVDY_a70iLe0cbZZJftA",
@@ -35,7 +31,7 @@ export class MyApp {
   /*pages: Array<{ title: string, component: any }>;*/
 
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public googlePlus: GooglePlus, public smp: SocialmediaProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public googlePlus: GooglePlus) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -61,12 +57,4 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }*/
-
-  logout() {
-
-    this.smp.logout();
-    this.nav.setRoot(FirstPage);
-
-  }
-
 }

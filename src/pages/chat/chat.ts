@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Content } from 'ionic-angular';
-import { FieldPage} from "../field/field";
+import { NavController, NavParams, Content, ViewController } from 'ionic-angular';
+import { FieldPage } from "../field/field";
 import * as firebase from 'Firebase';
-import {ListPage} from "../list/list";
+import { ListPage } from "../list/list";
 
 @Component({
   selector: 'page-chat',
@@ -11,63 +11,118 @@ import {ListPage} from "../list/list";
 export class ChatPage {
   @ViewChild(Content) content: Content;
 
-  data = { type:'', nickname:'', message:'' };
+  public userId;
+  public userName;
+  public myLatitude;
+  public myLongitude;
+  public loginMethod;
+
+  data = { type: '', chatName: '', message: '' };
   chats = [];
-  roomkey:string;
-  nickname:string;
-  offStatus:boolean = false;
+  roomkey: string;
+  chatName: string;
+  offStatus: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     this.roomkey = this.navParams.get("key") as string;
-    this.nickname = this.navParams.get("nickname") as string;
+    this.chatName = this.navParams.get("chatName") as string;
     this.data.type = 'message';
-    this.data.nickname = this.nickname;
+    this.data.chatName = this.chatName;
 
-    let joinData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
+    let joinData = firebase.database().ref('chatrooms/' + this.roomkey + '/chats').push();
     joinData.set({
-      type:'join',
-      user:this.nickname,
-      message:this.nickname+' has joined this room.',
-      sendDate:Date()
+      type: 'join',
+      user: this.chatName,
+      message: this.chatName + ' has joined this room.',
+      sendDate: Date()
     });
     this.data.message = '';
 
-    firebase.database().ref('chatrooms/'+this.roomkey+'/chats').on('value', resp => {
+    firebase.database().ref('chatrooms/' + this.roomkey + '/chats').on('value', resp => {
       this.chats = [];
       this.chats = snapshotKey(resp);
       setTimeout(() => {
-        if(this.offStatus === false) {
+        if (this.offStatus === false) {
           this.content.scrollToBottom(300);
         }
       }, 1000);
     });
   }
+
+  ionViewDidLoad() {
+
+    this.userId = this.navParams.get('userId');
+    this.userName = this.navParams.get('userName');
+    this.myLatitude = this.navParams.get('myLatitude');
+    this.myLongitude = this.navParams.get('myLongitude');
+    this.loginMethod = this.navParams.get('loginMethod');
+
+    let id = this.navParams.get('id');
+
+    let chatPageData = {
+
+      userName: this.userName,
+      userId: this.userId,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      key: this.roomkey,
+      chatName: this.chatName,
+      id: id,
+      loginMethod: this.loginMethod,
+    }
+
+    console.log("ChatPage_didLoad", chatPageData)
+
+  }
+
+  dismiss() {
+
+    let id = this.navParams.get('id');
+
+    let data = {
+
+      chatName: this.chatName,
+
+      id: id,
+      userId: this.userId,
+      userName: this.userName,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod,
+
+    };
+
+    this.viewCtrl.dismiss(data);
+
+
+  }
+
   sendMessage() {
-    let newData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
+    let newData = firebase.database().ref('chatrooms/' + this.roomkey + '/chats').push();
     newData.set({
-      type:this.data.type,
-      user:this.data.nickname,
-      message:this.data.message,
-      sendDate:Date()
+      type: this.data.type,
+      user: this.data.chatName,
+      message: this.data.message,
+      sendDate: Date()
     });
     this.data.message = '';
   }
   exitChat() {
-    let exitData = firebase.database().ref('chatrooms/'+this.roomkey+'/chats').push();
+    let exitData = firebase.database().ref('chatrooms/' + this.roomkey + '/chats').push();
     exitData.set({
-      type:'exit',
-      user:this.nickname,
-      message:this.nickname+' has exited this room.',
-      sendDate:Date()
+      type: 'exit',
+      user: this.chatName,
+      message: this.chatName + ' has exited this room.',
+      sendDate: Date()
     });
 
     this.offStatus = true;
 
-    this.navCtrl.setRoot(ListPage, {
-      nickname:this.nickname
-    });
+    this.dismiss();
   }
 }
+
+
 
 
 export const snapshotKey = snapshot => {

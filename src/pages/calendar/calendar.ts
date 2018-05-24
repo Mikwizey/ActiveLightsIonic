@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ViewController } from 'ionic-angular';
 import { ListPage } from '../list/list';
 import * as moment from 'moment';
 import { ActivityService } from "../../providers/activity-service";
+import { HomePage } from "../home/home";
 //import { CalendarComponent } from "ionic2-calendar/calendar";
 //import { ViewChild } from '@angular/core';
 
@@ -23,13 +24,89 @@ export class CalendarPage {
     currentDate: this.selectedDay  //new Date();
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService) {
+  public userId;
+  public userName;
+  public myLatitude;
+  public myLongitude;
+  public loginMethod;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController) {
   }
 
   // console.log(navParams.get('val'));
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad CalendarPage');
+
+    let id = this.navParams.get('id');
+
+    this.userId = this.navParams.get('userId');
+    this.userName = this.navParams.get('userName');
+    this.myLatitude = this.navParams.get('myLatitude');
+    this.myLongitude = this.navParams.get('myLongitude');
+    this.loginMethod = this.navParams.get('loginMethod');
+
+    this.activityService.getAllActivities(id).subscribe(eventSource => {
+      eventSource.forEach(element => {
+        element.startTime = new Date(element.startTime);
+        element.endTime = new Date(element.endTime);
+      });
+      this.eventSource = this.eventSource.concat(eventSource);
+      console.log(this.eventSource);
+    })
+
+    this.activityService.getAllBookedActivities(id).subscribe(eventSource => {
+      eventSource.forEach(element => {
+        element.startTime = new Date(element.startTime);
+        element.endTime = new Date(element.endTime);
+        element.title = "BOKAD: " + element.owner + " (" + element.activity + ") ";
+      });
+      this.eventSource = this.eventSource.concat(eventSource);
+      console.log(this.eventSource);
+    })
+
+    let calendarPageData = {
+
+      id: id,
+      userName: this.userName,
+      userId: this.userId,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod
+
+    }
+
+    console.log("CalendarPage_DidLoad", calendarPageData);
+
+  }
+
+  dismiss() {
+
+    let id = this.navParams.get('id');
+
+    let data = {
+
+      id: id,
+
+      userId: this.userId,
+      userName: this.userName,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod,
+
+    };
+
+    this.viewCtrl.dismiss(data);
+
+  }
+
+  goHomePage() {
+    let nextPage = this.modalCtrl.create(HomePage, { userId: this.userId, userName: this.userName });
+    nextPage.present();
+  }
+
   addActivity() {
-    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
+    let modal = this.modalCtrl.create('EventModalPage', { selectedDay: this.selectedDay });
     modal.present();
     modal.onDidDismiss(data => {
       if (data) {
@@ -78,29 +155,6 @@ export class CalendarPage {
   }
 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CalendarPage');
-    let id = this.navParams.get('id');
-    
-    this.activityService.getAllActivities(id).subscribe(eventSource => {
-      eventSource.forEach(element => {
-        element.startTime = new Date(element.startTime);
-        element.endTime = new Date(element.endTime);
-      });
-      this.eventSource = this.eventSource.concat(eventSource);
-      console.log(this.eventSource);
-    })
 
-    this.activityService.getAllBookedActivities(id).subscribe(eventSource => {
-      eventSource.forEach(element => {
-        element.startTime = new Date(element.startTime);
-        element.endTime = new Date(element.endTime);
-        element.title = "BOKAD: " + element.owner + " (" + element.activity + ") ";
-      });
-      this.eventSource = this.eventSource.concat(eventSource);
-      console.log(this.eventSource);
-    })
-
-  }
 
 }

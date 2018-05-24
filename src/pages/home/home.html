@@ -1,6 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Menu | {{name}} </ion-title>
+    <ion-title icon-left>
+      <ion-icon name="home"></ion-icon> Hem | {{userName}} </ion-title>
+
+      <ion-buttons left>
+          <button ion-button icon-only >
+            <ion-icon name="person"></ion-icon>
+          </button>
+        </ion-buttons>
+    
+        <ion-buttons right>
+          <button ion-button icon-only (click)="logout()">
+            <ion-icon name="exit"></ion-icon>
+          </button>
+        </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
@@ -11,26 +25,26 @@
 
 
   <div text-center>
-    <button ion-button icon-left block (click)="goToList()">
+    <button ion-button icon-left full color="dark"(click)="goToList()">
       <ion-icon name="send"></ion-icon>
       Till fotbollsplaner</button>
   </div>
 
-  <ion-searchbar [(ngModel)]="myInput" placeholder="Sök fotbollsplaner" (ionInput)="onInput($event)" (ionClear)="clear()">
+  <ion-searchbar [(ngModel)]="myInput" placeholder="Sök efter fotbollsplaner" (ionInput)="onInput($event)" (ionClear)="clear()">
   </ion-searchbar>
 
   <ion-list *ngIf="resultsAreShowing">
-    <button class="button" ion-button small block icon-left color="light" *ngFor="let results of results" (click)="showSearchedField(results.namn)">
+    <button class="button" ion-button small full icon-left color="light" *ngFor="let results of results" (click)="showSearchedField(results.namn)">
       <ion-icon name="pin"></ion-icon>
       {{results.namn}}
     </button>
-    <button class="stopBtn" ion-button small icon-left block color="light" *ngIf="resultsAreShowing && fieldIsChosen" (click)="getNearbyStops()">
+    <button class="stopBtn" ion-button small icon-left full color="light" *ngIf="resultsAreShowing && fieldIsChosen" (click)="getNearbyStops()">
       <ion-icon name="bus"></ion-icon> nära av {{fieldName}}</button>
   </ion-list>
-  
-    <div #map id="map"></div>
 
-  <button text-center ion-button icon-left color="secondary" block (click)="centerMap()">
+  <div #map id="map"></div>
+
+  <button text-center ion-button icon-left color="secondary" full (click)="centerMap()">
     <ion-icon name="person"></ion-icon>Centera kartan</button>
 
 </ion-content>

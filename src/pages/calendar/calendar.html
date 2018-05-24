@@ -1,26 +1,32 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-title>
       {{ viewTitle }}
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addActivity()">
-        <ion-icon ios="ios-add" md="md-add"></ion-icon>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)="goHomePage()">
+        <ion-icon name="home"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <calendar
-      [eventSource]="eventSource"
-      [calendarMode]="calendar.mode"
-      [currentDate]="calendar.currentDate"
-      (onEventSelected)="onEventSelected($event)"
-      (onTitleChanged)="onViewTitleChanged($event)"
-      (onTimeSelected)="onTimeSelected($event)"
-      step="30"
-      class="calendar">
-    </calendar>
-    </ion-content>
+  <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30" class="calendar">
+  </calendar>
+</ion-content>
 
+<ion-footer text-center padding>
+    <button ion-button icon-left full color="dark" (click)="addActivity()">
+        <ion-icon name="add"></ion-icon>
+        <ion-icon name="calendar"></ion-icon>Skapa ny
+      </button>
+</ion-footer>

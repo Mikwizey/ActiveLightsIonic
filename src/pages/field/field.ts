@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController, ViewController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
 import { UserPage } from '../user/user';
 import { CalendarPage } from '../calendar/calendar';
@@ -7,6 +7,7 @@ import { ActivityService } from "../../providers/activity-service";
 import * as firebase from 'Firebase';
 import { ChatPage } from "../chat/chat";
 import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
+import { HomePage } from "../home/home";
 
 @IonicPage()
 @Component({
@@ -16,8 +17,12 @@ import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldloca
 
 export class FieldPage {
 
+  public userName;
+  public userId;
   public myLatitude;
   public myLongitude;
+  public loginMethod;
+
   public myDistance;
   public userIsAway = false;
 
@@ -43,10 +48,7 @@ export class FieldPage {
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public fieldService: FieldService, public modalCtrl: ModalController,
-    public alertCtrl: AlertController, public activityService: ActivityService,
-    public flp: FieldlocationsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider) {
     this.ref.on('value', resp => {
       const snapshotKey = snapshot => {
         var key = Object.keys(snapshot.val())[this.id];
@@ -57,34 +59,14 @@ export class FieldPage {
 
   }
 
-  showActivity(id: number) {
-    this.navCtrl.push(FieldPage, { id: id });
-  }
-
-  ionViewWillEnter() {
-    console.log("refresh?");
-  }
-
-  setRating() {
-    // Framtida beräkning av medel osv
-  }
-
-  goToCalendar() {
-    console.log("calendar page")
-    this.navCtrl.push(CalendarPage, { 'id': this.id });
-  }
-
-  toTheChatRoom(key) {
-    this.navCtrl.setRoot(ChatPage, {
-      key: key,
-      nickname: this.navParams.get("nickname")
-    });
-  }
-
   ionViewDidLoad() {
+
     this.id = this.navParams.get('id');
-    this.myLatitude = this.navParams.get('lat');
-    this.myLongitude = this.navParams.get('lon');
+    this.myLatitude = this.navParams.get('myLatitude');
+    this.myLongitude = this.navParams.get('myLongitude');
+    this.userName = this.navParams.get('userName');
+    this.userId = this.navParams.get('userId');
+    this.loginMethod = this.navParams.get('loginMethod');
 
     this.fieldService.getField(this.id).subscribe(field => {
       this.field = field;
@@ -92,20 +74,142 @@ export class FieldPage {
       this.userIsAway = false;
     })
 
+    let fieldPageData = {
+
+      key: this.key,
+      id: this.id,
+      field: this.field,
+      userName: this.userName,
+      userId: this.userId,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod,
+
+    }
+
+    console.log("FieldPage_DidLoad", fieldPageData);
+
+  }
+
+  ionViewWillEnter() {
+    console.log("refresh?");
+  }
+
+  dismiss() {
+
+    let data = {
+      userName: this.userName,
+      userId: this.userId,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod,
+    };
+
+    this.viewCtrl.dismiss(data);
+
+  }
+
+  goToCalendar() {
+
+    //this.navCtrl.push(CalendarPage, { 'id': this.id });
+
+    let calendarPageData = {
+
+      id: this.id,
+
+      userName: this.userName,
+      userId: this.userId,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod,
+
+    }
+
+    let nextPage = this.modalCtrl.create(CalendarPage, calendarPageData);
+    nextPage.onDidDismiss(data => {
+
+      data.id = this.id;
+
+      data.userName = this.userName;
+      data.userId = this.userId;
+      data.myLatitude = this.myLatitude;
+      data.myLongitude = this.myLongitude;
+      data.loginMethod = this.loginMethod;
+
+      console.log("FieldPage_dismiss_from_CalendarPage", data);
+    });
+    nextPage.present();
+
+  }
+
+  toTheChatRoom(key) {
+
+    console.log("BORDE INTE DEN (key) VARA DEFINERAD?", this.key);
+
+    /*this.navCtrl.setRoot(ChatPage, {
+      key: key,
+      nickname: this.navParams.get("nickname")
+    });*/
+
+    let chatName = this.userName.toString();
+
+    let chatPageData = {
+
+      chatName: chatName,
+      key: key,
+
+      id: this.id,
+      userName: this.userName,
+      userId: this.userId,
+      myLatitude: this.myLatitude,
+      myLongitude: this.myLongitude,
+      loginMethod: this.loginMethod,
+
+
+    }
+
+    let nextPage = this.modalCtrl.create(ChatPage, chatPageData);
+    nextPage.onDidDismiss(data => {
+
+      data.id = this.id;
+      data.userName = this.userName;
+      data.userId = this.userId;
+      data.myLatitude = this.myLatitude;
+      data.myLongitude = this.myLongitude;
+      data.loginMethod = this.loginMethod;
+
+
+      console.log("FieldPage_dismiss_from_ChatPage", data);
+    });
+    nextPage.present();
+
+  }
+
+  goHomePage() {
+    let nextPage = this.modalCtrl.create(HomePage, { userId: this.userId, userName: this.userName });
+    nextPage.present();
+  }
+
+  showActivity(id: number) {
+    this.navCtrl.push(FieldPage, { id: id });
+  }
+
+  setRating() {
+    // Framtida beräkning av medel osv
   }
 
   lightsOn() {
 
     this.checkDistance();
 
-    if(!this.userIsAway){
+    if (!this.userIsAway) {
 
-    console.log("kommer till ts 1");
-    this.fieldService.setLights(this.id).subscribe(field => {
-      console.log("kommer till ts 2");
-      this.field.lights = true;
-    })
-  }
+      console.log("kommer till ts 1");
+      this.fieldService.setLights(this.id).subscribe(field => {
+        console.log("kommer till ts 2");
+        this.field.lights = true;
+      })
+    }
   }
 
   setColor() {
@@ -116,11 +220,6 @@ export class FieldPage {
       case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
       case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
     }
-  }
-  goUserPage() {
-
-    this.navCtrl.push(UserPage);
-
   }
 
   distance(lat1, lon1, lat2, lon2, unit) {
@@ -150,7 +249,7 @@ export class FieldPage {
     console.log(field[0].lat);
     console.log(field[0].lon);
 
-    let lat =  field[0].lat;
+    let lat = field[0].lat;
     let lon = field[0].lon;
 
     let distance = this.distance(this.myLatitude, this.myLongitude, lat, lon, "K");
@@ -158,15 +257,15 @@ export class FieldPage {
 
     console.log(distance);
 
-    let distanceString = distance.toString().substring(0,5);
+    let distanceString = distance.toString().substring(0, 5);
 
     console.log(distanceString);
 
-    if(distance > 0.3){
+    if (distance > 0.3) {
       this.myDistance = distanceString;
       this.userIsAway = true;
     }
-    
+
   }
 
 }

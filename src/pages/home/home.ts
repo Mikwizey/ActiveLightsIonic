@@ -1,17 +1,16 @@
 import { Geolocation } from '@ionic-native/geolocation';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Modal } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
 import { ListPage } from '../list/list';
-
 import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
-import { SocialmediaProvider } from "../../providers/socialmedia/socialmedia";
 import { UserDataProvider } from "../../providers/user-data/user-data";
 import { User } from 'firebase';
 import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
-
 import { ToastController } from 'ionic-angular';
-
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
+import { FirstPage } from '../first/first';
 
 declare var google: any;
 
@@ -22,7 +21,8 @@ declare var google: any;
 })
 export class HomePage {
 
-    public show = false;
+    
+    public show;
     //protected nickname: string;
 
     public myLatitude;
@@ -33,7 +33,9 @@ export class HomePage {
     //Användarvariabler
 
     public userId;
-    public name;
+    public userName;
+
+    public loginMethod;
 
     //Sök-funktionen
 
@@ -53,35 +55,70 @@ export class HomePage {
 
     @ViewChild('map') mapRef: ElementRef;
 
-    constructor(public toastCtrl: ToastController, public navCtrl: NavController, public fieldService: FieldService, private geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public smp: SocialmediaProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider) {
-
-
-        this.getLocation();
-
-        //Hämtar information om användaren från loginsidan.
-
-        let userId = this.navParams.get('userId');
-        let name = this.navParams.get('name');
-        let loginMethod = this.navParams.get('loginMethod');
-
-        //Skickar vidare informationen till en provider som mottar och skickar tillbaka till denna sida, värdelöst just nu.
-
-        this.smp.setLoginMethod(loginMethod);
-
-        this.udp.setUserId(userId);
-        this.udp.setUserName(name);
-
-        this.name = udp.getUserName();
-        this.userId = udp.getUserId();
+    constructor(
+        public toastCtrl: ToastController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
 
     }
 
     ionViewDidLoad() {
 
+        this.userId = this.navParams.get('userId');
+        this.userName = this.navParams.get('userName');
+        this.loginMethod = this.navParams.get('loginMethod');
+
+        this.getLocation();
+
         //this.showMap();
         this.showAllFieldsOnMap();
         this.optionsMapSearch = false;
         this.getLocation();
+
+        let homePageData = {
+
+            userName: this.userName,
+            userId: this.userId,
+            myLatitude: this.myLatitude,
+            myLongitude: this.myLongitude,
+            loginMethod: this.loginMethod,
+
+        }
+
+        console.log("HomePage_DidLoad", homePageData);
+
+    }
+
+    goToList() {
+
+        //this.navParams.get("nickname")
+
+        //this.navCtrl.push(ListPage, { nickname: this.userName, lat: this.myLatitude, lon: this.myLongitude });
+
+        let chatName = this.userName.toString();
+
+        let listPageData = {
+
+            nickName: chatName,
+            userName: this.userName,
+            userId: this.userId,
+            myLatitude: this.myLatitude,
+            myLongitude: this.myLongitude,
+            loginMethod:this.loginMethod,
+
+        }
+
+        let nextPage = this.modalCtrl.create(ListPage, listPageData);
+        nextPage.onDidDismiss(data => {
+
+            data.userName = this.userName;
+            data.userId = this.userName;
+            data.myLatitude = this.myLatitude;
+            data.myLongitude = this.myLongitude;
+            data.loginMethod = this.loginMethod;
+
+            console.log("HomePage_dismiss_from_ListPage", data);
+        });
+        nextPage.present();
+
 
     }
 
@@ -198,13 +235,6 @@ export class HomePage {
             console.log("Error can't find the location", error);
         });
     }// ShowMap
-
-    goToList() {
-
-        //this.navParams.get("nickname")
-
-        this.navCtrl.push(ListPage, { nickname: this.name, lat: this.myLatitude, lon: this.myLongitude });
-    }
 
     /*
     *
@@ -416,6 +446,50 @@ export class HomePage {
         });
         toast.present();
     }
+
+    /**
+     * 
+     * In och utloggning med respektive APIer
+     * 
+     */
+
+    logoutFacebook() {
+        this.fb.logout()
+            .then(res => {
+                console.log(res);
+                console.log('SM, logoutFacebook')
+            })
+            .catch(e => console.log('Error logout from Facebook', e));
+    }
+
+    logoutGoogle() {
+        this.googlePlus.logout().then(res => {
+            console.log(res);
+            console.log('SM, logoutGoogle')
+        })
+            .catch(err => console.error(err));
+    }
+
+    logout() {
+
+        if (this.loginMethod == "Facebook") {
+            this.logoutFacebook();
+        } else
+
+            if (this.loginMethod == "Google") {
+                this.logoutGoogle();
+            } else
+                if (this.loginMethod == "Developer") {
+                    console.log("Logout developer.");
+                }
+            
+    //let nextPage = this.modalCtrl.create(FirstPage, {userId: this.userId, userName: this.userName, loginMethod: this.loginMethod});
+    //nextPage.present();
+
+    this.navCtrl.setRoot(FirstPage);
+
+    }
+
 
 }
 
