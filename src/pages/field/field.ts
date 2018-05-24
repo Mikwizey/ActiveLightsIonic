@@ -115,7 +115,7 @@ export class FieldPage {
 
     let calendarPageData = {
 
-      id: this.id,
+      'id': this.id,
 
       userName: this.userName,
       userId: this.userId,

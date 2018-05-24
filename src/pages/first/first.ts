@@ -19,6 +19,9 @@ export class FirstPage {
 
     console.log("FirstPage_DidLoad")
 
+    this.fb.getLoginStatus();
+    this.googlePlus.trySilentLogin();
+
   }
 
   goAboutPage() {

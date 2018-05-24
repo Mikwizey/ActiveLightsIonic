@@ -24,6 +24,7 @@ import { ChatPage } from "../pages/chat/chat";
 import { Facebook } from '@ionic-native/facebook';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { FieldlocationsProvider } from '../providers/fieldlocations/fieldlocations';
+import { PopoverlistComponent } from '../components/popoverlist/popoverlist';
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -38,6 +39,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     CalendarPage,
     AboutPage,
     ChatPage,
+    PopoverlistComponent
 
   ],
   imports: [
@@ -58,6 +60,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     CalendarPage,
     AboutPage,
     ChatPage,
+    PopoverlistComponent
 
 
   ],

@@ -7,10 +7,10 @@
             </button>
         </ion-buttons>
         <ion-buttons right>
-                <button ion-button icon-only (click)="goHomePage()">
-                    <ion-icon name="home"></ion-icon>
-                </button>
-            </ion-buttons>
+            <button ion-button icon-only (click)="goHomePage()">
+                <ion-icon name="home"></ion-icon>
+            </button>
+        </ion-buttons>
 
         <ion-title>Fotbollsplan</ion-title>
         <ion-title>{{ viewTitle }}</ion-title>
@@ -21,59 +21,64 @@
 
 <ion-content padding>
 
-    <h1 class="name">{{field?.name}}</h1>
+    <h1 text-center class="name">{{field?.name}}</h1>
 
     <h2 id="visitors" class="">{{field?.visitors}}</h2>
 
     <ion-grid>
+
         <ion-row>
             <ion-col text-center>
                 <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
                 <!-- DEBUG -->{{currentrating}}
             </ion-col>
             <ion-col text-center>
-
-                <button ion-fab icon-end small round color="assertive" (click)="toTheChatRoom(key)">
-
-                    <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
-                </button>
-            </ion-col>
-
-            <ion-col text-center>
-                <button ion-fab heart outline small color="danger">
-
+                <button ion-fab heart outline small icon-only color="danger">
                     <ion-icon name="heart"></ion-icon>
                 </button>
             </ion-col>
-
         </ion-row>
+    </ion-grid>
 
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col col-6>
+                <!-- Kalenderknappen -->
 
-        <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
-        <button ion-button icon-left full color="dark" (click)="goToCalendar()">
-            <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
+                <button ion-button icon-left full color="dark" (click)="goToCalendar()">
+                    <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
+            </ion-col>
+            <ion-col col-6>
+                <!-- Chattknappen -->
 
-        <!-- Lampknappen -->
+                <button ion-button icon-left full color="dark" (click)="toTheChatRoom(key)">
+                    <ion-icon name="chatbubbles"></ion-icon>Chatt</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+                <!-- Lampknappen -->
 
-        <div *ngIf="userIsAway">
-            <button text-center ion-item icon-left detail-none no-lines color="danger">
-                Du är {{myDistance}}km bort.
-                <br>
-                <ion-icon name="md-bulb"></ion-icon> Maxavstånd för att tända planen
-                <br> är 300m.</button>
-        </div>
+                <div *ngIf="userIsAway">
+                    <button text-center ion-item icon-left detail-none no-lines color="danger">
+                        Du är {{myDistance}}km bort.
+                        <br>
+                        <ion-icon name="md-bulb"></ion-icon> Maxavstånd för att tända planen
+                        <br> är 300m.</button>
+                </div>
 
-        <div *ngIf="!userIsAway">
+                <div *ngIf="!userIsAway">
 
-            <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
-                <ion-icon name="md-bulb"></ion-icon>
-                Tänd belysning</button>
+                    <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
+                        <ion-icon name="md-bulb"></ion-icon>
+                        Tänd belysning</button>
 
-            <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
-                <ion-icon name="md-bulb"></ion-icon>
-                Planen är tänd</button>
+                    <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
+                        <ion-icon name="md-bulb"></ion-icon>
+                        Planen är tänd</button>
 
-        </div>
-
+                </div>
+            </ion-col>
+        </ion-row>
     </ion-grid>
 </ion-content>

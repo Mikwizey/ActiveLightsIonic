@@ -1,19 +1,18 @@
 <ion-header>
   <ion-toolbar>
     <ion-title icon-left>
-      <ion-icon name="home"></ion-icon> Hem | {{userName}} </ion-title>
+      Hem | {{userName}} </ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only>
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
 
-      <ion-buttons left>
-          <button ion-button icon-only >
-            <ion-icon name="person"></ion-icon>
-          </button>
-        </ion-buttons>
-    
-        <ion-buttons right>
-          <button ion-button icon-only (click)="logout()">
-            <ion-icon name="exit"></ion-icon>
-          </button>
-        </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="logout()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
@@ -22,29 +21,50 @@
 <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
 
 <ion-content padding>
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button icon-left full color="dark" (click)="goToList()">
+          <ion-icon name="send"></ion-icon>
+          Till fotbollsplaner</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-searchbar [(ngModel)]="myInput" placeholder="Sök efter fotbollsplaner" (ionInput)="onInput($event)" (ionClear)="clear()">
+        </ion-searchbar>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1>
+        <button text-center ion-button icon-only full color="dark" (click)="presentPopover($event)">
+          <ion-icon name="help"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col *ngIf="!showAll" col-5>
+        <button ion-button color="dark" (click)=" showAllFieldsOnMap()" full>Visa alla</button>
+      </ion-col>
+      <ion-col *ngIf="showAll" col-5>
+        <button ion-button color="dark" (click)=" hideAllFieldsOnMap()" full>Dölj alla</button>
+      </ion-col>
+      <ion-col col-6>
+        <button text-center ion-button icon-left color="secondary" full (click)="centerMap()">
+          <ion-icon name="person"></ion-icon>Centera kartan</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
-  <div text-center>
-    <button ion-button icon-left full color="dark"(click)="goToList()">
-      <ion-icon name="send"></ion-icon>
-      Till fotbollsplaner</button>
-  </div>
-
-  <ion-searchbar [(ngModel)]="myInput" placeholder="Sök efter fotbollsplaner" (ionInput)="onInput($event)" (ionClear)="clear()">
-  </ion-searchbar>
-
-  <ion-list *ngIf="resultsAreShowing">
+  <ion-list text-center *ngIf="resultsAreShowing">
     <button class="button" ion-button small full icon-left color="light" *ngFor="let results of results" (click)="showSearchedField(results.namn)">
       <ion-icon name="pin"></ion-icon>
       {{results.namn}}
     </button>
     <button class="stopBtn" ion-button small icon-left full color="light" *ngIf="resultsAreShowing && fieldIsChosen" (click)="getNearbyStops()">
       <ion-icon name="bus"></ion-icon> nära av {{fieldName}}</button>
+    <button ion-button small icon-left small color="danger" *ngIf="resultsAreShowing && fieldIsChosen" (click)="clear()">
+      <ion-icon name="trash"></ion-icon> Rensa sökresultat</button>
   </ion-list>
 
   <div #map id="map"></div>
-
-  <button text-center ion-button icon-left color="secondary" full (click)="centerMap()">
-    <ion-icon name="person"></ion-icon>Centera kartan</button>
-
 </ion-content>

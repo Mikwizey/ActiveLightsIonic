@@ -1,0 +1,11 @@
+<!-- Generated template for the PopoverlistComponent component -->
+<div>
+  
+  <ion-list no-lines>
+    <ion-item>
+      <b>Dessa finns att söka efter:</b>
+    </ion-item>
+    <button ion-item *ngFor="let field of fields" (click)="close(field.namn)">{{field.namn}} </button>
+  </ion-list>
+
+</div>

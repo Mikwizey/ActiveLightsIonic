@@ -11,6 +11,8 @@ import { ToastController } from 'ionic-angular';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { Facebook } from '@ionic-native/facebook';
 import { FirstPage } from '../first/first';
+import { PopoverController } from 'ionic-angular';
+import { PopoverlistComponent } from '../../components/popoverlist/popoverlist';
 
 declare var google: any;
 
@@ -21,7 +23,7 @@ declare var google: any;
 })
 export class HomePage {
 
-    
+
     public show;
     //protected nickname: string;
 
@@ -52,11 +54,12 @@ export class HomePage {
     public fieldName;
     public fieldIsChosen = false;
     public showInfoPrompt = false;
+    public showAll = false;
 
     @ViewChild('map') mapRef: ElementRef;
 
     constructor(
-        public toastCtrl: ToastController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
+        public toastCtrl: ToastController, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
 
     }
 
@@ -67,9 +70,9 @@ export class HomePage {
         this.loginMethod = this.navParams.get('loginMethod');
 
         this.getLocation();
+        this.showMap();
 
-        //this.showMap();
-        this.showAllFieldsOnMap();
+        //this.showAllFieldsOnMap();
         this.optionsMapSearch = false;
         this.getLocation();
 
@@ -102,7 +105,7 @@ export class HomePage {
             userId: this.userId,
             myLatitude: this.myLatitude,
             myLongitude: this.myLongitude,
-            loginMethod:this.loginMethod,
+            loginMethod: this.loginMethod,
 
         }
 
@@ -293,7 +296,6 @@ export class HomePage {
 
     }
 
-
     //Centerar till den sökta platsen på kartan.
 
     showSearchedField(fieldname) {
@@ -322,10 +324,22 @@ export class HomePage {
 
                 this.fieldLatitude = googlelat;
                 this.fieldLongitude = googlelon;
+                let iconImage = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png';
+                let googleContent = this.results[i].namn + "<br>" + this.results[i].gatuadress;
+
+                let fieldMarker = {
+
+                    coords: { lat: googlelat, lng: googlelon },
+                    iconImage: iconImage,
+                    content: googleContent,
+
+                }
+
+                this.allFieldMarkers.push(fieldMarker);
 
             }
 
-
+            this.showMap();
 
         }
 
@@ -384,6 +398,8 @@ export class HomePage {
 
     showAllFieldsOnMap() {
 
+        this.showAll = true;
+
         let allFields = []
 
         allFields = this.flp.getAllFields();
@@ -411,6 +427,16 @@ export class HomePage {
 
     }
 
+    hideAllFieldsOnMap() {
+
+        this.showAll = false;
+
+        this.allFieldMarkers = [];
+
+        this.showMap();
+
+    }
+
     //Sökrutans kryss.
 
     clear() {
@@ -422,6 +448,7 @@ export class HomePage {
         this.fieldLatitude = undefined;
         this.fieldLongitude = undefined;
         this.removeNearbyStops();
+        this.hideAllFieldsOnMap();
 
     }
 
@@ -430,7 +457,7 @@ export class HomePage {
     centerMap() {
 
         this.centerSearchLocation = false;
-
+        this.getLocation();
         this.showMap();
 
     }
@@ -482,16 +509,48 @@ export class HomePage {
                 if (this.loginMethod == "Developer") {
                     console.log("Logout developer.");
                 }
-            
-    //let nextPage = this.modalCtrl.create(FirstPage, {userId: this.userId, userName: this.userName, loginMethod: this.loginMethod});
-    //nextPage.present();
 
-    this.navCtrl.setRoot(FirstPage);
+        //let nextPage = this.modalCtrl.create(FirstPage, {userId: this.userId, userName: this.userName, loginMethod: this.loginMethod});
+        //nextPage.present();
+
+        this.navCtrl.setRoot(FirstPage);
 
     }
 
+    presentPopover(myEvent) {
+        let popover = this.popoverCtrl.create(PopoverlistComponent);
+        popover.present({
+            ev: myEvent
+        });
+
+        popover.onDidDismiss(query => {
+            console.log("popover dismissed");
+            console.log("Selected Item is " + query);
+
+            if (query != undefined) {
+
+                let results = this.flp.getFields(query);
+
+                console.log(results);
+
+                this.results = results;
+
+            }
+
+            if (this.results.length > 0) {
+                this.resultsAreShowing = true;
+                this.fieldName = undefined;
+                this.fieldIsChosen = false;
+            } else {
+                this.resultsAreShowing = false;
+            }
+        });
+
+    }
 
 }
+
+
 
 
 
