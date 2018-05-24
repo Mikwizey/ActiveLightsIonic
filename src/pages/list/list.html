@@ -6,7 +6,8 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
+    
+            <ion-list>
       
       <button small ion-item *ngFor="let field of fields" (click)="showField(field.id)">
         <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
@@ -16,5 +17,5 @@
       </button>
 
     </ion-list>
-
+  
 </ion-content>

@@ -20,13 +20,28 @@
 
     <h2 id="visitors" class="">{{field?.visitors}}</h2>
 
-    <button ion-button icon-end small round float-right color="assertive" (click)="toTheChatRoom(key)">
-        Chatta
+    <ion-grid>
+   <ion-row>
+        <ion-col text-center>
+                <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
+                <!-- DEBUG -->{{currentrating}}
+            </ion-col>
+        <ion-col text-center>
+
+    <button ion-fab icon-end small round  color="assertive" (click)="toTheChatRoom(key)">
+    
         <ion-icon ios="ios-chatbubbles" md="md-chatbubbles"></ion-icon>
     </button>
+</ion-col>
 
-    <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
-    <!-- DEBUG -->{{currentrating}}
+<ion-col text-center>
+    <button ion-fab heart outline small color="danger">
+        
+        <ion-icon name="heart"></ion-icon>
+      </button>
+    </ion-col>
+
+     </ion-row>
 
 
     <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
@@ -53,5 +68,5 @@
       
     </div>
 
-
+</ion-grid>
 </ion-content>
