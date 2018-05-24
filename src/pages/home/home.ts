@@ -527,7 +527,7 @@ export class HomePage {
             console.log("popover dismissed");
             console.log("Selected Item is " + query);
 
-            if (query != undefined) {
+            if (query != null || query != undefined) {
 
                 let results = this.flp.getFields(query);
 
@@ -535,20 +535,23 @@ export class HomePage {
 
                 this.results = results;
 
-            }
 
-            if (this.results.length > 0) {
-                this.resultsAreShowing = true;
-                this.fieldName = undefined;
-                this.fieldIsChosen = false;
-            } else {
-                this.resultsAreShowing = false;
+
+                if (this.results.length > 0) {
+                    this.resultsAreShowing = true;
+                    this.fieldName = undefined;
+                    this.fieldIsChosen = false;
+                } else {
+                    this.resultsAreShowing = false;
+                }
             }
         });
-
     }
 
+
 }
+
+
 
 
 
