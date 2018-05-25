@@ -4,6 +4,7 @@ import { FieldService } from "../../providers/field-service";
 import { UserPage } from '../user/user';
 import { CalendarPage } from '../calendar/calendar';
 import { ActivityService } from "../../providers/activity-service";
+import { FavoriteService } from "../../providers/favorite-service";
 import * as firebase from 'Firebase';
 import { ChatPage } from "../chat/chat";
 import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
@@ -21,12 +22,14 @@ export class FieldPage {
 
   public userName;
   public userId;
+  public field_id;
   public myLatitude;
   public myLongitude;
   public loginMethod;
 
   public myDistance;
   public userIsAway = false;
+  favorities = [];
 
   protected activity: Array<any>;
 
@@ -50,7 +53,7 @@ export class FieldPage {
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider,public favoriteService: FavoriteService,) {
     this.ref.on('value', resp => {
       const snapshotKey = snapshot => {
         var key = Object.keys(snapshot.val())[this.id];
@@ -214,6 +217,10 @@ export class FieldPage {
         text:"OK",
         role:"agree",
         handler:() =>{
+          
+          this.favoriteService.addFavorite(this.userId,this.field_id).subscribe();
+          this.favorities=[];
+          console.log(this.favorities);
           console.log("ok");
         }
       

@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
 import { FieldService } from "../providers/field-service";
 import { ActivityService } from "../providers/activity-service";
+import { FavoriteService } from "../providers/favorite-service";
 import { Geolocation } from '@ionic-native/geolocation';
 import { BarRatingModule } from "ngx-bar-rating";
 import { FirstPage } from '../pages/first/first';
@@ -71,6 +72,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     { provide: LOCALE_ID, useValue: 'sv' },    //lagt till för sv
     FieldService,
     ActivityService,
+    FavoriteService,
     GooglePlus,
     Geolocation,
     TrafiklabProvider,
