@@ -8,6 +8,8 @@ import * as firebase from 'Firebase';
 import { ChatPage } from "../chat/chat";
 import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
 import { HomePage } from "../home/home";
+import { Quote } from '@angular/compiler';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @IonicPage()
 @Component({
@@ -197,6 +199,35 @@ export class FieldPage {
   setRating() {
     // Framtida beräkning av medel osv
   }
+  onAddToFavorite(selctedQuote:Quote){
+    const altert=this.alertCtrl.create({
+      title: "add to favorite",
+      message:" are you sure?",
+      buttons:[{
+        text:"Avbryt",
+        handler:()=>{
+          console.log("avbryt");
+
+        }
+      },
+      {
+        text:"OK",
+        role:"agree",
+        handler:() =>{
+          console.log("ok");
+        }
+      
+        
+      }
+    ]
+
+    });
+    altert.present();
+     
+  
+    
+  }
+ 
 
   lightsOn() {
 
@@ -265,6 +296,8 @@ export class FieldPage {
       this.myDistance = distanceString;
       this.userIsAway = true;
     }
+
+    
 
   }
 

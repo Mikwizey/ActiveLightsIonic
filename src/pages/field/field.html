@@ -18,12 +18,14 @@
 
 </ion-header>
 
+                
 
 <ion-content padding>
 
     <h1 text-center class="name">{{field?.name}}</h1>
 
     <h2 id="visitors" class="">{{field?.visitors}}</h2>
+    
 
     <ion-grid>
 
@@ -33,9 +35,10 @@
                 <!-- DEBUG -->{{currentrating}}
             </ion-col>
             <ion-col text-center>
-                <button ion-fab heart outline small icon-only color="danger">
+                <button ion-fab heart outline  small solid  icon-only color="danger" (click)="onAddToFavorite(quote)">
                     <ion-icon name="heart"></ion-icon>
                 </button>
+                
             </ion-col>
         </ion-row>
     </ion-grid>
