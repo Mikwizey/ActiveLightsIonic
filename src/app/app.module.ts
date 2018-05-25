@@ -26,6 +26,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { FieldlocationsProvider } from '../providers/fieldlocations/fieldlocations';
 import { PopoverlistComponent } from '../components/popoverlist/popoverlist';
+import {Push, PushObject, PushOptions } from '@ionic-native/push';
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -66,6 +67,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
 
   ],
   providers: [
+    Push,
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },

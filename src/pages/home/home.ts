@@ -1,6 +1,6 @@
 import { Geolocation } from '@ionic-native/geolocation';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NavController, NavParams, ModalController, Modal } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Modal, AlertController } from 'ionic-angular';
 import { FieldService } from "../../providers/field-service";
 import { ListPage } from '../list/list';
 import { TrafiklabProvider } from '../../providers/trafiklab/trafiklab';
@@ -13,6 +13,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { FirstPage } from '../first/first';
 import { PopoverController } from 'ionic-angular';
 import { PopoverlistComponent } from '../../components/popoverlist/popoverlist';
+import {Push, PushObject, PushOptions } from '@ionic-native/push';
 
 declare var google: any;
 
@@ -59,9 +60,62 @@ export class HomePage {
     @ViewChild('map') mapRef: ElementRef;
 
     constructor(
-        public toastCtrl: ToastController, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
-
+        public toastCtrl: ToastController,public push:Push,public alert: AlertController, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
+            this.push.hasPermission().then((res:any)=>{
+                if(res.isEnabled){
+                  console.log("we have permission");
+                  this.initPush();
+                }else{
+                  console.log("no permission");
+                }
+              });
     }
+    initPush(){
+        const options: PushOptions = {
+          android: {},
+          ios:{
+            alert: 'true',
+            badge: true,
+            sound: 'false'
+          },
+          windows: {},
+          browser:{
+            pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+          }
+        };
+    
+        const pushObject: PushObject = this.push.init(options);
+    
+        pushObject.on('notification').subscribe((notification:any)=> {
+          let alert = this.alert.create({
+            title: 'New note',
+            message: notification.message,
+            buttons: [
+              {
+                text: 'Cancel',
+                role: 'cancel',
+                handler: () => {
+                  console.log('Cancel clicked');
+                }
+              },
+              {
+                text: 'See',
+                handler: () => {
+                  console.log('Buy clicked');
+                }
+              }
+            ]
+          });
+          alert.present();
+        });
+        pushObject.on('registration').subscribe((registration:any)=> console.log('Device registered', registration));
+        pushObject.on('error').subscribe(error=>console.error('Error with push plugin', error));
+      }
+    
+    
+    
+    
+    
 
     ionViewDidLoad() {
 

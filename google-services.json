@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "222041779220",
+    "firebase_url": "https://sportlightstest.firebaseio.com",
+    "project_id": "sportlightstest"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222041779220:android:764d2cb7da3280eb",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222041779220-ar5rrvi5ths6qhc60nkiusc407c0npe2.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "222041779220-oc5sc0rr1f04pils27gd5gdtmbkntcln.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "222041779220-ar5rrvi5ths6qhc60nkiusc407c0npe2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6iGPjAOsn0m_-8vEOSXZ7-xPRWlv56-I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
