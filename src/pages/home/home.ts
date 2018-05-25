@@ -65,6 +65,8 @@ export class HomePage {
 
     ionViewDidLoad() {
 
+        this.flp = new FieldlocationsProvider(this.geolocation, this.fieldService);
+
         this.userId = this.navParams.get('userId');
         this.userName = this.navParams.get('userName');
         this.loginMethod = this.navParams.get('loginMethod');
@@ -130,6 +132,8 @@ export class HomePage {
         this.geolocation.getCurrentPosition().then(resp => {
 
             // Map options
+
+
 
             let optionsMap;
 
@@ -306,6 +310,7 @@ export class HomePage {
 
             if (fieldname == this.results[i].namn) {
 
+                let iconImage;
 
                 let googlelat = parseFloat(this.results[i].lat);
                 let googlelon = parseFloat(this.results[i].lon);
@@ -320,12 +325,23 @@ export class HomePage {
 
                 };
 
-                this.centerSearchLocation = true
+                console.log(this.results[i]);
+
+                if (this.results[i].visitors == "Låg belastning") {
+                    iconImage = 'http://maps.google.com/mapfiles/ms/micons/green-dot.png';
+                }
+                if (this.results[i].visitors == "Medel belastning") {
+                    iconImage = 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png';
+                }
+                if (this.results[i].visitors == "Hög belastning") {
+                    iconImage = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
+                }
+
+                this.centerSearchLocation = true;
 
                 this.fieldLatitude = googlelat;
                 this.fieldLongitude = googlelon;
-                let iconImage = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png';
-                let googleContent = this.results[i].namn + "<br>" + this.results[i].gatuadress;
+                let googleContent = this.results[i].namn + "<br>" + this.results[i].visitors+ "<br>" + this.results[i].ga;
 
                 let fieldMarker = {
 
@@ -406,10 +422,21 @@ export class HomePage {
 
         for (let i = 0; i < allFields.length; i++) {
 
+            let iconImage;
+
+            if (allFields[i].visitors == "Låg belastning") {
+                iconImage = 'http://maps.google.com/mapfiles/ms/micons/green-dot.png';
+            }
+            if (allFields[i].visitors == "Medel belastning") {
+                iconImage = 'http://maps.google.com/mapfiles/ms/micons/orange-dot.png';
+            }
+            if (allFields[i].visitors == "Hög belastning") {
+                iconImage = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png';
+            }
+
             let googlelat = parseFloat(allFields[i].lat);
             let googlelon = parseFloat(allFields[i].lon);
-            let iconImage = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png';
-            let googleContent = allFields[i].namn + "<br>" + allFields[i].gatuadress;
+            let googleContent = allFields[i].namn + "<br>" + allFields[i].visitors;
 
             let fieldMarker = {
 
