@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
+import { FieldService } from '../field-service';
 
 /*
   Generated class for the FieldlocationsProvider provider.
@@ -766,29 +767,72 @@ export class FieldlocationsProvider {
     }
   ]
 
+  fieldsWithVisitors = []
+
   myLatitude;
   myLongitude;
 
-  constructor(public http: HttpClient, public geolocation: Geolocation) {
+  constructor(public geolocation: Geolocation, public fieldService: FieldService) {
+
+    console.log("flp")
+
+    this.fieldService.getGoodFields().subscribe(fields => {
+
+      let fieldsFromServer = fields;
+
+      let apiField;
+
+      for (let i = 0; i < fieldsFromServer.length; i++) {
+
+        apiField = fieldsFromServer[i];
+
+        for(let i = 0; i < this.fields.length; i++){
+
+          let field = this.fields[i];
+
+          if(apiField.name == field.Namn){
+            
+            let fieldData = {
+
+              Namn: field.Namn,
+              Info: field.Info,
+              Gatuadress: field.Gatuadress,
+              Postadress: field.Postadress,
+              Latitude: field.Latitude,
+              Longitude: field.Longitude,
+              Visitors: apiField.visitors,
+
+            }
+
+            this.fieldsWithVisitors.push(fieldData);
+
+          }
+
+        }
+          
+      }
+
+      console.log(this.fieldsWithVisitors)
+
+  });
 
   }
-
 
   getFields(query) {
 
     let wantedFields = [];
 
-    for (let i = 0; i < this.fields.length; i++) {
+    for (let i = 0; i < this.fieldsWithVisitors.length; i++) {
 
       //Sök på plan-namn.
 
-      let fieldName = this.fields[i].Namn;
+      let fieldName = this.fieldsWithVisitors[i].Namn;
       let fieldNameFixed = fieldName.trim().toLowerCase();
       let fieldNameBeginningFixed = fieldNameFixed.split(" ")[0];
 
       //Sök på ort.
 
-      let area = this.fields[i].Postadress;
+      let area = this.fieldsWithVisitors[i].Postadress;
       let areaFixed = area.trim().toLowerCase();
 
       //Skriver om sökfrågan.
@@ -801,12 +845,14 @@ export class FieldlocationsProvider {
 
         let field = {
 
-          namn: this.fields[i].Namn,
-          info: this.fields[i].Info,
-          pa: this.fields[i].Postadress,
-          ga: this.fields[i].Gatuadress,
-          lon: this.fields[i].Longitude,
-          lat: this.fields[i].Latitude
+          namn: this.fieldsWithVisitors[i].Namn,
+          info: this.fieldsWithVisitors[i].Info,
+          pa: this.fieldsWithVisitors[i].Postadress,
+          ga: this.fieldsWithVisitors[i].Gatuadress,
+          lon: this.fieldsWithVisitors[i].Longitude,
+          lat: this.fieldsWithVisitors[i].Latitude,
+          visitors: this.fieldsWithVisitors[i].Visitors,
+          
 
         }
 
@@ -828,12 +874,13 @@ export class FieldlocationsProvider {
 
     for (let i = 0; i < this.fields.length; i++) {
 
-      let name = this.fields[i].Namn;
-      let info = this.fields[i].Info;
-      let lat = this.fields[i].Latitude;
-      let lon = this.fields[i].Longitude;
-      let ga = this.fields[i].Gatuadress;
-      let pa = this.fields[i].Postadress;
+      let name = this.fieldsWithVisitors[i].Namn;
+      let info = this.fieldsWithVisitors[i].Info;
+      let lat = this.fieldsWithVisitors[i].Latitude;
+      let lon = this.fieldsWithVisitors[i].Longitude;
+      let ga = this.fieldsWithVisitors[i].Gatuadress;
+      let pa = this.fieldsWithVisitors[i].Postadress;
+      let visitors = this.fieldsWithVisitors[i].Visitors;
 
       let field = {
 
@@ -842,7 +889,8 @@ export class FieldlocationsProvider {
         lat: lat,
         lon: lon,
         gatuadress: ga,
-        postadress: pa
+        postadress: pa,
+        visitors: visitors,
 
       }
       fields.push(field);

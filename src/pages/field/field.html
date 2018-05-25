@@ -13,7 +13,7 @@
             </button>
         </ion-buttons>
 
-        <ion-title>Fotbollsplan</ion-title>
+        <ion-title text-center>Fotbollsplan</ion-title>
         <ion-title>{{ viewTitle }}</ion-title>
     </ion-navbar>
 
@@ -46,35 +46,42 @@
                     <ion-icon name="heart"></ion-icon>
                 </button>
             </ion-col>
-
         </ion-row>
-
-
-        <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
-        <button ion-button icon-left full color="dark" (click)="goToCalendar()">
-            <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
-
-        <!-- Lampknappen -->
-
-        <div *ngIf="userIsAway">
-            <button text-center ion-item icon-left detail-none no-lines color="danger">
-                Du är {{myDistance}}km bort.
-                <br>
-                <ion-icon name="md-bulb"></ion-icon> Maxavstånd för att tända planen
-                <br> är 300m.</button>
-        </div>
-
-        <div *ngIf="!userIsAway">
-
-            <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
-                <ion-icon name="md-bulb"></ion-icon>
-                Tänd belysning</button>
-
-            <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
-                <ion-icon name="md-bulb"></ion-icon>
-                Planen är tänd</button>
-
-        </div>
-
     </ion-grid>
+
+    <ion-grid no-padding>
+        <ion-row>
+            <ion-col col-12>
+                <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
+                <button ion-button icon-left full color="dark" (click)="goToCalendar()">
+                    <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+                <!-- Lampknappen -->
+                <div *ngIf="userIsAway">
+                    <button text-center ion-item icon-left detail-none no-lines color="danger">
+                        Du är {{myDistance}}km bort.
+                        <br>
+                        <ion-icon name="md-bulb"></ion-icon> Maxavstånd för att tända planen
+                        <br> är 300m.</button>
+                </div>
+                <div *ngIf="!userIsAway">
+                    <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
+                        <ion-icon name="md-bulb"></ion-icon>
+                        Tänd belysning</button>
+                    <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
+                        <ion-icon name="md-bulb"></ion-icon>
+                        Planen är tänd</button>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div text-center>
+        <h3>{{fieldInfo}}</h3>
+        <h4>{{fieldAdress}}</h4>
+    </div>
+
 </ion-content>

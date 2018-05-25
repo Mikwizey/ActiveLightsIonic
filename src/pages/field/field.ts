@@ -23,6 +23,7 @@ export class FieldPage {
   public myLongitude;
   public loginMethod;
 
+  public showData = false;
   public myDistance;
   public userIsAway = false;
 
@@ -43,6 +44,8 @@ export class FieldPage {
   protected nickname: string;
   protected id;
   protected field;
+  public fieldInfo;
+  public fieldAdress;
 
 
   protected buttonText = "Visa aktiviteter";
@@ -56,7 +59,6 @@ export class FieldPage {
       }
       this.key = snapshotKey(resp);
     });
-
   }
 
   ionViewDidLoad() {
@@ -72,6 +74,8 @@ export class FieldPage {
       this.field = field;
       this.setColor();
       this.userIsAway = false;
+      this.fieldInfo = this.flp.getFields(this.field.name)[0].info;
+      this.fieldAdress = this.flp.getFields(this.field.name)[0].ga + " " +  this.flp.getFields(this.field.name)[0].pa;
     })
 
     let fieldPageData = {
@@ -192,6 +196,10 @@ export class FieldPage {
 
   showActivity(id: number) {
     this.navCtrl.push(FieldPage, { id: id });
+  }
+
+  showInfo() {
+    this.showData = true;
   }
 
   setRating() {
