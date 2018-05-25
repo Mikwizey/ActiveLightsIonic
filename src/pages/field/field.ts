@@ -201,8 +201,8 @@ export class FieldPage {
   }
   onAddToFavorite(selctedQuote:Quote){
     const altert=this.alertCtrl.create({
-      title: "add to favorite",
-      message:" are you sure?",
+      title:"Lägga till i dina favoriter",
+      message:" Vill du lägga till planen i dina favoriter?",
       buttons:[{
         text:"Avbryt",
         handler:()=>{
