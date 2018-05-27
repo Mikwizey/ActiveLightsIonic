@@ -30,7 +30,7 @@ export class FieldPage {
   public showData = false;
   public myDistance;
   public userIsAway = false;
-  favorities = [];
+  favorites = [];
 
   protected activity: Array<any>;
 
@@ -210,15 +210,15 @@ export class FieldPage {
   setRating() {
     // Framtida beräkning av medel osv
   }
-  onAddToFavorite(selctedQuote:Quote){
-    const altert=this.alertCtrl.create({
-      title:"Lägga till i dina favoriter",
-      message:" Vill du lägga till planen i dina favoriter?",
+  addToFavorites(){
+    console.log("Adding to favorites started in field.ts");
+    const alert=this.alertCtrl.create({
+      title:"Lägg till favoriter",
+      message:"Vill du lägga till den här planen till dina favoriter?",
       buttons:[{
-        text:"Avbryt",
+        text:"back",
         handler:()=>{
-          console.log("avbryt");
-
+          console.log("back clicked");
         }
       },
       {
@@ -226,24 +226,17 @@ export class FieldPage {
         role:"agree",
         handler:() =>{
           
-          this.favoriteService.addFavorite(this.userId,this.field_id).subscribe();
-          this.favorities=[];
-          console.log(this.favorities);
-          console.log("ok");
+          this.favoriteService.addToFavorites(this.userId,this.id).subscribe();
+          this.favorites=[];
+          console.log(this.favorites);
+          console.log("ok clicked");
         }
-      
-        
       }
     ]
-
     });
-    altert.present();
-     
-  
-    
+    alert.present();
   }
  
-
   lightsOn() {
 
     this.checkDistance();

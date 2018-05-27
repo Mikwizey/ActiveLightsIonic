@@ -12,9 +12,7 @@ export class FavoriteService {
   constructor(public http: HttpClient) {
   }
 
-    addFavorite(userId: number, field_id: number): Observable<any> {
-        return this.http.post(this.API + "/user/"+ userId +"/field/" + field_id + "/favorite/add",{} );
+  addToFavorites(userId: number, id: number): Observable<any> {
+      return this.http.post(this.API + "/user/"+ userId +"/field/" + id + "/favorite/add",{} );
       }
-
-    
   }
