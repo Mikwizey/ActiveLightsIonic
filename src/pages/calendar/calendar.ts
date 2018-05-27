@@ -14,8 +14,20 @@ import { HomePage } from "../home/home";
   templateUrl: 'calendar.html',
 })
 export class CalendarPage {
-  // @ViewChild(CalendarComponent) myCalendar:CalendarComponent;
+
+  // eventSource är den array av events som ionic2-calendar använder.
+  // Varje element är en struktur med följande fält:
+  //
+  // title          Titeln på eventet - ionic2-calendar kräver den
+  // startTime      Datum och klockslag då eventet börjar - ionic2-calendar kräver den
+  // endTime        Datum och klockslag då eventet slutar - ionic2-calendar kräver den
+  // allDay         Flagga som talar om ifall det är en heldagshändelse - ionic2-calendar kräver den
+  //                (vi struntar i den utan låter den alltid vara false)
+  // fieldId        Fotbollplanens identitet.  KOMMER FRÅN SportLightServer
+  // id             Eventets identitet.  KOMMER FRÅN SportLightServer
+  //
   eventSource = [];
+
   viewTitle: string;
   selectedDay = new Date();
 
