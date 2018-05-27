@@ -81,7 +81,7 @@ export class FieldPage {
       this.userIsAway = false;
       this.fieldInfo = this.flp.getFields(this.field.name)[0].info;
       this.fieldAdress = this.flp.getFields(this.field.name)[0].ga + " " +  this.flp.getFields(this.field.name)[0].pa;
-    })
+    });
 
     let fieldPageData = {
 
@@ -94,7 +94,7 @@ export class FieldPage {
       myLongitude: this.myLongitude,
       loginMethod: this.loginMethod,
 
-    }
+    };
 
     console.log("FieldPage_DidLoad", fieldPageData);
 
@@ -132,7 +132,7 @@ export class FieldPage {
       myLongitude: this.myLongitude,
       loginMethod: this.loginMethod,
 
-    }
+    };
 
     let nextPage = this.modalCtrl.create(CalendarPage, calendarPageData);
     nextPage.onDidDismiss(data => {
@@ -175,7 +175,7 @@ export class FieldPage {
       loginMethod: this.loginMethod,
 
 
-    }
+    };
 
     let nextPage = this.modalCtrl.create(ChatPage, chatPageData);
     nextPage.onDidDismiss(data => {
@@ -247,7 +247,7 @@ export class FieldPage {
       this.fieldService.setLights(this.id).subscribe(field => {
         console.log("kommer till ts 2");
         this.field.lights = true;
-      })
+      });
     }
   }
 
