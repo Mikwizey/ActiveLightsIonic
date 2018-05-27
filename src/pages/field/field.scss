@@ -7,4 +7,14 @@ page-field {
     ion-content {
         background-image: url('../assets/imgs/bg.png');
     }
+    ion-card.card{
+        box-shadow: none;
+        background: rgba(250, 247, 247, 0.5);
+        border-radius: 5px;
+
+      }
+      .heading h3{
+        color: #ffff;
+        font-family: 'Helvetica Neue';
+        font-size: 15px; }
 }

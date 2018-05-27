@@ -30,6 +30,28 @@
 
     <ion-grid>
         <ion-row>
+                <ion-card>
+                        <ion-card-header text-center>
+                                
+                        
+                              </ion-card-header>
+                        <ion-card-content>
+                <div >
+                    <h3>{{fieldInfo}}</h3>
+                    
+                </div>
+                <ion-card-header>
+                                
+                        
+                    </ion-card-header>
+                    <div >
+                            
+                            <h4>{{fieldAdress}}</h4>
+                        </div>
+                </ion-card-content>
+                </ion-card>
+        </ion-row>
+        <ion-row>
             <ion-col text-center>
                 <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
                 <!-- DEBUG -->{{currentrating}}
@@ -80,10 +102,6 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-
-    <div text-center>
-        <h3>{{fieldInfo}}</h3>
-        <h4>{{fieldAdress}}</h4>
-    </div>
+   
 
 </ion-content>
