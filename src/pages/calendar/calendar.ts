@@ -131,9 +131,15 @@ export class CalendarPage {
         console.log(id);
 
         let activities = this.eventSource;
-        activities.push(activityData);
-        console.log(activityData);
-        this.activityService.addActivity(id, activityData).subscribe();
+        // Den pushade aktiviteten MÅSTE komma från servern
+        // för det är den som skapar nya aid
+        this.activityService.addActivity(id, activityData).subscribe({
+          next: activity => {
+            activities.push(activity);
+            console.log("Activity data received from server");
+            console.log(activity);
+          }
+        });
         this.eventSource = [];
         setTimeout(() => {
           this.eventSource = activities;
