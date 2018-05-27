@@ -156,15 +156,39 @@ export class CalendarPage {
     let start = moment(event.startTime).format('LT');
     let end = moment(event.endTime).format('LT');
     let date = moment(event.startTIme).format('L');
+    let id = event.fieldId;
+    let aid = event.id;
+
+    console.log("onEventSelected, event: ", event);
 
     let alert = this.alertCtrl.create({
       title: '' + event.title,
       subTitle: '<b>Datum: </b>' + date + '<br><b>Start:</b> ' + start
         + '<br><b>Slut:</b> ' + end,
       message: 'Plats: ' + event.place,
-      buttons: ['OK']
-
-    })
+      buttons: [ {
+        text: 'OK',
+          handler: () => {
+            console.log('OK clicked');
+          }
+        },
+        {
+          text: 'Ta bort aktivitet',
+            handler: () => {
+              this.activityService.removePlannedActivity(id, aid).subscribe({
+                complete: () => {
+                  console.log("Field " + id + ", Activity " + aid + " borttagen.");
+                  // Gör en ny eventlista som består av alla existerande events UTOM
+                  // den (borde bara finnas en) med den aid som vi precis tog bort
+                  let activities = this.eventSource.filter(event => event.aid != aid);
+                  setTimeout(() => {
+                    this.eventSource = activities;
+                  });
+              }});
+              console.log('Remove clicked');
+            }
+        }]
+    });
     alert.present();
   }
 

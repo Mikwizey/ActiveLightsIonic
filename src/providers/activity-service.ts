@@ -24,6 +24,10 @@ export class ActivityService {
     return this.http.get(this.API + "/field/" + field_id + "/activity/" + activity_id);
   }
 
+  removePlannedActivity(id: number, aid: number): Observable<any> {
+    console.log("activity service removing started");
+    return this.http.delete(this.API + "/field/" + id + "/activity/remove/"  + aid);
+  }
 
   // Metod för bokad aktiviteter: getAllBookedActivities
   getAllBookedActivities(field_id: number): Observable<any> {
