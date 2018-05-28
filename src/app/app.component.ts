@@ -48,8 +48,17 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      var notificationOpenedCallback = function(jsonData) {
+        alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+  
+      window["plugins"].OneSignal
+        .startInit("1ecb536f-46f7-4a5a-a830-444a18923722", "222041779220")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
     });
-    firebase.initializeApp(config);
+    };
+    //firebase.initializeApp(config); detta kan förstöra för chatten
   }
 
   /*openPage(page) {
@@ -57,4 +66,4 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }*/
-}
+

@@ -2,14 +2,15 @@
   "project_info": {
     "project_number": "222041779220",
     "firebase_url": "https://sportlightstest.firebaseio.com",
-    "project_id": "sportlightstest"
+    "project_id": "sportlightstest",
+    "storage_bucket": "sportlightstest.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:222041779220:android:764d2cb7da3280eb",
+        "mobilesdk_app_id": "1:222041779220:android:ee888bcb6e924d0b",
         "android_client_info": {
-          "package_name": "io.ionic.starter"
+          "package_name": "sportlightsionic.test.notis"
         }
       },
       "oauth_client": [

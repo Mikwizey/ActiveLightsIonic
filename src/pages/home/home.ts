@@ -60,17 +60,17 @@ export class HomePage {
     @ViewChild('map') mapRef: ElementRef;
 
     constructor(
-        public toastCtrl: ToastController,public push:Push,public alert: AlertController, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
+        public toastCtrl: ToastController,public push:Push, public alert: AlertController, public popoverCtrl: PopoverController, public modalCtrl: ModalController, public navCtrl: NavController, public fieldService: FieldService, public geolocation: Geolocation, public navParams: NavParams, public tlP: TrafiklabProvider, public udp: UserDataProvider, public flp: FieldlocationsProvider, private googlePlus: GooglePlus, private fb: Facebook) {
             this.push.hasPermission().then((res:any)=>{
                 if(res.isEnabled){
                   console.log("we have permission");
-                  this.initPush();
+                  this.init();
                 }else{
                   console.log("no permission");
                 }
               });
     }
-    initPush(){
+    init(){
         const options: PushOptions = {
           android: {},
           ios:{
