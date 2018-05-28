@@ -59,7 +59,7 @@ export class FieldPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider,public favoriteService: FavoriteService,) {
     this.ref.on('value', resp => {
       const snapshotKey = snapshot => {
-        var key = Object.keys(snapshot.val())[this.id];
+        var key = Object.keys(snapshot.val())[this.id - 100];
         return key;
       }
       this.key = snapshotKey(resp);
@@ -226,7 +226,7 @@ export class FieldPage {
         role:"agree",
         handler:() =>{
           this.isFavorite = true;
-          
+
           this.favoriteService.addToFavorites(this.userId,this.id).subscribe();
           this.favorites=[];
           console.log(this.favorites);
@@ -238,7 +238,7 @@ export class FieldPage {
     alert.present();
   }
   removeFromFavorites(){
-    
+
     console.log("Adding to favorites started in field.ts");
     const alert=this.alertCtrl.create({
       title:"Ta bort från favoriter",
@@ -254,7 +254,7 @@ export class FieldPage {
         role:"agree",
         handler:() =>{
           this.isFavorite = false;
-          
+
           this.favoriteService.removeFromFavorites(this.userId,this.id).subscribe();
           this.favorites=[];
           console.log(this.favorites);
@@ -265,7 +265,7 @@ export class FieldPage {
     });
     alert.present();
   }
- 
+
   lightsOn() {
 
     this.checkDistance();
@@ -334,7 +334,7 @@ export class FieldPage {
       this.userIsAway = true;
     }
 
-    
+
 
   }
 
