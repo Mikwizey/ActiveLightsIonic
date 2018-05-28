@@ -16,6 +16,8 @@ export class ListPage {
 
   //protected nickname: string;
 
+  //ÄNDRING
+
   public myLatitude;
   public myLongitude;
   public userName;
