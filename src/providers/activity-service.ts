@@ -6,7 +6,7 @@ import { DateTime } from 'ionic-angular';
 @Injectable()
 export class ActivityService {
   //public API = 'https://pvt.dsv.su.se/Group02'; // För att se riktiga servern
-  public API = 'http://localhost:8080'; //För att se server lokalt
+  public API = 'http://localhost:8090'; //För att se server lokalt
   // (Spring verkar kunna köras på antingen port 8080 eller port 8090, testa det andra
   //om det första inte funkar
   public ACTIVITY_API = this.API;
