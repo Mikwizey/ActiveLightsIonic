@@ -17,7 +17,7 @@ export class FavoriteService {
       }
   removeFromFavorites(userId: number, id: number): Observable<any> {
     console.log("remove ");
-        return this.http.delete(this.API + "/user/"+ userId +"/field/" + id + "/favorite/add",{} );
+        return this.http.delete(this.API + "/user/"+ userId +"/field/" + id + "/favorite/remove",{} );
         }
 
   }

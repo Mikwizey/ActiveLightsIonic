@@ -233,7 +233,7 @@ export class FieldPage {
             this.isFavorite = true;
 
             this.favoriteService.addToFavorites(this.userId, this.id).subscribe();
-            this.favorites = [];
+            
             console.log(this.favorites);
             console.log("ok clicked");
           }
