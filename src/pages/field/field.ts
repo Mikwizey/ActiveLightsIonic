@@ -222,7 +222,7 @@ export class FieldPage {
         }
       },
       {
-        text:"OK",
+        text:"Ok",
         role:"agree",
         handler:() =>{
           this.isFavorite = true;
@@ -244,13 +244,13 @@ export class FieldPage {
       title:"Ta bort från favoriter",
       message:"Vill du ta bort den här planen från dina favoriter?",
       buttons:[{
-        text:"back",
+        text:"Avbryt",
         handler:()=>{
           console.log("back clicked");
         }
       },
       {
-        text:"OK",
+        text:"Ok",
         role:"agree",
         handler:() =>{
           this.isFavorite = false;
