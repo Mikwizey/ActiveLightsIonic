@@ -93,22 +93,26 @@
       <ion-col col-12>
         <!-- Lampknappen -->
         <div *ngIf="distanceError">
-                    <button text-center ion-item icon-left detail-none no-lines color="danger">
-                        Aktivera platstjänster
-                        <br>
-                        <ion-icon name="md-bulb"></ion-icon> För att tända belysningen.
-                        <br> Maxavstånd är 300m bort.</button>
-                </div>
-                <div *ngIf="userIsAway">
-          <button text-center ion-item icon-left detail-none no-lines color="danger">
+          <button text-center ion-item icon-left detail-none no-lines color="danger" (click)="checkDistance()">
+            Aktivera platstjänster
+            <br>
+            <ion-icon name="md-bulb"></ion-icon> För att tända belysningen.
+            <br> Maxavstånd är 300m bort.</button>
+          <br>
+          <ion-icon name="refresh"></ion-icon>
+        </div>
+        <div *ngIf="userIsAway && !distanceError">
+          <button text-center ion-item icon-left detail-none no-lines color="danger" (click)="checkDistance()">
             Du är {{myDistance}}km bort.
             <br>
             <ion-icon name="md-bulb"></ion-icon>
             Maxavstånd för att tända planen
             <br> är 300m.
+            <br>
+            <ion-icon name="refresh"></ion-icon>
           </button>
         </div>
-        <div *ngIf="!userIsAway">
+        <div *ngIf="!userIsAway && !distanceError">
           <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
             <ion-icon name="md-bulb"></ion-icon>
             Tänd belysning

@@ -324,7 +324,6 @@ export class FieldPage {
 
   checkDistance() {
 
-
     this.geoLocation.getCurrentPosition().then((resp) => {
       this.myLatitude = resp.coords.latitude,
         this.myLongitude = resp.coords.longitude
