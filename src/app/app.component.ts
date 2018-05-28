@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
+import { FavoritePage} from '../pages/favorite/favorite';
 import { FirstPage } from "../pages/first/first";
 import { Geolocation } from '@ionic-native/geolocation';
 import { GooglePlus } from '@ionic-native/google-plus';

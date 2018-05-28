@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { FieldPage } from '../pages/field/field';
 import { StatusBar } from '@ionic-native/status-bar';
+import { FavoritePage } from '../pages/favorite/favorite';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
 import { FieldService } from "../providers/field-service";
@@ -37,6 +38,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     ListPage,
     FieldPage,
     FirstPage,
+    FavoritePage,
     CalendarPage,
     AboutPage,
     ChatPage,
@@ -55,6 +57,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
   entryComponents: [
     MyApp,
     HomePage,
+    FavoritePage,
     ListPage,
     FieldPage,
     FirstPage,

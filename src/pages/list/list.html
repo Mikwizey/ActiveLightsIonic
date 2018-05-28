@@ -19,8 +19,13 @@
 </ion-header>
 
 <ion-content padding>
+    <button  ion-button icon-left full color="white" (click)="goToFavorites()"> 
+        <ion-icon name="heart" color="danger"></ion-icon>
+         Mina favoriter
 
-  <ion-list>
+    </button>
+
+  <ion-list class="l" >
 
     <button small ion-item *ngFor="let field of fields" (click)="showField(field.id)">
       <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
