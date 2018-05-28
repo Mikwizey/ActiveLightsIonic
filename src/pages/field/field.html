@@ -86,6 +86,13 @@
         <ion-row>
             <ion-col col-12>
                 <!-- Lampknappen -->
+                <div *ngIf="distanceError">
+                    <button text-center ion-item icon-left detail-none no-lines color="danger">
+                        Aktivera platstjänster
+                        <br>
+                        <ion-icon name="md-bulb"></ion-icon> För att tända belysningen.
+                        <br> Maxavstånd är 300m bort.</button>
+                </div>
                 <div *ngIf="userIsAway">
                     <button text-center ion-item icon-left detail-none no-lines color="danger">
                         Du är {{myDistance}}km bort.

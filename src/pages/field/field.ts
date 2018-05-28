@@ -11,6 +11,7 @@ import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldloca
 import { HomePage } from "../home/home";
 import { Quote } from '@angular/compiler';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -31,6 +32,7 @@ export class FieldPage {
   public myDistance;
   public userIsAway = false;
   favorites = [];
+  public distanceError = false;
 
   protected activity: Array<any>;
 
@@ -56,10 +58,10 @@ export class FieldPage {
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider,public favoriteService: FavoriteService,) {
+  constructor(public navCtrl: NavController, public geoLocation: Geolocation,  public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider,public favoriteService: FavoriteService,) {
     this.ref.on('value', resp => {
       const snapshotKey = snapshot => {
-        var key = Object.keys(snapshot.val())[this.id - 100];
+        var key = Object.keys(snapshot.val())[this.id];
         return key;
       }
       this.key = snapshotKey(resp);
@@ -226,7 +228,7 @@ export class FieldPage {
         role:"agree",
         handler:() =>{
           this.isFavorite = true;
-
+          
           this.favoriteService.addToFavorites(this.userId,this.id).subscribe();
           this.favorites=[];
           console.log(this.favorites);
@@ -238,7 +240,7 @@ export class FieldPage {
     alert.present();
   }
   removeFromFavorites(){
-
+    
     console.log("Adding to favorites started in field.ts");
     const alert=this.alertCtrl.create({
       title:"Ta bort från favoriter",
@@ -254,7 +256,7 @@ export class FieldPage {
         role:"agree",
         handler:() =>{
           this.isFavorite = false;
-
+          
           this.favoriteService.removeFromFavorites(this.userId,this.id).subscribe();
           this.favorites=[];
           console.log(this.favorites);
@@ -265,7 +267,7 @@ export class FieldPage {
     });
     alert.present();
   }
-
+ 
   lightsOn() {
 
     this.checkDistance();
@@ -308,34 +310,44 @@ export class FieldPage {
 
   checkDistance() {
 
-    console.log(this.myLatitude, this.myLongitude, this.field.name);
+    
+      this.geoLocation.getCurrentPosition().then((resp) => {
+          this.myLatitude = resp.coords.latitude,
+              this.myLongitude = resp.coords.longitude
 
-    let field: any;
+               console.log("Geolocation", this.myLatitude, this.myLongitude, this.field.name);
 
-    field = this.flp.getFields(this.field.name);
+               let field: any;
 
-    console.log(field[0].lat);
-    console.log(field[0].lon);
+               field = this.flp.getFields(this.field.name);
+           
+               console.log(field[0].lat);
+               console.log(field[0].lon);
+           
+               let lat = field[0].lat;
+               let lon = field[0].lon;
+           
+               let distance = this.distance(this.myLatitude, this.myLongitude, lat, lon, "K");
+               //let distance = this.distance(this.myLatitude, this.myLongitude, this.myLatitude, this.myLongitude, "K");
+           
+               console.log(distance);
+           
+               let distanceString = distance.toString().substring(0, 6);
+           
+               console.log(distanceString);
 
-    let lat = field[0].lat;
-    let lon = field[0].lon;
+               this.distanceError = false;
+           
+               if (distance > 0.3) {
+                 this.myDistance = distanceString;
+                 this.userIsAway = true;
+               }
+           
 
-    let distance = this.distance(this.myLatitude, this.myLongitude, lat, lon, "K");
-    //let distance = this.distance(this.myLatitude, this.myLongitude, this.myLatitude, this.myLongitude, "K");
-
-    console.log(distance);
-
-    let distanceString = distance.toString().substring(0, 5);
-
-    console.log(distanceString);
-
-    if (distance > 0.3) {
-      this.myDistance = distanceString;
-      this.userIsAway = true;
-    }
-
-
-
+      }).catch((error) => {
+          console.log('Error getting location', error);
+          this.distanceError = true;
+      });
   }
 
 }
