@@ -78,12 +78,6 @@
     </platform>
     <engine name="browser" spec="5.0.3" />
     <engine name="android" spec="6.3.0" />
-    <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-facebook4" spec="^2.1.0">
-        <variable name="APP_ID" value="213991759406198" />
-        <variable name="APP_NAME" value="SportLights" />
-        <variable name="ANDROID_SDK_VERSION" value="4.+" />
-    </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
@@ -95,5 +89,11 @@
     <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="WEB_APPLICATION_CLIENT_ID" value="271976641496-q9gflmmjdmjenrhveep0chp5578la9nn.apps.googleusercontent.com" />
         <variable name="REVERSED_CLIENT_ID" value="com.googleuserconten.apps.271976641496-424828c2bdvun1l051ggcj9h3o0hfkek" />
+    </plugin>
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.1.0">
+        <variable name="APP_ID" value="213991759406198" />
+        <variable name="APP_NAME" value="SportLights" />
+        <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
 </widget>
