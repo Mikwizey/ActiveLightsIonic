@@ -65,7 +65,7 @@ export class CalendarPage {
       });
       this.eventSource = this.eventSource.concat(eventSource);
       console.log(this.eventSource);
-    })
+    });
 
     this.activityService.getAllBookedActivities(id).subscribe(eventSource => {
       eventSource.forEach(element => {
@@ -75,7 +75,7 @@ export class CalendarPage {
       });
       this.eventSource = this.eventSource.concat(eventSource);
       console.log(this.eventSource);
-    })
+    });
 
     let calendarPageData = {
 
@@ -86,7 +86,7 @@ export class CalendarPage {
       myLongitude: this.myLongitude,
       loginMethod: this.loginMethod
 
-    }
+    };
 
     console.log("CalendarPage_DidLoad", calendarPageData);
 

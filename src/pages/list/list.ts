@@ -49,7 +49,7 @@ export class ListPage {
       myLongitude: this.myLongitude,
       loginMethod: this.loginMethod,
 
-    }
+    };
 
     console.log("ListPage_DidLoad", listPageData)
 
@@ -87,7 +87,7 @@ export class ListPage {
       myLongitude: this.myLongitude,
       loginMethod: this.loginMethod,
 
-    }
+    };
 
     let nextPage = this.modalCtrl.create(FieldPage, fieldPageData);
     nextPage.onDidDismiss(data => {

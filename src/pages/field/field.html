@@ -1,92 +1,98 @@
 <ion-header>
 
-    <ion-navbar>
-        <ion-buttons left>
-            <button ion-button icon-only (click)="dismiss()">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
 
-        <ion-buttons right>
-            <button ion-button icon-only (click)="goHomePage()">
-                <ion-icon name="home"></ion-icon>
-            </button>
-        </ion-buttons>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="goHomePage()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
 
-        <ion-title text-center>Fotbollsplan</ion-title>
-        <ion-title>{{ viewTitle }}</ion-title>
-    </ion-navbar>
+    <ion-title text-center>Fotbollsplan</ion-title>
+    <ion-title>{{ viewTitle }}</ion-title>
+  </ion-navbar>
 
 </ion-header>
 
-                
+
 
 <ion-content padding>
 
-    <h1 class="name" text-center>{{field?.name}}</h1>
+  <h1 class="name" text-center>{{field?.name}}</h1>
 
-    <h2 id="visitors" class="" text-center>{{field?.visitors}}</h2>
-    
+  <h2 id="visitors" class="" text-center>{{field?.visitors}}</h2>
 
-    <ion-grid>
-        <ion-row>
-                <ion-card>
-                        <ion-card-header text-center>
-                                
-                        
-                              </ion-card-header>
-                        <ion-card-content>
-                <div >
-                    <h3>{{fieldInfo}}</h3>
-                    
-                </div>
-                <ion-card-header>
-                                
-                        
-                    </ion-card-header>
-                    <div >
-                            
-                            <h4>{{fieldAdress}}</h4>
-                        </div>
-                </ion-card-content>
-                </ion-card>
-        </ion-row>
-        <ion-row>
-            <ion-col text-center>
-                <bar-rating (rateChange)="setRate" [(ngModel)]="currentrating"></bar-rating>
-                <!-- DEBUG -->{{currentrating}}
-            </ion-col>
-            <ion-col text-center>
 
-                <button ion-fab icon-end icon-only small round color="assertive" (click)="toTheChatRoom(key)">
+  <ion-grid>
+    <ion-row>
+      <ion-card>
+        <ion-card-header text-center>
 
-                    <ion-icon name="chatbubbles"></ion-icon>
-                </button>
-                
-            </ion-col>
-            <ion-col *ngIf="!isFavorite" text-center>
-                    <button ion-fab color="white" (click)="addToFavorites()" full><ion-icon name="heart-outline" color="danger"></ion-icon></button>
-                  </ion-col>
-                  <ion-col *ngIf="isFavorite" text-center>
-                    <button ion-fab color="white" (click)="removeFromFavorites()" full><ion-icon name="heart" color="danger"></ion-icon></button>
-                  </ion-col>
 
-           
-        </ion-row>
-    </ion-grid>
+        </ion-card-header>
+        <ion-card-content>
+          <div>
+            <h3>{{fieldInfo}}</h3>
 
-    <ion-grid no-padding>
-        <ion-row>
-            <ion-col col-12>
-                <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
-                <button ion-button icon-left full color="dark" (click)="goToCalendar()">
-                    <ion-icon name="md-calendar"></ion-icon>{{buttonText}}</button>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col col-12>
-                <!-- Lampknappen -->
-                <div *ngIf="distanceError">
+          </div>
+          <ion-card-header>
+
+
+          </ion-card-header>
+          <div>
+
+            <h4>{{fieldAdress}}</h4>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <bar-rating [(rate)]="rate" [max]="5" (rateChange)="setRating()" [(ngModel)]="rate"></bar-rating>
+        <!-- DEBUG -->{{rate}}
+      </ion-col>
+      <ion-col text-center>
+
+        <button ion-fab icon-end icon-only small round color="assertive" (click)="toTheChatRoom(key)">
+
+          <ion-icon name="chatbubbles"></ion-icon>
+        </button>
+
+      </ion-col>
+      <ion-col *ngIf="!isFavorite" text-center>
+        <button ion-fab color="white" (click)="addToFavorites()" full>
+          <ion-icon name="heart-outline" color="danger"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col *ngIf="isFavorite" text-center>
+        <button ion-fab color="white" (click)="removeFromFavorites()" full>
+          <ion-icon name="heart" color="danger"></ion-icon>
+        </button>
+      </ion-col>
+
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-12>
+        <!-- ändrat från showActivities() till gotocalendar för att få fram kalendern-->
+        <button ion-button icon-left full color="dark" (click)="goToCalendar()">
+          <ion-icon name="md-calendar"></ion-icon>
+          {{buttonText}}
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <!-- Lampknappen -->
+        <div *ngIf="distanceError">
                     <button text-center ion-item icon-left detail-none no-lines color="danger">
                         Aktivera platstjänster
                         <br>
@@ -94,23 +100,26 @@
                         <br> Maxavstånd är 300m bort.</button>
                 </div>
                 <div *ngIf="userIsAway">
-                    <button text-center ion-item icon-left detail-none no-lines color="danger">
-                        Du är {{myDistance}}km bort.
-                        <br>
-                        <ion-icon name="md-bulb"></ion-icon> Maxavstånd för att tända planen
-                        <br> är 300m.</button>
-                </div>
-                <div *ngIf="!userIsAway">
-                    <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
-                        <ion-icon name="md-bulb"></ion-icon>
-                        Tänd belysning</button>
-                    <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
-                        <ion-icon name="md-bulb"></ion-icon>
-                        Planen är tänd</button>
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-   
+          <button text-center ion-item icon-left detail-none no-lines color="danger">
+            Du är {{myDistance}}km bort.
+            <br>
+            <ion-icon name="md-bulb"></ion-icon>
+            Maxavstånd för att tända planen
+            <br> är 300m.
+          </button>
+        </div>
+        <div *ngIf="!userIsAway">
+          <button ion-button icon-left full color="dark" *ngIf="field?.lights == false" (click)="lightsOn(field.id)">
+            <ion-icon name="md-bulb"></ion-icon>
+            Tänd belysning
+          </button>
+          <button ion-button icon-left full color="dark" *ngIf="field?.lights == true" [disabled]="true">
+            <ion-icon name="md-bulb"></ion-icon>
+            Planen är tänd
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

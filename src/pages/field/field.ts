@@ -1,17 +1,15 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, AlertController, ViewController } from 'ionic-angular';
-import { FieldService } from "../../providers/field-service";
-import { UserPage } from '../user/user';
-import { CalendarPage } from '../calendar/calendar';
-import { ActivityService } from "../../providers/activity-service";
-import { FavoriteService } from "../../providers/favorite-service";
+import {Component} from '@angular/core';
+import {AlertController, IonicPage, ModalController, NavController, NavParams, ViewController} from 'ionic-angular';
+import {FieldService} from "../../providers/field-service";
+import {CalendarPage} from '../calendar/calendar';
+import {ActivityService} from "../../providers/activity-service";
+import {FavoriteService} from "../../providers/favorite-service";
 import * as firebase from 'Firebase';
-import { ChatPage } from "../chat/chat";
-import { FieldlocationsProvider } from "../../providers/fieldlocations/fieldlocations";
-import { HomePage } from "../home/home";
-import { Quote } from '@angular/compiler';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { Geolocation } from '@ionic-native/geolocation';
+import {RatingService} from "../../providers/rating-service";
+import {ChatPage} from "../chat/chat";
+import {FieldlocationsProvider} from "../../providers/fieldlocations/fieldlocations";
+import {HomePage} from "../home/home";
+import {Geolocation} from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -43,7 +41,7 @@ export class FieldPage {
   calendar = {
     mode: 'month',
     currentDate: this.selectedDay
-  }
+  };
 
   key: string;
   ref = firebase.database().ref('chatrooms/');
@@ -58,12 +56,15 @@ export class FieldPage {
   protected buttonText = "Visa aktiviteter";
   protected currentrating = 0;
 
-  constructor(public navCtrl: NavController, public geoLocation: Geolocation,  public navParams: NavParams, public fieldService: FieldService, public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService: ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider,public favoriteService: FavoriteService,) {
+  constructor(public navCtrl: NavController, public geoLocation: Geolocation, public navParams: NavParams, public fieldService: FieldService,
+              public modalCtrl: ModalController, public alertCtrl: AlertController, public activityService:
+                ActivityService, public viewCtrl: ViewController, public flp: FieldlocationsProvider,
+              public favoriteService: FavoriteService, public ratingService: RatingService) {
     this.ref.on('value', resp => {
       const snapshotKey = snapshot => {
         var key = Object.keys(snapshot.val())[this.id];
         return key;
-      }
+      };
       this.key = snapshotKey(resp);
     });
   }
@@ -82,7 +83,7 @@ export class FieldPage {
       this.setColor();
       this.userIsAway = false;
       this.fieldInfo = this.flp.getFields(this.field.name)[0].info;
-      this.fieldAdress = this.flp.getFields(this.field.name)[0].ga + " " +  this.flp.getFields(this.field.name)[0].pa;
+      this.fieldAdress = this.flp.getFields(this.field.name)[0].ga + " " + this.flp.getFields(this.field.name)[0].pa;
     });
 
     let fieldPageData = {
@@ -189,7 +190,6 @@ export class FieldPage {
       data.myLongitude = this.myLongitude;
       data.loginMethod = this.loginMethod;
 
-
       console.log("FieldPage_dismiss_from_ChatPage", data);
     });
     nextPage.present();
@@ -197,12 +197,12 @@ export class FieldPage {
   }
 
   goHomePage() {
-    let nextPage = this.modalCtrl.create(HomePage, { userId: this.userId, userName: this.userName });
+    let nextPage = this.modalCtrl.create(HomePage, {userId: this.userId, userName: this.userName});
     nextPage.present();
   }
 
   showActivity(id: number) {
-    this.navCtrl.push(FieldPage, { id: id });
+    this.navCtrl.push(FieldPage, {id: id});
   }
 
   showInfo() {
@@ -211,63 +211,67 @@ export class FieldPage {
 
   setRating() {
     // Framtida beräkning av medel osv
+    this.ratingService.addRating(this.userId, this.field_id, this.currentrating);
+    console.log("Rating sent");
   }
-  addToFavorites(){
+
+  addToFavorites() {
     console.log("Adding to favorites started in field.ts");
-    const alert=this.alertCtrl.create({
-      title:"Lägg till favoriter",
-      message:"Vill du lägga till den här planen till dina favoriter?",
-      buttons:[{
-        text:"Avbryt",
-        handler:()=>{
+    const alert = this.alertCtrl.create({
+      title: "Lägg till favoriter",
+      message: "Vill du lägga till den här planen till dina favoriter?",
+      buttons: [{
+        text: "Avbryt",
+        handler: () => {
           console.log("back clicked");
         }
       },
-      {
-        text:"Ok",
-        role:"agree",
-        handler:() =>{
-          this.isFavorite = true;
-          
-          this.favoriteService.addToFavorites(this.userId,this.id).subscribe();
-          this.favorites=[];
-          console.log(this.favorites);
-          console.log("ok clicked");
+        {
+          text: "Ok",
+          role: "agree",
+          handler: () => {
+            this.isFavorite = true;
+
+            this.favoriteService.addToFavorites(this.userId, this.id).subscribe();
+            this.favorites = [];
+            console.log(this.favorites);
+            console.log("ok clicked");
+          }
         }
-      }
-    ]
+      ]
     });
     alert.present();
   }
-  removeFromFavorites(){
-    
+
+  removeFromFavorites() {
+
     console.log("Adding to favorites started in field.ts");
-    const alert=this.alertCtrl.create({
-      title:"Ta bort från favoriter",
-      message:"Vill du ta bort den här planen från dina favoriter?",
-      buttons:[{
-        text:"Avbryt",
-        handler:()=>{
+    const alert = this.alertCtrl.create({
+      title: "Ta bort från favoriter",
+      message: "Vill du ta bort den här planen från dina favoriter?",
+      buttons: [{
+        text: "Avbryt",
+        handler: () => {
           console.log("back clicked");
         }
       },
-      {
-        text:"Ok",
-        role:"agree",
-        handler:() =>{
-          this.isFavorite = false;
-          
-          this.favoriteService.removeFromFavorites(this.userId,this.id).subscribe();
-          this.favorites=[];
-          console.log(this.favorites);
-          console.log("ok clicked");
+        {
+          text: "Ok",
+          role: "agree",
+          handler: () => {
+            this.isFavorite = false;
+
+            this.favoriteService.removeFromFavorites(this.userId, this.id).subscribe();
+            this.favorites = [];
+            console.log(this.favorites);
+            console.log("ok clicked");
+          }
         }
-      }
-    ]
+      ]
     });
     alert.present();
   }
- 
+
   lightsOn() {
 
     this.checkDistance();
@@ -286,9 +290,15 @@ export class FieldPage {
 
     switch (this.field.visitors) {
 
-      case "Låg belastning": document.getElementById('visitors').style.color = "green"; break;
-      case "Hög belastning": document.getElementById('visitors').style.color = "red"; break;
-      case "Medel belastning": document.getElementById('visitors').style.color = "orange"; break;
+      case "Låg belastning":
+        document.getElementById('visitors').style.color = "green";
+        break;
+      case "Hög belastning":
+        document.getElementById('visitors').style.color = "red";
+        break;
+      case "Medel belastning":
+        document.getElementById('visitors').style.color = "orange";
+        break;
     }
   }
 
@@ -303,51 +313,55 @@ export class FieldPage {
     dist = dist * 180 / Math.PI;
     dist = dist * 60 * 1.1515;
 
-    if (unit == "K") { dist = dist * 1.609344; }
-    if (unit == "N") { dist = dist * 0.8684; }
+    if (unit == "K") {
+      dist = dist * 1.609344;
+    }
+    if (unit == "N") {
+      dist = dist * 0.8684;
+    }
     return dist;
   }
 
   checkDistance() {
 
-    
-      this.geoLocation.getCurrentPosition().then((resp) => {
-          this.myLatitude = resp.coords.latitude,
-              this.myLongitude = resp.coords.longitude
 
-               console.log("Geolocation", this.myLatitude, this.myLongitude, this.field.name);
+    this.geoLocation.getCurrentPosition().then((resp) => {
+      this.myLatitude = resp.coords.latitude,
+        this.myLongitude = resp.coords.longitude
 
-               let field: any;
+      console.log("Geolocation", this.myLatitude, this.myLongitude, this.field.name);
 
-               field = this.flp.getFields(this.field.name);
-           
-               console.log(field[0].lat);
-               console.log(field[0].lon);
-           
-               let lat = field[0].lat;
-               let lon = field[0].lon;
-           
-               let distance = this.distance(this.myLatitude, this.myLongitude, lat, lon, "K");
-               //let distance = this.distance(this.myLatitude, this.myLongitude, this.myLatitude, this.myLongitude, "K");
-           
-               console.log(distance);
-           
-               let distanceString = distance.toString().substring(0, 6);
-           
-               console.log(distanceString);
+      let field: any;
 
-               this.distanceError = false;
-           
-               if (distance > 0.3) {
-                 this.myDistance = distanceString;
-                 this.userIsAway = true;
-               }
-           
+      field = this.flp.getFields(this.field.name);
 
-      }).catch((error) => {
-          console.log('Error getting location', error);
-          this.distanceError = true;
-      });
+      console.log(field[0].lat);
+      console.log(field[0].lon);
+
+      let lat = field[0].lat;
+      let lon = field[0].lon;
+
+      let distance = this.distance(this.myLatitude, this.myLongitude, lat, lon, "K");
+      //let distance = this.distance(this.myLatitude, this.myLongitude, this.myLatitude, this.myLongitude, "K");
+
+      console.log(distance);
+
+      let distanceString = distance.toString().substring(0, 6);
+
+      console.log(distanceString);
+
+      this.distanceError = false;
+
+      if (distance > 0.3) {
+        this.myDistance = distanceString;
+        this.userIsAway = true;
+      }
+
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+      this.distanceError = true;
+    });
   }
 
 }

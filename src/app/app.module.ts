@@ -26,6 +26,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { FieldlocationsProvider } from '../providers/fieldlocations/fieldlocations';
 import { PopoverlistComponent } from '../components/popoverlist/popoverlist';
+import {RatingService} from "../providers/rating-service";
 
 
 registerLocaleData(localeSv);  //lagt till för o få svenska
@@ -79,6 +80,7 @@ registerLocaleData(localeSv);  //lagt till för o få svenska
     Facebook,
     UserDataProvider,
     FieldlocationsProvider,
+    RatingService
   ]
 })
 export class AppModule { }

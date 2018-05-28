@@ -15,9 +15,9 @@ export class FirstPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private googlePlus: GooglePlus, private fb: Facebook, public modalCtrl: ModalController) {
   }
 
-  ionViewDidLoad() { 
+  ionViewDidLoad() {
 
-    console.log("FirstPage_DidLoad")
+    console.log("FirstPage_DidLoad");
 
     this.fb.getLoginStatus();
     this.googlePlus.trySilentLogin();
@@ -31,9 +31,9 @@ export class FirstPage {
   }
 
   /**
-   * 
+   *
    * SOCIAL MEDIA
-   * 
+   *
    */
 
   /*
@@ -54,7 +54,7 @@ export class FirstPage {
               userId: res.id,
               loginMethod: "Facebook"
 
-            }
+            };
 
             let nextPage = this.modalCtrl.create(HomePage, userData);
             nextPage.present();
@@ -70,7 +70,7 @@ export class FirstPage {
   }
 
   /*
-   * Google 
+   * Google
    */
 
   loginGoogle() {
@@ -85,7 +85,7 @@ export class FirstPage {
           userId: res.userId,
           loginMethod: "Google"
 
-        }
+        };
 
         let nextPage = this.modalCtrl.create(HomePage, userData);
         nextPage.present();
@@ -100,12 +100,12 @@ export class FirstPage {
   loginDeveloper() {
 
     let userData = {
-     
-      userName: "Utvecklare", 
-      userId: "1234", 
+
+      userName: "Utvecklare",
+      userId: "1234",
       loginMethod: "Developer"
 
-    }
+    };
 
     let nextPage = this.modalCtrl.create(HomePage, userData);
     nextPage.present();

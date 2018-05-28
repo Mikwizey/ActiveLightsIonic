@@ -16,7 +16,7 @@ import { ViewController, NavParams } from "ionic-angular";
 export class PopoverlistComponent {
 
   value;
-  fields = []
+  fields = [];
 
   constructor(public flp: FieldlocationsProvider, public viewCtrl: ViewController) {
     this.fields = this.flp.getAllFields();

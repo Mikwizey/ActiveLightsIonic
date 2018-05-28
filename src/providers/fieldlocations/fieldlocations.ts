@@ -765,16 +765,16 @@ export class FieldlocationsProvider {
       Latitude: "59.339470",
       Longitude: "18.086230",
     }
-  ]
+  ];
 
-  fieldsWithVisitors = []
+  fieldsWithVisitors = [];
 
   myLatitude;
   myLongitude;
 
   constructor(public geolocation: Geolocation, public fieldService: FieldService) {
 
-    console.log("flp")
+    console.log("flp");
 
     this.fieldService.getGoodFields().subscribe(fields => {
 
@@ -791,7 +791,7 @@ export class FieldlocationsProvider {
           let field = this.fields[i];
 
           if(apiField.name == field.Namn){
-            
+
             let fieldData = {
 
               Namn: field.Namn,
@@ -802,14 +802,14 @@ export class FieldlocationsProvider {
               Longitude: field.Longitude,
               Visitors: apiField.visitors,
 
-            }
+            };
 
             this.fieldsWithVisitors.push(fieldData);
 
           }
 
         }
-          
+
       }
 
       console.log(this.fieldsWithVisitors)
@@ -852,9 +852,9 @@ export class FieldlocationsProvider {
           lon: this.fieldsWithVisitors[i].Longitude,
           lat: this.fieldsWithVisitors[i].Latitude,
           visitors: this.fieldsWithVisitors[i].Visitors,
-          
 
-        }
+
+        };
 
         wantedFields.push(field);
 
@@ -892,7 +892,7 @@ export class FieldlocationsProvider {
         postadress: pa,
         visitors: visitors,
 
-      }
+      };
       fields.push(field);
     }
 

@@ -86,7 +86,7 @@ export class HomePage {
             myLongitude: this.myLongitude,
             loginMethod: this.loginMethod,
 
-        }
+        };
 
         console.log("HomePage_DidLoad", homePageData);
 
@@ -109,7 +109,7 @@ export class HomePage {
             myLongitude: this.myLongitude,
             loginMethod: this.loginMethod,
 
-        }
+        };
 
         let nextPage = this.modalCtrl.create(ListPage, listPageData);
         nextPage.onDidDismiss(data => {
@@ -185,10 +185,10 @@ export class HomePage {
                 coords: { lat: 59.3584, lng: 18.100 },
                 iconImage: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                 content: '<h1>Bergholms Bollplan</h1>'
-      
+
               },
               {
-      
+
                 coords: { lat: 59.3684, lng: 18.052240 },
                 iconImage: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
               }
@@ -349,7 +349,7 @@ export class HomePage {
                     iconImage: iconImage,
                     content: googleContent,
 
-                }
+                };
 
                 this.allFieldMarkers.push(fieldMarker);
 
@@ -398,7 +398,7 @@ export class HomePage {
                         coords: { lat: googlelat, lng: googlelon },
                         iconImage: iconImage,
                         content: googleContent
-                    }
+                    };
 
                     this.stationListMap.push(stationMarkerInfo);
 
@@ -416,7 +416,7 @@ export class HomePage {
 
         this.showAll = true;
 
-        let allFields = []
+        let allFields = [];
 
         allFields = this.flp.getAllFields();
 
@@ -444,7 +444,7 @@ export class HomePage {
                 iconImage: iconImage,
                 content: googleContent,
 
-            }
+            };
 
             this.allFieldMarkers.push(fieldMarker);
 
@@ -502,9 +502,9 @@ export class HomePage {
     }
 
     /**
-     * 
+     *
      * In och utloggning med respektive APIer
-     * 
+     *
      */
 
     logoutFacebook() {

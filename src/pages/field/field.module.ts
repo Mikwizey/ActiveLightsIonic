@@ -5,8 +5,9 @@ import {FieldPage} from "./field";
 import * as moment from 'moment';
 import {CalendarPage} from '../calendar/calendar';
 import { ActivityService } from "../../providers/activity-service";
+import {RatingService} from "../../providers/rating-service";
 
-  
+
 
 
 @NgModule({
@@ -15,12 +16,13 @@ import { ActivityService } from "../../providers/activity-service";
   ],
   imports: [
     IonicPageModule.forChild(FieldPage),
-   
+
 
   ],
   providers: [
     FieldService,
-    ActivityService
+    ActivityService,
+    RatingService
   ]
 })
 export class FieldPageModule {}

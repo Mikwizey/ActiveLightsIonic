@@ -69,7 +69,7 @@ export class ChatPage {
       chatName: this.chatName,
       id: id,
       loginMethod: this.loginMethod,
-    }
+    };
 
     console.log("ChatPage_didLoad", chatPageData)
 
