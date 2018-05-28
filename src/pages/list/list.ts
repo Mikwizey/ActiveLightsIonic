@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController } 
 import { FieldService } from "../../providers/field-service";
 import { FieldPage } from '../field/field';
 import { HomePage } from '../home/home';
+import {FavoritePage} from '../favorite/favorite';
 
 @IonicPage()
 @Component({
@@ -103,5 +104,7 @@ export class ListPage {
     nextPage.present();
 
   }
+  goToFavorites(){
+    this.navCtrl.push(FavoritePage);  }
 
 }
