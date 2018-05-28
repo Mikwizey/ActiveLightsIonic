@@ -26,7 +26,7 @@ export class FieldPage {
   public myLatitude;
   public myLongitude;
   public loginMethod;
-
+  public isFavorite = false;
   public showData = false;
   public myDistance;
   public userIsAway = false;
@@ -216,6 +216,34 @@ export class FieldPage {
       title:"Lägg till favoriter",
       message:"Vill du lägga till den här planen till dina favoriter?",
       buttons:[{
+        text:"Avbryt",
+        handler:()=>{
+          console.log("back clicked");
+        }
+      },
+      {
+        text:"OK",
+        role:"agree",
+        handler:() =>{
+          this.isFavorite = true;
+          
+          this.favoriteService.addToFavorites(this.userId,this.id).subscribe();
+          this.favorites=[];
+          console.log(this.favorites);
+          console.log("ok clicked");
+        }
+      }
+    ]
+    });
+    alert.present();
+  }
+  removeFromFavorites(){
+    
+    console.log("Adding to favorites started in field.ts");
+    const alert=this.alertCtrl.create({
+      title:"Ta bort från favoriter",
+      message:"Vill du ta bort den här planen från dina favoriter?",
+      buttons:[{
         text:"back",
         handler:()=>{
           console.log("back clicked");
@@ -225,8 +253,9 @@ export class FieldPage {
         text:"OK",
         role:"agree",
         handler:() =>{
+          this.isFavorite = false;
           
-          this.favoriteService.addToFavorites(this.userId,this.id).subscribe();
+          this.favoriteService.removeFromFavorites(this.userId,this.id).subscribe();
           this.favorites=[];
           console.log(this.favorites);
           console.log("ok clicked");

@@ -15,4 +15,9 @@ export class FavoriteService {
   addToFavorites(userId: number, id: number): Observable<any> {
       return this.http.post(this.API + "/user/"+ userId +"/field/" + id + "/favorite/add",{} );
       }
+  removeFromFavorites(userId: number, id: number): Observable<any> {
+    console.log("remove ");
+        return this.http.delete(this.API + "/user/"+ userId +"/field/" + id + "/favorite/add",{} );
+        }
+
   }
