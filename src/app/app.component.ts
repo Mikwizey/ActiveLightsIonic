@@ -49,6 +49,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      var notificationOpenedCallback = function(jsonData) {
+        console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+  
+      window["plugins"].OneSignal
+        .startInit("06747a9c-10fa-4b3e-9720-37810eaf35df", "1076629869057")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
     });
     firebase.initializeApp(config);
   }
