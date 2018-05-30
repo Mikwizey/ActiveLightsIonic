@@ -22,7 +22,7 @@ public userId;
     console.log("user id : " + this.userId);
     this.favoriteService.getAllFavorites(this.userId).subscribe(fields => {
       this.fields = fields;
-    })
+    });
     console.log("getallfav fired");
   }
 

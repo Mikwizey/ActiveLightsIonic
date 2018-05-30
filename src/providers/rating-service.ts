@@ -8,11 +8,15 @@ export class RatingService {
   public API = 'http://localhost:8090'; //För att se server lokalt
   // (Spring verkar kunna köras på antingen port 8080 eller port 8090, testa det andra
   //om det första inte funkar
-  public ACTIVITY_API = this.API;
+
   constructor(public http: HttpClient) {
   }
 
   addRating(userId: number, id: number, value: number): Observable<any> {
     return this.http.post(this.API + "/user/"+ userId +"/field/" + id + "/rating/" + value,{} );
+  }
+
+  getAverageRating(id: number): Observable<any> {
+    return this.http.get("/field/" + id + "/rating");
   }
 }

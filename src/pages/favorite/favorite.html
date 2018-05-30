@@ -3,25 +3,20 @@
         <ion-navbar>
           <ion-title>Favoriter</ion-title>
         </ion-navbar>
-      
-      </ion-header>
-      
-      
-      <ion-content padding class="background"text-center> 
-        
-          <ion-list class="l" >
-            
-            
-            <button small ion-item *ngFor="let field of fields" (click)="showField(field.id)">
-              <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
-              <ion-icon name="md-add-circle" *ngIf="field.lights == false" item-start></ion-icon>
-              {{field.name}}
 
-            
-            
-        
+      </ion-header>
+
+
+      <ion-content padding class="background"text-center>
+
+          <ion-list class="l" >
+
+
+            <button small ion-item *ngFor="let field of fields" (click)="showField(field)">
+              {{field}}
+
             </button>
 
         </ion-list>
-      
+
       </ion-content>
