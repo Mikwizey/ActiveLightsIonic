@@ -17,7 +17,21 @@ export class FavoriteService {
       }
   removeFromFavorites(userId: number, id: number): Observable<any> {
     console.log("remove ");
-        return this.http.delete(this.API + "/user/"+ userId +"/field/" + id + "/favorite/remove",{} );
+        return this.http.delete(this.API + "/user/"+ userId +"/field/" + id + "/favorite/remove");
+        }
+        getFields(): Observable<any> {
+    
+          return this.http.get(this.API + '/field');
+          
+        }
+        getAllFavorites(userId: number): Observable<any> {
+          return this.http.get(this.API + "/user/"+userId+"/favorites/get");
         }
 
   }
+
+  /*
+  getFavoriteField(): Observable<any> {
+    return this.http.get(this.API + '/field'); 
+  }
+  */

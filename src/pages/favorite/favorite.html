@@ -8,12 +8,20 @@
       
       
       <ion-content padding class="background"text-center> 
-        <ion-list>
-            <button small ion-item *ngFor="let field of fields" (click)="showFavorite(field.id)">
-                <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
-                <ion-icon name="md-add-circle" *ngIf="field.lights == false" item-start></ion-icon>
-                {{field.name}}
-                </button>
+        
+          <ion-list class="l" >
+            
+            
+            <button small ion-item *ngFor="let field of fields" (click)="showField(field.id)">
+              <ion-icon name="md-bulb" *ngIf="field.lights == true" item-start></ion-icon>
+              <ion-icon name="md-add-circle" *ngIf="field.lights == false" item-start></ion-icon>
+              {{field.name}}
+
+            
+            
+        
+            </button>
+
         </ion-list>
       
       </ion-content>
