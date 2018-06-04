@@ -4,6 +4,7 @@ import { FieldService } from "../../providers/field-service";
 import { FieldPage } from '../field/field';
 import { HomePage } from '../home/home';
 import {FavoritePage} from '../favorite/favorite';
+import { FavoriteService } from "../../providers/favorite-service";
 
 @IonicPage()
 @Component({
@@ -106,7 +107,43 @@ export class ListPage {
     nextPage.present();
 
   }
-  goToFavorites(){
-    this.navCtrl.push(FavoritePage);  }
+  goToFavorites() {
 
-}
+      //this.navParams.get("nickname")
+
+      //this.navCtrl.push(ListPage, { nickname: this.userName, lat: this.myLatitude, lon: this.myLongitude });
+
+      let chatName = this.userName.toString();
+
+      let FavoritePageData = {
+
+          nickName: chatName,
+          userName: this.userName,
+          userId: this.userId,
+          myLatitude: this.myLatitude,
+          myLongitude: this.myLongitude,
+          loginMethod: this.loginMethod,
+
+      };
+
+      let nextPage = this.modalCtrl.create(FavoritePage, FavoritePageData);
+      nextPage.onDidDismiss(data => {
+
+          data.userName = this.userName;
+          data.userId = this.userName;
+          data.myLatitude = this.myLatitude;
+          data.myLongitude = this.myLongitude;
+          data.loginMethod = this.loginMethod;
+          
+      });
+      console.log("Favorite")
+      nextPage.present();
+
+
+  
+  
+  
+  
+    }}
+
+

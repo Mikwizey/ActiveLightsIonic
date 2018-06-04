@@ -53,7 +53,7 @@
     </ion-row>
     <ion-row>
       <ion-col text-center>
-        <bar-rating [(rate)]="rate" [max]="5" (rateChange)="setRating()" [(ngModel)]="rate"></bar-rating>
+        <bar-rating [(rate)]="rate" [max]="5" (click)="setRating()" [(ngModel)]="currentrating"></bar-rating>
         <!-- DEBUG -->{{rate}}
       </ion-col>
       <ion-col text-center>

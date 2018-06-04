@@ -14,12 +14,17 @@ export class FieldService {
   }
 
   getGoodFields(): Observable<any> {
+    
     return this.http.get(this.API + '/field');
+    
   }
 
   getField(id: number): Observable<any> {
+    console.log("2");
     return this.http.get(this.API + '/field/' + id);
+   
   }
+
 
   setLights(id: number): Observable<any> {
     console.log("kommer till fs");
